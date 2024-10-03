@@ -6,21 +6,18 @@ export function NoteList({ notes, onDelete, onEdit }) {
         <div className="note-list">
             {notes.map(note => (
                 <div key={note.id} className="note-card">
-                    {/* Display title for NoteTxt */}
                     {note.type === 'NoteTxt' && (
                         <div>
-                            <h3>{note.info.title || ''}</h3> {/* Display title or default */}
-                            <p>{note.info.txt}</p> {/* Display the content */}
+                            <h3>{note.info.title || ''}</h3> 
+                            <p>{note.info.txt}</p>
                         </div>
                     )}
-                    {/* Display title and image for NoteImg */}
                     {note.type === 'NoteImg' && (
                         <div>
                             <h3>{note.info.title || 'Untitled Image'}</h3>
                             <img src={note.info.url} alt={note.info.title} />
                         </div>
                     )}
-                    {/* Display title and todos for NoteTodos */}
                     {note.type === 'NoteTodos' && (
                         <div>
                             <h3>{note.info.title || 'Untitled Todos'}</h3>
