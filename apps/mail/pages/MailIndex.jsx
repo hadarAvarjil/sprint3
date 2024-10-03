@@ -52,6 +52,7 @@ export function MailIndex() {
             <section>
                 <Link to="/mail/edit" >Add mail</Link>
             </section>
+            <AppSideBar />
             <MailList
                 mails={mails}
                 onRemoveMail={onRemoveMail}
