@@ -7,7 +7,8 @@ export const utilService = {
     getDayName,
     getMonthName,
     loadFromStorage,
-    saveToStorage
+    saveToStorage,
+    getTruthyValues
 }
 
 function saveToStorage(key, val) {
@@ -71,3 +72,15 @@ function getMonthName(date) {
     ]
     return monthNames[date.getMonth()]
 }
+
+function getTruthyValues(obj) {
+    const newObj = {}
+    for (const key in obj) {
+        const value = obj[key]
+        if (value || value === 0) {
+            newObj[key] = value
+        }
+    }
+    return newObj
+}
+

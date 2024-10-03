@@ -67,7 +67,7 @@ function getDefaultFilter() {
 
 function _createMails() {
     const ctgs = ['Critical', 'Family', 'Work', 'Friends', 'Spam', 'Memories', 'Romantic' ]
-    const mails = utilService.loadFromStorage(mail_KEY) || []
+    const mails = utilService.loadFromStorage(MAIL_KEY) || []
 
     if (mails && mails.length) return
 
