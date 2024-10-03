@@ -36,6 +36,13 @@ export function NoteIndex() {
     };
 
     const handleEditNote = (updatedNote) => {
+        if (updatedNote.type === 'NoteTodos') {
+            updatedNote.info.todos = updatedNote.info.todos.map(todo => ({
+                ...todo,
+                doneAt: todo.doneAt ? new Date(todo.doneAt) : null
+            }));
+        }
+    
         noteService.put(updatedNote);
         loadNotes();
         setNoteToEdit(null);
@@ -50,6 +57,14 @@ export function NoteIndex() {
         setNoteToEdit(note);
     };
 
+    const handleColorChange = (noteId, color) => {
+        const updatedNotes = notes.map(note =>
+            note.id === noteId ? { ...note, style: { ...note.style, backgroundColor: color } } : note
+        );
+        setNotes(updatedNotes)
+        noteService.put(updatedNotes.find(note => note.id === noteId))
+    };
+
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -59,7 +74,9 @@ export function NoteIndex() {
             {/* <h1>Your Notes</h1> */}
             <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} /> {/* Ensure usage here */}
             <NoteForm onSave={noteToEdit ? handleEditNote : handleAddNote} existingNote={noteToEdit} />
-            <NoteList notes={filteredNotes} onEdit={handleEditClick} onDelete={handleDeleteNote} />
+            <NoteList notes={notes} onEdit={handleEditClick} onDelete={handleDeleteNote}  onColorChange={handleColorChange} />
         </div>
     );
 }
+
+
