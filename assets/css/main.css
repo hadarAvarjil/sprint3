@@ -4,7 +4,6 @@
 /* @import './setup/fonts.css'; */
 
 /* Basics */
-
 @import './basics/base.css';
 @import './basics/helpers.css';
 /* @import './basics/layout.css'; */
@@ -12,9 +11,12 @@
 /* Pages */
 @import './pages/home.css';
 
-/* @import './apps/note/pages/NoteIndex.css'; */
-
+/* Cmps mail */
 /* @import './apps/mail/pages/MailIndex.css'; */
+
+/* Cmps note */
+@import './apps/note/pages/NoteIndex.css';
+@import './apps/note/cmps/NoteList.css';
 
 /* Cmps */
 
