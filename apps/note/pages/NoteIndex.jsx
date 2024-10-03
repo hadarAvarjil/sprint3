@@ -25,10 +25,17 @@ export function NoteIndex() {
     }
 
     const handleEditNote = (updatedNote) => {
-        noteService.put(updatedNote)
-        loadNotes()
-        setNoteToEdit(null)
-    }
+        if (updatedNote.type === 'NoteTodos') {
+            updatedNote.info.todos = updatedNote.info.todos.map(todo => ({
+                ...todo,
+                doneAt: todo.doneAt ? new Date(todo.doneAt) : null
+            }));
+        }
+    
+        noteService.put(updatedNote);
+        loadNotes();
+        setNoteToEdit(null);
+    };
 
     function handleDeleteNote(noteId) {
         noteService.remove(noteId);
@@ -49,7 +56,6 @@ export function NoteIndex() {
 
     return (
         <div className="note-index">
-            <h1>Your Notes</h1>
             <NoteForm onSave={noteToEdit ? handleEditNote : handleAddNote} existingNote={noteToEdit} />
             <NoteList notes={notes} onEdit={handleEditClick} onDelete={handleDeleteNote}  onColorChange={handleColorChange} />
         </div>

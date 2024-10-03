@@ -6,7 +6,7 @@ const notes = [
         createdAt: Date.now(),
         type: 'NoteTxt',
         isPinned: true,
-        style: { backgroundColor: '#00d' },
+        style: { backgroundColor: '#f9b4ff' },
         info: { txt: 'Fullstack Me Baby!' }
     },
     {
@@ -15,7 +15,7 @@ const notes = [
         type: 'NoteImg',
         isPinned: false,
         info: { url: 'http://some-img/me', title: 'Bobi and Me' },
-        style: { backgroundColor: '#00d' }
+        style: { backgroundColor: '#ffb4b4' }
     },
     {
         id: 'n103',

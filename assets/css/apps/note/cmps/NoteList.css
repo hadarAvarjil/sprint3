@@ -6,10 +6,9 @@
 .note-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; /* רווחים שווים בין הכרטיסיות */
+    justify-content: space-around; 
     padding: 20px;
 }
-
 
 .note-item {
     background-color: #fff;
@@ -22,7 +21,7 @@
     justify-content: space-between;
     align-self: start;
     word-wrap: break-word;
-    max-height: 350px;
+    max-height: 750px; /* Further increased height */
     overflow: hidden;
 }
 
@@ -64,31 +63,18 @@
     height: 30px;
 }
 
+/* Updated Note Card Styles for Larger Cards */
 .note-card {
-    background-color: #f0f0f0; /* צבע רקע לכרטיסיה */
+    background-color: #f0f0f0; 
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 10px;
-    padding: 15px;
-    width: 200px; /* גודל קבוע לכרטיסיות */
-    transition: transform 0.2s; /* אפקט של הזזה */
+    padding: 30px; /* Increased padding for more space */
+    width: 400px; /* Increased width */
+    transition: transform 0.2s; 
+    max-height: 700px; /* Increased max-height */
 }
 
 .note-card:hover {
-    transform: scale(1.05); /* אפקט של הגדלה כשמעבירים מעל */
-}
-
-
-.note-card {
-    background-color: #f0f0f0; /* צבע רקע לכרטיסיה */
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    padding: 15px;
-    width: 200px; /* גודל קבוע לכרטיסיות */
-    transition: transform 0.2s; /* אפקט של הזזה */
-}
-
-.note-card:hover {
-    transform: scale(1.05); /* אפקט של הגדלה כשמעבירים מעל */
+    transform: scale(1.05); 
 }

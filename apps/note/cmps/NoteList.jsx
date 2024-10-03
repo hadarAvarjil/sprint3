@@ -17,32 +17,32 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange }) {
                 <div key={note.id} className="note-card" style={{ backgroundColor: (note.style && note.style.backgroundColor) || '#fff' }}>
                     {note.type === 'NoteTxt' && (
                         <div>
-                            <h3>{note.info.title || ''}</h3> 
+                              <h3>{note.info.title ? `Title: ${note.info.title}` : ''}</h3>
                             <p>{note.info.txt}</p>
                         </div>
                     )}
                     {note.type === 'NoteImg' && (
                         <div>
-                            <h3>{note.info.title || 'Untitled Image'}</h3>
+                            <h3>{note.info.title ? `Title: ${note.info.title}` : 'Untitled Note'}</h3>
                             <img src={note.info.url} alt={note.info.title} />
                         </div>
                     )}
                     {note.type === 'NoteTodos' && (
-                        <div>
-                            <h3>{note.info.title || 'Untitled Todos'}</h3>
-                            <ul>
-                                {note.info.todos.map((todo, index) => (
-                                    <li key={index} style={{ textDecoration: todo.doneAt ? 'line-through' : 'none' }}>
-                                        {todo.txt}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                    <div>
+                      <h3>{note.info.title ? `Title: ${note.info.title}` : 'Untitled Image'}</h3>
+                    <ul>
+                        {note.info.todos.map((todo, index) => (
+                            <li key={index} style={{ textDecoration: todo.doneAt ? 'line-through' : 'none' }}>
+                                {todo.txt}
+                            </li>
+                        ))}
+                    </ul>
+                    </div>
                     )}
                     <button onClick={() => onEdit(note)}>Edit</button>
                     <button onClick={() => onDelete(note.id)}>Delete</button>
                     <button onClick={() => setColorPickerVisible(note.id)}>
-                        🎨 Select Color
+                        🎨
                     </button>
                     {colorPickerVisible === note.id && (
                         <div style={{ display: 'flex', gap: '10px', margin: '10px 0' }}>
