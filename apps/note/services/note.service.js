@@ -34,8 +34,22 @@ export const noteService = {
     get,
     post,
     put,
-    remove
+    remove,
+    filterNotesBySearch,
+    filterNotesByType
 };
+
+function filterNotesBySearch(searchTerm) {
+    return notes.filter(note => {
+        const txtMatches = note.info.txt && note.info.txt.toLowerCase().includes(searchTerm.toLowerCase());
+        const titleMatches = note.info.title && note.info.title.toLowerCase().includes(searchTerm.toLowerCase());
+        return txtMatches || titleMatches;
+    });
+}
+
+function filterNotesByType(type) {
+    return notes.filter(note => note.type === type);
+}
 
 function query() {
     return notes;

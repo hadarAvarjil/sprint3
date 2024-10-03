@@ -6,8 +6,9 @@
     background-color: #f9f9f9; /* Light background for contrast */
     border-radius: 10px; /* Rounded corners for the entire section */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    margin: 5%; /* Space around the note index */
-    
+    margin: 10%;
+    margin-left: 30%;
+    width: 60%;
 }
 
 /* Add hover effect for the index section */
@@ -22,7 +23,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
     margin: 15px; /* Margin around cards */
     padding: 30px; /* Increased padding for more space */
-    width: 300px; /* Set width of cards */
+    width: 200px; /* Set width of cards */
     transition: transform 0.2s; /* Smooth transform on hover */
     max-height: 500px; /* Set max height for cards */
     overflow: hidden; /* Hide overflow content */
