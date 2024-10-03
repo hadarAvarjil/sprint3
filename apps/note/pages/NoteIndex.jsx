@@ -6,37 +6,38 @@ import { NoteForm } from "../cmps/NoteForm.jsx"
 import { noteService } from "../services/note.service.js"
 
 export function NoteIndex() {
-    const [notes, setNotes] = useState([]);
-    const [noteToEdit, setNoteToEdit] = useState(null);
+    const [notes, setNotes] = useState([])
+    const [noteToEdit, setNoteToEdit] = useState(null)
 
     useEffect(() => {
-        loadNotes();
-    }, []);
+        loadNotes()
+    }, [])
 
     const loadNotes = () => {
-        const notes = noteService.query();
-        setNotes(notes);
-    };
+        const notes = noteService.query()
+        setNotes(notes)
+    }
 
     const handleAddNote = (newNote) => {
-        noteService.post(newNote);
-        loadNotes();
-    };
+        const addedNote = noteService.post(newNote)
+        setNotes((prevNotes) => [...prevNotes, addedNote])
+        setNoteToEdit(null)
+    }
 
     const handleEditNote = (updatedNote) => {
-        noteService.put(updatedNote);
-        loadNotes();
-        setNoteToEdit(null); // Reset after updating
-    };
+        noteService.put(updatedNote)
+        loadNotes()
+        setNoteToEdit(null)
+    }
 
     function handleDeleteNote(noteId) {
-        noteService.remove(noteId); // מחיקת הפתק מהשירות
-        setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId)); // עדכון המצב
+        noteService.remove(noteId);
+        setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
     }
 
     const handleEditClick = (note) => {
-        setNoteToEdit(note); // Set the note to edit in the form
-    };
+        setNoteToEdit(note)
+    }
 
     return (
         <div className="note-index">
@@ -45,4 +46,5 @@ export function NoteIndex() {
             <NoteList notes={notes} onEdit={handleEditClick} onDelete={handleDeleteNote} />
         </div>
     );
+
 }
