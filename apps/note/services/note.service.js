@@ -1,6 +1,4 @@
-// services/note.service.js
-import { utilService } from '../../../services/util.service.js'
-import { storageService } from '../../../services/async-storage.service.js'
+import { utilService } from '../../../services/util.service.js';
 
 const notes = [
     {
@@ -29,7 +27,7 @@ const notes = [
             todos: [{ txt: 'Driving license', doneAt: null }, { txt: 'Coding power', doneAt: 187111111 }]
         }
     }
-]
+];
 
 export const noteService = {
     query,
@@ -37,36 +35,38 @@ export const noteService = {
     post,
     put,
     remove
-}
+};
 
 function query() {
-    return Promise.resolve(notes)
+    return notes;
 }
 
 function get(noteId) {
-    const note = notes.find(note => note.id === noteId)
-    return Promise.resolve(note)
+    return notes.find(note => note.id === noteId);
 }
 
 function post(note) {
-    notes.push({ ...note, id: _makeId() })
-    return Promise.resolve(note)
+    const newNote = { ...note, id: _makeId(), createdAt: Date.now() };
+    notes.push(newNote);
+    return newNote;
 }
 
 function put(updatedNote) {
-    const index = notes.findIndex(note => note.id === updatedNote.id)
+    const index = notes.findIndex(note => note.id === updatedNote.id);
     if (index !== -1) {
-        notes[index] = updatedNote
-        return Promise.resolve(updatedNote)
+        notes[index] = updatedNote;
+        return updatedNote;
     }
-
 }
 
 function remove(noteId) {
-    const index = notes.findIndex(note => note.id === noteId)
+    const index = notes.findIndex(note => note.id === noteId);
     if (index !== -1) {
-        notes.splice(index, 1)
-        return Promise.resolve()
+        notes.splice(index, 1);
+        return true; 
     }
 }
 
+function _makeId() {
+    return 'n' + Math.random().toString(36).substr(2, 9);
+}

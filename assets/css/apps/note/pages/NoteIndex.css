@@ -1,4 +1,6 @@
- /* NoteIndex.css */
 .note-index {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* רווחים שווים בין הכרטיסיות */
     padding: 20px;
 }

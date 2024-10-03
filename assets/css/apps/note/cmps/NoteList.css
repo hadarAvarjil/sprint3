@@ -4,11 +4,12 @@
 }
 
 .note-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); /* Adjusted minmax value */
-    gap: 20px;
-    grid-auto-rows: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* רווחים שווים בין הכרטיסיות */
+    padding: 20px;
 }
+
 
 .note-item {
     background-color: #fff;
@@ -61,4 +62,33 @@
 .icon-button .icon {
     width: 24px;
     height: 30px;
+}
+
+.note-card {
+    background-color: #f0f0f0; /* צבע רקע לכרטיסיה */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 200px; /* גודל קבוע לכרטיסיות */
+    transition: transform 0.2s; /* אפקט של הזזה */
+}
+
+.note-card:hover {
+    transform: scale(1.05); /* אפקט של הגדלה כשמעבירים מעל */
+}
+
+
+.note-card {
+    background-color: #f0f0f0; /* צבע רקע לכרטיסיה */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    width: 200px; /* גודל קבוע לכרטיסיות */
+    transition: transform 0.2s; /* אפקט של הזזה */
+}
+
+.note-card:hover {
+    transform: scale(1.05); /* אפקט של הגדלה כשמעבירים מעל */
 }
