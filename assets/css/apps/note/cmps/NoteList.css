@@ -1,1 +1,6 @@
- /* note list */
+/* NoteList.css */
+.note-list {
+    display: flex;
+    flex-direction: column;
+}
+

@@ -1,3 +1,5 @@
+import { NoteTxt } from '../cmps/NoteTxt.jsx'
+
 
 export function NotePreview({ note }) {
     switch (note.type) {

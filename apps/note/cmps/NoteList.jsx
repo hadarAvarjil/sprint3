@@ -1,5 +1,5 @@
 
-import { NotePreview } from "./NotePreview.jsx";
+import { NotePreview } from "../cmps/NotePreview.jsx";
 
 export function NoteList({ notes }) {
     return (
