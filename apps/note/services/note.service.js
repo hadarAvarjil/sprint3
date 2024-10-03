@@ -26,6 +26,17 @@ const notes = [
             title: 'Get my stuff together',
             todos: [{ txt: 'Driving license', doneAt: null }, { txt: 'Coding power', doneAt: 187111111 }]
         }
+    },
+    {
+        id: 'n104',
+        createdAt: Date.now(),
+        type: 'NoteTodos',
+        isPinned: false,
+        info: {
+            title: 'Things To Do',
+            todos: [{ txt: 'Driving license', doneAt: null }, { txt: 'Coding power', doneAt: 187111111 }]
+        },
+        style: {backgroundColor: '#b4b7ff'}
     }
 ];
 
