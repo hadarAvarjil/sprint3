@@ -39,11 +39,19 @@ export function NoteIndex() {
         setNoteToEdit(note)
     }
 
+    const handleColorChange = (noteId, color) => {
+        const updatedNotes = notes.map(note =>
+            note.id === noteId ? { ...note, style: { ...note.style, backgroundColor: color } } : note
+        );
+        setNotes(updatedNotes)
+        noteService.put(updatedNotes.find(note => note.id === noteId))
+    };
+
     return (
         <div className="note-index">
             <h1>Your Notes</h1>
             <NoteForm onSave={noteToEdit ? handleEditNote : handleAddNote} existingNote={noteToEdit} />
-            <NoteList notes={notes} onEdit={handleEditClick} onDelete={handleDeleteNote} />
+            <NoteList notes={notes} onEdit={handleEditClick} onDelete={handleDeleteNote}  onColorChange={handleColorChange} />
         </div>
     );
 

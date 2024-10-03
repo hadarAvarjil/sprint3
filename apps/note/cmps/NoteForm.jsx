@@ -1,15 +1,12 @@
 const { useState, useEffect } = React
 
-
-
-
 export function NoteForm({ onSave, existingNote }) {
-    const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '' }, style: { backgroundColor: '#ffffff' } });
-    const [showColorPicker, setShowColorPicker] = useState(false);
-    const colors = ['#ffb4b4', '#b4ffe0', '#b4b7ff', '#f9b4ff', '#c0e794', '#91c6f0'];
+    const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '' }, style: { backgroundColor: '#ffffff' } })
+    const [showColorPicker, setShowColorPicker] = useState(false)
+    const colors = ['#ffb4b4', '#b4ffe0', '#b4b7ff', '#f9b4ff', '#c0e794', '#91c6f0']
 
     useEffect(() => {
-        setNote(existingNote || { type: 'NoteTxt', info: { title: '', txt: '' }, style: { backgroundColor: '#ffffff' } });
+        setNote(existingNote || { type: 'NoteTxt', info: { title: '', txt: '' }, style: { backgroundColor: '#ffffff' } })
     }, [existingNote]);
 
     const handleChange = (event) => {
@@ -25,18 +22,18 @@ export function NoteForm({ onSave, existingNote }) {
             ...prev,
             style: { ...prev.style, backgroundColor: color }
         }));
-        setShowColorPicker(false); // Hide the color picker after selecting a color
+        setShowColorPicker(false)
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         if (!note.info.title.trim() || !note.info.txt.trim()) {
-            alert('Please enter a title and some text for the note.');
-            return;
+            alert('Please enter a title and some text for the note.')
+            return
         }
         onSave(note);
-        setNote({ type: 'NoteTxt', info: { title: '', txt: '' }, style: { backgroundColor: '#ffffff' } });
-    };
+        setNote({ type: 'NoteTxt', info: { title: '', txt: '' }, style: { backgroundColor: '#ffffff' } })
+    }
 
     return (
         <form onSubmit={handleSubmit} style={{ backgroundColor: note.style.backgroundColor }}>
