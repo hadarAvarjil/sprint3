@@ -4,12 +4,12 @@ import { NoteTxt } from '../cmps/NoteTxt.jsx'
 export function NotePreview({ note }) {
     switch (note.type) {
         case 'NoteTxt':
-            return <NoteTxt info={note.info} />;
+            return <NoteTxt info={note.info} />
         case 'NoteImg':
-            return <NoteImg info={note.info} />;
+            return <NoteImg info={note.info} />
         case 'NoteTodos':
-            return <NoteTodos info={note.info} />;
+            return <NoteTodos info={note.info} />
         default:
-            return <div>Unknown note type</div>;
+            return <div>Unknown note type</div>
     }
 }

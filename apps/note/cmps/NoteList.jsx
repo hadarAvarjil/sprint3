@@ -17,7 +17,7 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange }) {
                 <div key={note.id} className="note-card" style={{ backgroundColor: (note.style && note.style.backgroundColor) || '#fff' }}>
                     {note.type === 'NoteTxt' && (
                         <div>
-                              <h3>{note.info.title ? `Title: ${note.info.title}` : ''}</h3>
+                            <h3>{note.info.title ? `Title: ${note.info.title}` : ''}</h3>
                             <p>{note.info.txt}</p>
                         </div>
                     )}
@@ -28,40 +28,42 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange }) {
                         </div>
                     )}
                     {note.type === 'NoteTodos' && (
-                    <div>
-                      <h3>{note.info.title ? `Title: ${note.info.title}` : 'Untitled Image'}</h3>
-                    <ul>
-                        {note.info.todos.map((todo, index) => (
-                            <li key={index} style={{ textDecoration: todo.doneAt ? 'line-through' : 'none' }}>
-                                {todo.txt}
-                            </li>
-                        ))}
-                    </ul>
-                    </div>
-                    )}
-                    <button onClick={() => onEdit(note)}>Edit</button>
-                    <button onClick={() => onDelete(note.id)}>Delete</button>
-                    <button onClick={() => setColorPickerVisible(note.id)}>
-                        🎨
-                    </button>
-                    {colorPickerVisible === note.id && (
-                        <div style={{ display: 'flex', gap: '10px', margin: '10px 0' }}>
-                            {colors.map(color => (
-                              <div
-                              key={color}
-                              onClick={() => handleColorChange(note.id, color)}
-                              style={{
-                                  backgroundColor: color,
-                                  width: '30px',
-                                  height: '30px',
-                                  borderRadius: '50%',
-                                  cursor: 'pointer',
-                                  border: (note.style && note.style.backgroundColor === color) ? '2px solid black' : 'none'
-                              }}
-                          />
-                            ))}
+                        <div>
+                            <h3>{note.info.title ? `Title: ${note.info.title}` : 'Untitled Image'}</h3>
+                            <ul>
+                                {note.info.todos.map((todo, index) => (
+                                    <li key={index} style={{ textDecoration: todo.doneAt ? 'line-through' : 'none' }}>
+                                        {todo.txt}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     )}
+                    <div className="buttons-container">
+                        <button onClick={() => onEdit(note)}>Edit</button>
+                        <button onClick={() => onDelete(note.id)}>Delete</button>
+                        <button onClick={() => setColorPickerVisible(note.id)}>
+                            🎨
+                        </button>
+                        {colorPickerVisible === note.id && (
+                            <div style={{ display: 'flex', gap: '10px', margin: '10px 0' }}>
+                                {colors.map(color => (
+                                    <div
+                                        key={color}
+                                        onClick={() => handleColorChange(note.id, color)}
+                                        style={{
+                                            backgroundColor: color,
+                                            width: '30px',
+                                            height: '30px',
+                                            borderRadius: '50%',
+                                            cursor: 'pointer',
+                                            border: (note.style && note.style.backgroundColor === color) ? '2px solid black' : 'none'
+                                        }}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
             ))}
         </div>

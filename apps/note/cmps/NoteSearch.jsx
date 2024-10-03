@@ -6,12 +6,12 @@
                 value={searchTerm}
                 onChange={onSearchChange}
                 style={{
-                    width: '100%', // Full width of its container
-                    padding: '10px', // Some padding for aesthetics
-                    borderRadius: '5px', // Rounded corners
-                    border: '1px solid #ccc', // Light border
-                    marginBottom: '20px' // Spacing below the input
+                    width: '100%', 
+                    padding: '10px', 
+                    borderRadius: '5px', 
+                    border: '1px solid #ccc', 
+                    marginBottom: '20px' 
                 }}
             />
-        );
+        )
     }

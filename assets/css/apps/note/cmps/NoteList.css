@@ -21,8 +21,9 @@
     justify-content: space-between;
     align-self: start;
     word-wrap: break-word;
-    max-height: 750px; /* Further increased height */
+    max-height: 350px;
     overflow: hidden;
+    position: relative; /* Make sure we can position child elements absolutely */
 }
 
 .audio-content {
@@ -30,21 +31,24 @@
     overflow-y: auto;
 }
 
-.note-item:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
 .buttons-container {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 10px;
-    opacity: 0;
+    opacity: 0; /* Initially hidden */
     transition: opacity 0.3s ease;
+    position: absolute; /* Positioning relative to the parent note item */
+    bottom: 10px; /* Position at the bottom */
+    right: 10px; /* Position at the right */
 }
 
 .note-item:hover .buttons-container {
-    opacity: 1;
+    opacity: 1; /* Show buttons on hover */
+}
+
+.note-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .icon-button {
@@ -65,16 +69,31 @@
 
 /* Updated Note Card Styles for Larger Cards */
 .note-card {
-    background-color: #f0f0f0; 
+    position: relative; /* Make sure we can position child elements absolutely */
+    padding: 30px; /* Increased padding for more space inside the card */
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    padding: 30px; /* Increased padding for more space */
-    width: 400px; /* Increased width */
-    transition: transform 0.2s; 
-    max-height: 700px; /* Increased max-height */
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+    min-height: 150px; /* Set a minimum height for the note card */
+    width: 450px; /* Set a fixed width for the note card */
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease;
+    position: absolute; /* Positioning relative to the parent note card */
+    bottom: 10px; /* Position at the bottom */
+    right: 10px; /* Position at the right */
+}
+
+.note-card:hover .buttons-container {
+    opacity: 1; /* Show buttons on hover */
 }
 
 .note-card:hover {
-    transform: scale(1.05); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
