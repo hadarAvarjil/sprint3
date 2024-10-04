@@ -1,39 +1,38 @@
 .note-form {
-    border: 1px solid #ddd; /* Light gray border */
-    border-radius: 8px; /* Rounded corners */
-    padding: 16px; /* Inner spacing */
-    margin: 20px 0; /* Outer spacing */
-    background-color: #fff; /* White background */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    padding: 16px; 
+    margin: 20px 0; 
+    background-color: #fff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 .note-form textarea {
-    width: 100%; /* Full width */
-    height: 100px; /* Fixed height */
-    padding: 8px; /* Inner spacing */
-    border: 1px solid #ccc; /* Border for the textarea */
-    border-radius: 4px; /* Rounded corners */
-    resize: none; /* Disable resizing */
+    width: 100%; 
+    height: 100px; 
+    padding: 8px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    resize: none; 
 }
 
 .note-form button {
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 8px 12px; /* Padding inside buttons */
-    cursor: pointer; /* Pointer on hover */
-    margin-top: 10px; /* Space above buttons */
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 4px;
+    padding: 8px 12px; 
+    cursor: pointer; 
+    margin-top: 10px; 
 }
 
 .note-form button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
 }
-
 .note-form .cancel-button {
-    background-color: #6c757d; /* Secondary color */
+    background-color: #6c757d; 
 }
 
 .note-form .cancel-button:hover {
-    background-color: #5a6268; /* Darker gray on hover */
+    background-color: #5a6268; 
 }

@@ -5,19 +5,19 @@ const { useState, useEffect } = React
 
 
 export function NoteForm({ onSave, existingNote }) {
-    const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } });
+    const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
 
     useEffect(() => {
-        setNote(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } });
-    }, [existingNote]);
+        setNote(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
+    }, [existingNote])
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target
         setNote((prev) => ({
             ...prev,
             info: { ...prev.info, [name]: value }
-        }));
-    };
+        }))
+    }
 
     const handleTodoChange = (index, value) => {
         const updatedTodos = note.info.todos.map((todo, i) => (
@@ -26,8 +26,8 @@ export function NoteForm({ onSave, existingNote }) {
         setNote((prev) => ({
             ...prev,
             info: { ...prev.info, todos: updatedTodos }
-        }));
-    };
+        }))
+    }
 
     const handleAddTodo = () => {
         setNote((prev) => ({
@@ -36,18 +36,18 @@ export function NoteForm({ onSave, existingNote }) {
                 ...prev.info,
                 todos: [...(prev.info.todos || []), { txt: '', doneAt: null }]
             }
-        }));
-    };
+        }))
+    }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
         if (!note.info.title.trim() || (note.type === 'NoteTxt' && !note.info.txt.trim())) {
-            alert('Please enter a title and some content.');
+            alert('Please enter a title and some content.')
             return;
         }
-        onSave(note); // Save or update the note
-        setNote({ type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } }); // Reset the form
-    };
+        onSave(note)
+        setNote({ type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
+    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -110,5 +110,5 @@ export function NoteForm({ onSave, existingNote }) {
             )}
             <button type="submit">{existingNote ? 'Update Note' : 'Add Note'}</button>
         </form>
-    );
+    )
 }

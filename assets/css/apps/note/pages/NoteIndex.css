@@ -3,47 +3,47 @@
     flex-wrap: wrap;
     /* justify-content: space-between;  */
     padding: 20px;
-    background-color: #f9f9f9; /* Light background for contrast */
-    border-radius: 10px; /* Rounded corners for the entire section */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #f9f9f9; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
     margin: 10%;
     margin-left: 30%;
     width: 60%;
 }
 
-/* Add hover effect for the index section */
+
 .note-index:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
 }
 
-/* Style for the note card */
+
 .note-card {
-    background-color: #ffffff; /* White background for cards */
-    border-radius: 8px; /* Rounded corners for cards */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    margin: 15px; /* Margin around cards */
-    padding: 30px; /* Increased padding for more space */
-    width: 200px; /* Set width of cards */
-    transition: transform 0.2s; /* Smooth transform on hover */
-    max-height: 500px; /* Set max height for cards */
-    overflow: hidden; /* Hide overflow content */
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 15px; 
+    padding: 30px; 
+    width: 200px; 
+    transition: transform 0.2s; 
+    max-height: 500px; 
+    overflow: hidden; 
 }
 
 /* Hover effect for individual cards */
 .note-card:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    transform: scale(1.05); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 }
 
 /* Add some responsive design */
 @media (max-width: 768px) {
     .note-card {
-        width: 90%; /* Make cards take up more width on smaller screens */
+        width: 90%; 
     }
 }
 
 @media (max-width: 480px) {
     .note-card {
-        width: 95%; /* Make cards take up even more width on very small screens */
+        width: 95%; 
     }
 }
