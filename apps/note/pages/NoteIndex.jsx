@@ -5,6 +5,7 @@ import { NoteForm } from '../cmps/NoteForm.jsx'
 import { SearchBar } from '../cmps/NoteSearch.jsx'
 import { noteService } from '../services/note.service.js'
 import { SideBar } from '../cmps/SideBar.jsx'
+import { utilService } from '../../../services/util.service.js';
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
@@ -85,20 +86,26 @@ export function NoteIndex() {
 
 
     function handleTogglePin(noteId) {
-        const updatedNote = noteService.togglePin(noteId);
-        setNotes(prevNotes => prevNotes.map(note => note.id === updatedNote.id ? updatedNote : note))
+        setNotes(prevNotes => 
+            prevNotes.map(note => note.id === noteId ? { ...note, isPinned: !note.isPinned } : note)
+        )
+        noteService.togglePin(noteId)
     }
 
     const duplicateNote = (noteId) => {
-        const noteToDuplicate = notes.find(note => note.id === noteId)
+        const noteToDuplicate = notes.find(note => note.id === noteId);
         if (noteToDuplicate) {
             const duplicatedNote = {
                 ...noteToDuplicate,
-                id: new Date().getTime(),
-            }
-            setNotes([...notes, duplicatedNote])
+                id: utilService.makeId(),
+                isPinned: false, 
+            };
+            console.log('dup',duplicatedNote)
+            setNotes(prevNotes => [...prevNotes, duplicatedNote]);
         }
     }
+
+ 
 
     return (
         <div className="note-index-container">

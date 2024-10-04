@@ -95,9 +95,9 @@ function remove(noteId) {
 }
 
 function togglePin(noteId) {
-    const note = get(noteId)
-    if (!note) return
-    note.isPinned = !note.isPinned
-   
-    return note
+    const note = get(noteId);
+    if (!note) return null
+    
+
+    return { ...note, isPinned: !note.isPinned }
 }
