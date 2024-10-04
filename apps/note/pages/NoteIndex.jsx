@@ -1,9 +1,10 @@
-const { useState, useEffect } = React
+const { useState, useEffect } = React;
 
 import { NoteList } from '../cmps/NoteList.jsx'
 import { NoteForm } from '../cmps/NoteForm.jsx'
 import { SearchBar } from '../cmps/NoteSearch.jsx'
 import { noteService } from '../services/note.service.js'
+import { SideBar } from '../cmps/SideBar.jsx'
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
@@ -14,6 +15,7 @@ export function NoteIndex() {
     useEffect(() => {
         loadNotes()
     }, [])
+
 
     useEffect(() => {
         const fetchedNotes = noteService.query()
@@ -30,38 +32,43 @@ export function NoteIndex() {
         )
     }, [searchTerm, notes])
 
+
     const loadNotes = () => {
         const notes = noteService.query()
-        setNotes(notes);
+        setNotes(notes)
     }
 
+  
     const handleAddNote = (newNote) => {
         const addedNote = noteService.post(newNote)
         setNotes((prevNotes) => [...prevNotes, addedNote])
-        setNoteToEdit(null);
+        setNoteToEdit(null)
     }
+
 
     const handleEditNote = (updatedNote) => {
         if (updatedNote.type === 'NoteTodos') {
             updatedNote.info.todos = updatedNote.info.todos.map(todo => ({
                 ...todo,
-                doneAt: todo.doneAt ? new Date(todo.doneAt) : null
+                doneAt: todo.doneAt ? new Date(todo.doneAt) : null,
             }))
         }
-    
+
         noteService.put(updatedNote)
-        loadNotes();
+        loadNotes()
         setNoteToEdit(null)
     }
 
     const handleDeleteNote = (noteId) => {
-        noteService.remove(noteId);
+        noteService.remove(noteId)
         setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
     }
+
 
     const handleEditClick = (note) => {
         setNoteToEdit(note)
     }
+
 
     const handleColorChange = (noteId, color) => {
         const updatedNotes = notes.map(note =>
@@ -71,23 +78,43 @@ export function NoteIndex() {
         noteService.put(updatedNotes.find(note => note.id === noteId))
     }
 
+ 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value)
     }
 
+
     function handleTogglePin(noteId) {
         const updatedNote = noteService.togglePin(noteId);
-        setNotes(prevNotes => prevNotes.map(note => note.id === updatedNote.id ? updatedNote : note));
+        setNotes(prevNotes => prevNotes.map(note => note.id === updatedNote.id ? updatedNote : note))
+    }
+
+    const duplicateNote = (noteId) => {
+        const noteToDuplicate = notes.find(note => note.id === noteId)
+        if (noteToDuplicate) {
+            const duplicatedNote = {
+                ...noteToDuplicate,
+                id: new Date().getTime(),
+            }
+            setNotes([...notes, duplicatedNote])
+        }
     }
 
     return (
-        <div className="note-index">
-            {/* <h1>Your Notes</h1> */}
-            <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} /> 
-            <NoteForm onSave={noteToEdit ? handleEditNote : handleAddNote} existingNote={noteToEdit} />
-            <NoteList notes={filteredNotes} onEdit={handleEditClick} onDelete={handleDeleteNote}  onColorChange={handleColorChange} onTogglePin={handleTogglePin}/>
+        <div className="note-index-container">
+            <SideBar /> 
+            <div className="main-content">
+                <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
+                <NoteForm onSave={noteToEdit ? handleEditNote : handleAddNote} existingNote={noteToEdit} />
+                <NoteList 
+                    notes={filteredNotes} 
+                    onEdit={handleEditClick} 
+                    onDelete={handleDeleteNote}  
+                    onColorChange={handleColorChange} 
+                    onTogglePin={handleTogglePin}
+                    onDuplicate={duplicateNote}
+                />
+            </div>
         </div>
     )
 }
-
-

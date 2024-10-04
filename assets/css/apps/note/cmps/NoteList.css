@@ -23,7 +23,7 @@
     word-wrap: break-word;
     max-height: 350px;
     overflow: hidden;
-    position: relative; /* Make sure we can position child elements absolutely */
+    position: relative; 
 }
 
 .audio-content {
@@ -32,19 +32,14 @@
 }
 
 .buttons-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s ease;
-    position: absolute; /* Positioning relative to the parent note item */
-    bottom: 10px; /* Position at the bottom */
-    right: 10px; /* Position at the right */
+    display: flex; /* Use flexbox to align buttons horizontally */
+    justify-content: flex-end; /* Align buttons to the right */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Space between buttons */
 }
 
 .note-item:hover .buttons-container {
-    opacity: 1; /* Show buttons on hover */
+    opacity: 1; 
 }
 
 .note-item:hover {
@@ -52,30 +47,31 @@
 }
 
 .icon-button {
-    background: none;
-    border: none;
+    background: none; 
+    border: none; 
     cursor: pointer;
+    padding: 5px; 
+    border-radius: 50%; 
+    transition: background-color 0.3s ease; 
 }
 
 .icon-button:hover {
-    background: #e8e8e8;
-    border-radius: 50%;
+    background-color: #e8e8e8; 
 }
 
 .icon-button .icon {
-    width: 24px;
-    height: 30px;
+    width: 24px; 
+    height: 24px; 
 }
 
-/* Updated Note Card Styles for Larger Cards */
 .note-card {
-    position: relative; /* Make sure we can position child elements absolutely */
-    padding: 30px; /* Increased padding for more space inside the card */
+    position: relative; 
+    padding: 30px; 
     border-radius: 8px;
     margin-bottom: 10px;
     transition: box-shadow 0.3s ease;
-    min-height: 150px; /* Set a minimum height for the note card */
-    width: 450px; /* Set a fixed width for the note card */
+    min-height: 150px; 
+    width: 450px; 
 }
 
 .buttons-container {
@@ -83,17 +79,59 @@
     justify-content: flex-end;
     align-items: center;
     gap: 10px;
-    opacity: 0; /* Initially hidden */
+    opacity: 0; 
     transition: opacity 0.3s ease;
-    position: absolute; /* Positioning relative to the parent note card */
-    bottom: 10px; /* Position at the bottom */
-    right: 10px; /* Position at the right */
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px;
 }
 
 .note-card:hover .buttons-container {
-    opacity: 1; /* Show buttons on hover */
+    opacity: 1; 
 }
 
 .note-card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar {
+    width: 240px; 
+    background-color: #fff; 
+    padding: 20px 0; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+    position: fixed; 
+    height: 100%; 
+}
+
+.sidebar-item {
+    display: flex; 
+    align-items: center; 
+    padding: 10px 20px; 
+    color: #333;
+    text-decoration: none; 
+    transition: background-color 0.3s; 
+}
+
+.sidebar-item.active {
+    background-color: #feefc3; 
+    color: #000; 
+}
+
+.sidebar-item:hover {
+    background-color: #f1f3f4;
+}
+
+.icon {
+    width: 24px; 
+    height: 24px; 
+    margin-right: 10px; 
+}
+
+button {
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    padding: 0; 
+    outline: none; 
+    transition: background-color 0.3s; 
 }

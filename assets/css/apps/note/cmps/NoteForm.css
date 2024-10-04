@@ -1,10 +1,10 @@
 .note-form {
-    border: 1px solid #ddd; 
+    border: none; /* Remove border */
     border-radius: 8px; 
     padding: 16px; 
     margin: 20px 0; 
-    background-color: #fff; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; /* White background */
+    box-shadow: none; /* Remove box-shadow */
 }
 
 .note-form textarea {
@@ -19,20 +19,22 @@
 .note-form button {
     background-color: #007bff; 
     color: white; 
-    border: none; 
-    border-radius: 4px;
+    border: none; /* No border */
+    border-radius: 4px; /* Adjusted to 4px for a less round button */
     padding: 8px 12px; 
     cursor: pointer; 
     margin-top: 10px; 
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
 .note-form button:hover {
     background-color: #0056b3; 
 }
+
 .note-form .cancel-button {
-    background-color: #6c757d; 
+    background-color: #13a6ab; 
 }
 
 .note-form .cancel-button:hover {
-    background-color: #5a6268; 
+    background-color: #1f21bd; 
 }
