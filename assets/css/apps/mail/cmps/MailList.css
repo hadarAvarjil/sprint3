@@ -1,1 +1,55 @@
- /* mail list */
+
+ .mail-list {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.mail-list td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.mail-list input[type="checkbox"] {
+    margin-right: 15px;
+}
+
+.icon-starred, .icon-unstarred {
+    font-size: 1.2rem;
+    color: #f39c12;
+    margin-right: 15px;
+}
+
+.icon-unstarred {
+    color: #ccc;
+}
+
+.mail-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.mail-actions button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.mail-actions button:hover {
+    background-color: #45a049;
+}
+
+.mail-list tr:hover {
+    background-color: #f1f1f1;
+}
+
+.mail-preview{
+    display: flex;
+
+}
