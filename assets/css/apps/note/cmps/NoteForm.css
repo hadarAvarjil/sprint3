@@ -1,40 +1,43 @@
-.note-form {
-    border: none; /* Remove border */
-    border-radius: 8px; 
-    padding: 16px; 
-    margin: 20px 0; 
-    background-color: #fff; /* White background */
-    box-shadow: none; /* Remove box-shadow */
-}
-
-.note-form textarea {
-    width: 100%; 
-    height: 100px; 
-    padding: 8px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    resize: none; 
-}
-
-.note-form button {
+.input-field {
+    display: block;
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    background-color: transparent;
+  }
+  
+  .input-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    color: rgba(204, 204, 204, 0);
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: row;
+    gap: 15px; 
+    width: 20%;
+    margin-left: 5.5%;
+  }
+  
+  button {
+    padding: 10px 15px; 
     background-color: #007bff; 
-    color: white; 
-    border: none; /* No border */
-    border-radius: 4px; /* Adjusted to 4px for a less round button */
-    padding: 8px 12px; 
+    color: white;
+    border: none; 
+    border-radius: 5px; 
     cursor: pointer; 
-    margin-top: 10px; 
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.note-form button:hover {
+    transition: background-color 0.3s; 
+  }
+  
+  button:hover {
     background-color: #0056b3; 
-}
-
-.note-form .cancel-button {
-    background-color: #13a6ab; 
-}
-
-.note-form .cancel-button:hover {
-    background-color: #1f21bd; 
-}
+  }
+  
