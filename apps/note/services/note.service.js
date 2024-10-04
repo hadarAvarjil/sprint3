@@ -47,8 +47,9 @@ export const noteService = {
     put,
     remove,
     filterNotesBySearch,
-    filterNotesByType
-};
+    filterNotesByType,
+    togglePin
+}
 
 function filterNotesBySearch(searchTerm) {
     return notes.filter(note => {
@@ -59,39 +60,44 @@ function filterNotesBySearch(searchTerm) {
 }
 
 function filterNotesByType(type) {
-    return notes.filter(note => note.type === type);
+    return notes.filter(note => note.type === type)
 }
 
 function query() {
-    return notes;
+    return notes
 }
 
 function get(noteId) {
-    return notes.find(note => note.id === noteId);
+    return notes.find(note => note.id === noteId)
 }
 
 function post(note) {
-    const newNote = { ...note, id: _makeId(), createdAt: Date.now() };
-    notes.push(newNote);
-    return newNote;
+    const newNote = { ...note, id: utilService.makeId(), createdAt: Date.now() }
+    notes.push(newNote)
+    console.log('newNote from service',newNote)
+    return newNote
 }
 
 function put(updatedNote) {
-    const index = notes.findIndex(note => note.id === updatedNote.id);
+    const index = notes.findIndex(note => note.id === updatedNote.id)
     if (index !== -1) {
-        notes[index] = updatedNote;
-        return updatedNote;
+        notes[index] = updatedNote
+        return updatedNote
     }
 }
 
 function remove(noteId) {
-    const index = notes.findIndex(note => note.id === noteId);
+    const index = notes.findIndex(note => note.id === noteId)
     if (index !== -1) {
-        notes.splice(index, 1);
-        return true; 
+        notes.splice(index, 1)
+        return true;
     }
 }
 
-function _makeId() {
-    return 'n' + Math.random().toString(36).substr(2, 9);
+function togglePin(noteId) {
+    const note = get(noteId)
+    if (!note) return
+    note.isPinned = !note.isPinned
+   
+    return note
 }

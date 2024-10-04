@@ -16,6 +16,12 @@ export function NoteIndex() {
     }, [])
 
     useEffect(() => {
+        const fetchedNotes = noteService.query()
+        setNotes(fetchedNotes)
+    }, [])
+
+
+    useEffect(() => {
         setFilteredNotes(
             notes.filter(note =>
                 (note.info.txt && note.info.txt.toLowerCase().includes(searchTerm.toLowerCase())) ||
@@ -69,12 +75,17 @@ export function NoteIndex() {
         setSearchTerm(event.target.value)
     }
 
+    function handleTogglePin(noteId) {
+        const updatedNote = noteService.togglePin(noteId);
+        setNotes(prevNotes => prevNotes.map(note => note.id === updatedNote.id ? updatedNote : note));
+    }
+
     return (
         <div className="note-index">
             {/* <h1>Your Notes</h1> */}
             <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} /> 
             <NoteForm onSave={noteToEdit ? handleEditNote : handleAddNote} existingNote={noteToEdit} />
-            <NoteList notes={filteredNotes} onEdit={handleEditClick} onDelete={handleDeleteNote}  onColorChange={handleColorChange} />
+            <NoteList notes={filteredNotes} onEdit={handleEditClick} onDelete={handleDeleteNote}  onColorChange={handleColorChange} onTogglePin={handleTogglePin}/>
         </div>
     )
 }
