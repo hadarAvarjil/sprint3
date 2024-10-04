@@ -2,11 +2,13 @@ const { useState, useEffect } = React
 
 
 
+
+
 export function NoteForm({ onSave, existingNote }) {
-    const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '' } });
+    const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } });
 
     useEffect(() => {
-        setNote(existingNote || { type: 'NoteTxt', info: { title: '', txt: '' } });
+        setNote(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } });
     }, [existingNote]);
 
     const handleChange = (event) => {
@@ -44,7 +46,7 @@ export function NoteForm({ onSave, existingNote }) {
             return;
         }
         onSave(note); // Save or update the note
-        setNote({ type: 'NoteTxt', info: { title: '', txt: '' } });
+        setNote({ type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } }); // Reset the form
     };
 
     return (
@@ -56,6 +58,12 @@ export function NoteForm({ onSave, existingNote }) {
                 onChange={handleChange}
                 placeholder="Note Title" 
             />
+            <select name="type" value={note.type} onChange={(e) => setNote({ ...note, type: e.target.value })}>
+                <option value="NoteTxt">Text Note</option>
+                <option value="NoteImg">Image Note</option>
+                <option value="NoteVideo">Video Note</option>
+                <option value="NoteTodos">Todo List Note</option>
+            </select>
             {note.type === 'NoteTxt' && (
                 <input
                     type="text"
@@ -65,24 +73,42 @@ export function NoteForm({ onSave, existingNote }) {
                     placeholder="Note Content"
                 />
             )}
-        {note.type === 'NoteTodos' && (
-            <div>
-                {note.info.todos && note.info.todos.length > 0 ? (
-                    note.info.todos.map((todo, index) => (
-                        <div key={index}>
-                            <input
-                                type="text"
-                                value={todo.txt}
-                                onChange={(e) => handleTodoChange(index, e.target.value)}
-                                placeholder={`Todo ${index + 1}`}
-                            />
-                        </div>
-                    ))
-                ) : null}
-                <button type="button" onClick={handleAddTodo}>Add Todo</button>
-            </div>
-        )}
-        <button type="submit">{existingNote ? 'Update Note' : 'Add Note'}</button>
+            {note.type === 'NoteImg' && (
+                <input
+                    type="text"
+                    name="url"
+                    value={note.info.url}
+                    onChange={handleChange}
+                    placeholder="Image URL"
+                />
+            )}
+            {note.type === 'NoteVideo' && (
+                <input
+                    type="text"
+                    name="url"
+                    value={note.info.url}
+                    onChange={handleChange}
+                    placeholder="Video URL"
+                />
+            )}
+            {note.type === 'NoteTodos' && (
+                <div>
+                    {note.info.todos && note.info.todos.length > 0 ? (
+                        note.info.todos.map((todo, index) => (
+                            <div key={index}>
+                                <input
+                                    type="text"
+                                    value={todo.txt}
+                                    onChange={(e) => handleTodoChange(index, e.target.value)}
+                                    placeholder={`Todo ${index + 1}`}
+                                />
+                            </div>
+                        ))
+                    ) : null}
+                    <button type="button" onClick={handleAddTodo}>Add Todo</button>
+                </div>
+            )}
+            <button type="submit">{existingNote ? 'Update Note' : 'Add Note'}</button>
         </form>
-    )
+    );
 }
