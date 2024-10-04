@@ -51,13 +51,15 @@ export function MailIndex() {
         <section className="mail-index">
             <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <section>
-                <Link to="/mail/edit" >Add mail</Link>
+                <Link to="/mail/edit" >Compose</Link>
             </section>
-            <MailFolderList />
-            <MailList
-                mails={mails}
-                onRemoveMail={onRemoveMail}
-            />
+            <section className="mail-container">
+                <MailFolderList />
+                <MailList
+                    mails={mails}
+                    onRemoveMail={onRemoveMail}
+                />
+            </section>
 
         </section>
     )

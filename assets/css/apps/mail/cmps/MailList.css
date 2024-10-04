@@ -1,5 +1,10 @@
-
- .mail-list {
+.mail-list{
+    flex-grow: 1;
+    padding: 20px;
+    border-radius: 10px solid #ddd;
+  
+}
+ .mail-container {
     width: 100%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
@@ -8,12 +13,12 @@
     flex-direction: row;
 }
 
-.mail-list td {
+.mail-container td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
-.mail-list input[type="checkbox"] {
+.mail-container input[type="checkbox"] {
     margin-right: 15px;
 }
 
@@ -45,11 +50,7 @@
     background-color: #45a049;
 }
 
-.mail-list tr:hover {
+.mail-container tr:hover {
     background-color: #f1f1f1;
 }
 
-.mail-preview{
-    display: flex;
-
-}

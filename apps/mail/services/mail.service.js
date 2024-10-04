@@ -7,8 +7,8 @@ const MAIL_KEY = 'mailDB'
 const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
-   }
-   
+}
+
 _createMails()
 
 export const mailService = {
@@ -63,13 +63,13 @@ function getDefaultFilter() {
         status: '',
         txt: '',
         isRead: '',
-        isStared:'',
+        isStared: '',
         lables: '',
     }
 }
 
 function _createMails() {
-    const ctgs = ['Critical', 'Family', 'Work', 'Friends', 'Spam', 'Memories', 'Romantic' ]
+    const ctgs = ['Critical', 'Family', 'Work', 'Friends', 'Spam', 'Memories', 'Romantic']
     const mails = utilService.loadFromStorage(MAIL_KEY) || []
 
     if (mails && mails.length) return
@@ -77,12 +77,13 @@ function _createMails() {
     for (let i = 0; i < 20; i++) {
         const mail = {
             id: utilService.makeId(),
-            createdAt : 1551133930500,
+            createdAt: 1551133930500,
             subject: utilService.makeLorem(4),
             body: utilService.makeLorem(20),
-            isRead:  Math.random() > 0.7,
-            sentAt : 1551133930594,
-            removedAt : null,
+            isRead: Math.random() > 0.7,
+            isStarred: Math.random() > 0.7,
+            sentAt: utilService.randomPastTime(),
+            removedAt: null,
             from: 'momo@momo.com',
             to: 'user@appsus.com'
         }

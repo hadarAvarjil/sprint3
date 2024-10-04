@@ -8,7 +8,10 @@ export const utilService = {
     getMonthName,
     loadFromStorage,
     saveToStorage,
-    getTruthyValues
+    getTruthyValues,
+    getRandomDate,
+    randomPastTime,
+    elapsedTime
 }
 
 function saveToStorage(key, val) {
@@ -82,5 +85,52 @@ function getTruthyValues(obj) {
         }
     }
     return newObj
+}
+
+
+function getRandomDate() {
+    const now = Date.now()
+    const pastDate = now - (365 * 24 * 60 * 60 * 1000)
+    return new Date(pastDate + Math.random() * (now - pastDate)).getTime()
+}
+
+function randomPastTime() {
+
+    const HOUR = 1000 * 60 * 60
+    const DAY = 1000 * 60 * 60 * 24
+    const YEAR = 1000 * 60 * 60 * 24 * 365
+
+    const pastTime = getRandomIntInclusive(HOUR, YEAR)
+    return Date.now() - pastTime
+}
+
+
+ function elapsedTime(pastMs) {
+    const now = new Date();
+    const pastDate = new Date(pastMs);
+
+    const isSameDay = now.toDateString() === pastDate.toDateString()
+    const isSameYear = now.getFullYear() === pastDate.getFullYear()
+
+    if (isSameDay) {
+        return pastDate.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        })
+    }
+
+    if (isSameYear) {
+        return pastDate.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric'
+        })
+    }
+
+    return pastDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+    })
 }
 

@@ -1,1 +1,10 @@
- /* mail index  */
+.mail-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+}
+
+/* html{
+    background-color: #a5bfe96b;
+} */

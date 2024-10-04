@@ -1,13 +1,20 @@
+import { utilService } from "../../../services/util.service.js"
 
 export function MailPreview({ mail }) {
 
+    let mailClass = getMailReadClass()
+
+
+    function getMailReadClass() {
+        return mail.isRead ? 'bold-txt' : ''
+    }
 
     return (
-        <article className="mail-preview">
-            <h3>{mail.from}</h3>
-            <h3>{mail.subject}</h3>
-            <h3>{mail.createdAt}</h3>
-        </article>
+        <article className={`mail-preview ${mailClass}`} >
+            <p> {mail.from}</p >
+            <p>{mail.subject}</p>
+            <p>{utilService.elapsedTime(mail.sentAt)}</p>
+        </article >
     )
 }
 
