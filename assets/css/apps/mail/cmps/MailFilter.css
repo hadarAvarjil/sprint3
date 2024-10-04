@@ -1,0 +1,44 @@
+.mail-filter {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    font-size: 16px;
+    color: gray;
+  }
+  
+  .search-input {
+    padding: 10px 40px;
+    padding-right: 50px; 
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    width: 250px;
+  }
+  
+  .filter-icon {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .search-input::placeholder {
+    color: gray;
+  }
+  
+  .search-container input:focus {
+    border-color: #007aff;
+  }

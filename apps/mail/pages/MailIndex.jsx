@@ -7,6 +7,7 @@ import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
+import { MailFolderList } from "../cmps/MailFolderList.jsx"
 
 
 export function MailIndex() {
@@ -52,7 +53,7 @@ export function MailIndex() {
             <section>
                 <Link to="/mail/edit" >Add mail</Link>
             </section>
-            <AppSideBar />
+            <MailFolderList />
             <MailList
                 mails={mails}
                 onRemoveMail={onRemoveMail}

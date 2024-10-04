@@ -29,9 +29,9 @@ function query(filterBy = {}) {
                 const regExp = new RegExp(filterBy.txt, 'i')
                 mails = mails.filter(mail => regExp.test(mail.subject))
             }
-            if (filterBy.mincreatedAt) {
-                mails = mails.filter(mail => mail.createdAt >= filterBy.mincreatedAt)
-            }
+            // if (filterBy.mincreatedAt) {
+            //     mails = mails.filter(mail => mail.createdAt >= filterBy.mincreatedAt)
+            // }
             return mails
         })
 }
@@ -60,8 +60,11 @@ function getEmptyMail(subject = '', createdAt = '') {
 
 function getDefaultFilter() {
     return {
+        status: '',
         txt: '',
-        mincreatedAt: '',
+        isRead: '',
+        isStared:'',
+        lables: '',
     }
 }
 
@@ -77,7 +80,7 @@ function _createMails() {
             createdAt : 1551133930500,
             subject: utilService.makeLorem(4),
             body: utilService.makeLorem(20),
-            isRead: false,
+            isRead:  Math.random() > 0.7,
             sentAt : 1551133930594,
             removedAt : null,
             from: 'momo@momo.com',

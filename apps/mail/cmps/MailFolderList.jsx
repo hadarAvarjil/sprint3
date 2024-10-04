@@ -3,7 +3,7 @@ const { useState } = React
 
 
 
-function AppSideBar() {
+export function MailFolderList() {
 
     const [selectedLink, setSelectedLink] = useState('inbox')
 
