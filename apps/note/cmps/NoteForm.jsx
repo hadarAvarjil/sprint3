@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-import { AudioRecorder } from './dynamic-note/AudioRecorder.jsx'; 
+import { NoteRecorder } from './dynamic-note/NoteRecorder.jsx'; 
 
 export function NoteForm({ onSave, existingNote,onCancel }) {
     const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
@@ -105,7 +105,7 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
             )}
             {note.type === 'NoteAudio' && (
                 <div>
-                    <AudioRecorder onSave={handleAudioSave} />
+                    <NoteRecorder onSave={handleAudioSave} />
                     {audioUrl && <p>Audio recorded successfully! <audio src={audioUrl} controls /></p>}
                 </div>
             )}

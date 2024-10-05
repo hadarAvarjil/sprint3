@@ -1,6 +1,6 @@
 const { useState, useEffect } = React;
 
-export function AudioRecorder({ onSave }) {
+export function NoteRecorder({ onSave }) {
     const [isRecording, setIsRecording] = useState(false)
     const [mediaRecorder, setMediaRecorder] = useState(null)
     const [audioURL, setAudioURL] = useState('')
