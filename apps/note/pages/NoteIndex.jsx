@@ -62,7 +62,6 @@ export function NoteIndex() {
         setShowAddNoteForm(false)
     }
 
-
     const handleDeleteNote = (noteId) => {
         noteService.remove(noteId)
         setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
@@ -105,6 +104,12 @@ export function NoteIndex() {
         }
     }
 
+    const handleCancel = () => {
+        console.log("Cancel clicked")
+        setShowAddNoteForm(false)
+        setNoteToEdit(null)
+    }
+
     return (
         <div className="note-index-container">
             <SideBar />
@@ -115,15 +120,17 @@ export function NoteIndex() {
                     <div className="take-note-input" onClick={() => setShowAddNoteForm(true)}>
                         {!showAddNoteForm ? (
                             <span>Take a note...</span>
-                        ) : (
-                            <NoteForm 
-                                onSave={noteToEdit ? handleEditNote : handleAddNote}
-                                existingNote={noteToEdit} 
-                                noteType={noteType}
-                                onTypeChange={setNoteType}
-                            />
-                        )}
+                        ) : null}
                     </div>
+                    {showAddNoteForm && (
+                        <NoteForm 
+                            onSave={noteToEdit ? handleEditNote : handleAddNote}
+                            existingNote={noteToEdit} 
+                            noteType={noteType}
+                            onTypeChange={setNoteType}
+                            onCancel={handleCancel} 
+                        />
+                    )}
                 </div>
 
                 <NoteList 

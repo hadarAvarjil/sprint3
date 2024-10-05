@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 
-export function NoteForm({ onSave, existingNote }) {
+export function NoteForm({ onSave, existingNote,onCancel }) {
     const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
 
     useEffect(() => {
@@ -43,6 +43,10 @@ export function NoteForm({ onSave, existingNote }) {
         }
         onSave(note)
         setNote({ type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
+    }
+
+    const handleCancelClick = () => {
+        onCancel()
     }
 
     return (
@@ -105,6 +109,8 @@ export function NoteForm({ onSave, existingNote }) {
             </div>
         )}
         <button type="submit">{existingNote ? 'Update Note' : 'Add Note'}</button>
+        <button type="button" onClick={handleCancelClick} className="cancel-button">Cancel</button>
+
     </form>
 
     )
