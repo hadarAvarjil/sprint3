@@ -37,6 +37,10 @@ function query(filterBy = {}) {
                 console.log('Applying inbox filter')
                 mails = mails.filter(mail => mail.from === loggedinUser.email)
             }
+            if (filterBy.status === 'starred') {
+                console.log('Applying starred filter')
+                mails = mails.filter(mail => mail.isStarred)
+            }
 
             return mails
         })
