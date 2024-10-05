@@ -77,6 +77,7 @@ function getDefaultFilter() {
 function _createMails() {
     const ctgs = ['Critical', 'Family', 'Work', 'Friends', 'Spam', 'Memories', 'Romantic']
     const mails = utilService.loadFromStorage(MAIL_KEY) || []
+    const usersMail = ['user@appsus.com', 'momo@momo.com', 'bobo@momo.com', 'dodo@momo.com']
 
     if (mails && mails.length) return
 
@@ -90,8 +91,9 @@ function _createMails() {
             isStarred: Math.random() > 0.7,
             sentAt: utilService.randomPastTime(),
             removedAt: null,
-            from: 'user@appsus.com',
-            to: 'momo@momo.com'
+            categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+            from: usersMail[utilService.getRandomIntInclusive(0, usersMail.length - 1)],
+            to: 'user@appsus.com',
         }
         mails.push(mail)
     }
