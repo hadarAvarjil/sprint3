@@ -34,12 +34,13 @@ function query(filterBy = {}) {
             }
 
             if (filterBy.status === 'sent') {
-                console.log('Applying inbox filter')
                 mails = mails.filter(mail => mail.from === loggedinUser.email)
             }
             if (filterBy.status === 'starred') {
-                console.log('Applying starred filter')
                 mails = mails.filter(mail => mail.isStarred)
+            }
+            if (filterBy.status === 'trash') {
+                mails = mails.filter(mail => mail.removedAt)
             }
 
             return mails
@@ -51,10 +52,28 @@ function get(mailId) {
         .then(mail => _setNextPrevMailId(mail))
 }
 
-function remove(mailId) {
+function removeMailDB(mailId) {
     // return Promise.reject('Oh No!')
     return storageService.remove(MAIL_KEY, mailId)
 }
+
+function remove(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+        .then(mail => {
+            return _moveMailToTrash(mail)
+        }
+        )
+        .then(updatedMail => {
+            return storageService.put(MAIL_KEY, updatedMail)
+        })
+}
+
+function _moveMailToTrash(mail) {
+    mail.removedAt = Date.now()
+    return mail
+}
+
+
 
 function save(mail) {
     if (mail.id) {
@@ -64,8 +83,8 @@ function save(mail) {
     }
 }
 
-function getEmptyMail(subject = '', createdAt = '') {
-    return { subject, createdAt }
+function getEmptyMail(subject = '', createdAt = '', body = '', isRead = false, isStarred = false, sentAt = Date.now, to = 'user@appsus.com',) {
+    return { subject, createdAt, body, isRead, isStarred, sentAt, to }
 }
 
 function getDefaultFilter() {
@@ -133,7 +152,6 @@ function _setNextPrevMailId(mail) {
         return mail
     })
 }
-
 
 
 function debounce(func, delay) {

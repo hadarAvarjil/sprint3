@@ -22,8 +22,10 @@
 
 .sidebar nav ul li img.icon {
     width: 20px;
-    height: 20px;
+    height: 22px;
     margin-right: 15px;
+    vertical-align: middle;
+
 }
 
 .sidebar nav ul li.selected, 
@@ -41,11 +43,6 @@
 
 .sidebar nav ul li.selected .count {
     color: #1a73e8;
-}
-
-.sidebar nav ul li.selected img.icon,
-.sidebar nav ul li:hover img.icon {
-    filter: brightness(0.6);
 }
 
 .sidebar nav ul li:hover {

@@ -20,7 +20,7 @@ export function MailIndex() {
         }
     })
 
-    
+
 
     useEffect(() => {
         loadMails()
@@ -56,11 +56,17 @@ export function MailIndex() {
     return (
         <section className="mail-index">
             <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <section>
-                <Link to="/mail/edit" >Compose</Link>
-            </section>
             <section className="mail-container">
+            <section className="mail-container-left">
+                <button className="compose-btn"><Link to={"/mail/edit"}>
+                    <img
+                        src= '../../../assets/img/compose.png' 
+                        alt="Inbox Icon"
+                        className="icon"
+                    />
+                    Compose</Link></button>
                 <MailFolderList onSetFilterBy={onSetFilterBy} />
+            </section>
                 <MailList
                     mails={mails}
                     onRemoveMail={onRemoveMail}

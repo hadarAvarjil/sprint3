@@ -13,24 +13,20 @@
     flex-direction: row;
 }
 
-.mail-container td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+.mail-container tr {
+    padding: 0.5em;
+    transition: all 0.3s ease;
+    border-top: 1px solid #ddd;
 }
 
-.mail-container input[type="checkbox"] {
-    margin-right: 15px;
+.mail-container tr:hover {
+    background-color: #fff;
+    transform: scale(1.02); 
+    box-shadow: 0 4px 8px #1e1e1e1a; 
+    z-index: 1; 
+    position: relative; 
 }
 
-.icon-starred, .icon-unstarred {
-    font-size: 1.2rem;
-    color: #f39c12;
-    margin-right: 15px;
-}
-
-.icon-unstarred {
-    color: #ccc;
-}
 
 .mail-actions {
     display: flex;
@@ -38,16 +34,20 @@
 }
 
 .mail-actions button {
-    background-color: #4CAF50;
-    color: white;
+    background:  #cce5ff;
+    color: rgb(6, 5, 5);
     border: none;
     padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;
 }
 
-.mail-actions button:hover {
-    background-color: #45a049;
+.mail-actions .icon{
+    width: 20px;
+    height: 22px;
+    margin: auto;
+    vertical-align: middle;
+
 }
 
 .mail-container tr:hover {
