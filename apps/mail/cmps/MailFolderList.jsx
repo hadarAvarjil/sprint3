@@ -3,12 +3,13 @@ const { useState } = React
 
 
 
-export function MailFolderList() {
+export function MailFolderList({ onSetFilterBy }) {
 
     const [selectedLink, setSelectedLink] = useState('inbox')
 
     const handleLinkClick = (linkName) => {
         setSelectedLink(linkName)
+        onSetFilterBy({status : linkName })
     }
 
     return (
@@ -16,7 +17,7 @@ export function MailFolderList() {
             <nav>
                 <ul>
                     <li>
-                        <Link to="inbox" onClick={() => handleLinkClick('inbox')}>
+                        <Link to="/mail/inbox" onClick={() => handleLinkClick('inbox')}>
                             <img
                                 src={selectedLink === 'inbox' ? '../../../assets/img/inbox_clicked.png' : '../../../assets/img/inbox.png'}
                                 alt="Inbox Icon"
@@ -27,7 +28,7 @@ export function MailFolderList() {
                     </li>
 
                     <li>
-                        <Link to="starred" onClick={() => handleLinkClick('starred')}>
+                        <Link to="/mail/starred" onClick={() => handleLinkClick('starred')}>
                             <img
                                 src={selectedLink === 'starred' ? '../../../assets/img/starred_clicked.png' : '../../../assets/img/starred.png'}
                                 alt="starred Icon"
@@ -38,7 +39,7 @@ export function MailFolderList() {
                     </li>
 
                     <li>
-                        <Link to="sent" onClick={() => handleLinkClick('sent')}>
+                        <Link to="/mail/sent" onClick={() => handleLinkClick('sent')}>
                             <img
                                 src={selectedLink === 'sent' ? '../../../assets/img/send_clicked.png' : '../../../assets/img/send.png'}
                                 alt="sent Icon"
@@ -48,7 +49,7 @@ export function MailFolderList() {
                         </Link>
                     </li>
                     <li>
-                        <Link to="draft" onClick={() => handleLinkClick('draft')}>
+                        <Link to="/mail/draft" onClick={() => handleLinkClick('draft')}>
                             <img
                                 src={selectedLink === 'draft' ? '../../../assets/img/draft_clicked.png' : '../../../assets/img/draft.png'}
                                 alt="draft Icon"
@@ -58,7 +59,7 @@ export function MailFolderList() {
                         </Link>
                     </li>
                     <li>
-                        <Link to="trash" onClick={() => handleLinkClick('trash')}>
+                        <Link to="/mail/trash" onClick={() => handleLinkClick('trash')}>
                             <img
                                 src={selectedLink === 'trash' ? '../../../assets/img/trash_clicked.png' : '../../../assets/img/trash.png'}
                                 alt="draft Icon"

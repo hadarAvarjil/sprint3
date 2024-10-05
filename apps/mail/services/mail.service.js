@@ -29,9 +29,15 @@ function query(filterBy = {}) {
                 const regExp = new RegExp(filterBy.txt, 'i')
                 mails = mails.filter(mail => regExp.test(mail.subject))
             }
-            // if (filterBy.mincreatedAt) {
-            //     mails = mails.filter(mail => mail.createdAt >= filterBy.mincreatedAt)
-            // }
+            if (filterBy.status === 'inbox') {
+                mails = mails.filter(mail => mail.to === loggedinUser.email)
+            }
+
+            if (filterBy.status === 'sent') {
+                console.log('Applying inbox filter')
+                mails = mails.filter(mail => mail.from === loggedinUser.email)
+            }
+
             return mails
         })
 }
@@ -84,8 +90,8 @@ function _createMails() {
             isStarred: Math.random() > 0.7,
             sentAt: utilService.randomPastTime(),
             removedAt: null,
-            from: 'momo@momo.com',
-            to: 'user@appsus.com'
+            from: 'user@appsus.com',
+            to: 'momo@momo.com'
         }
         mails.push(mail)
     }

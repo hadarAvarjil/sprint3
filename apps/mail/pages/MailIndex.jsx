@@ -14,7 +14,13 @@ export function MailIndex() {
 
     const [mails, setMails] = useState(null)
     const [searchPrms, setSearchPrms] = useSearchParams()
-    const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
+    const [filterBy, setFilterBy] = useState(() => {
+        return {
+            status: searchPrms.get('status') || 'inbox'
+        }
+    })
+
+    
 
     useEffect(() => {
         loadMails()
@@ -54,7 +60,7 @@ export function MailIndex() {
                 <Link to="/mail/edit" >Compose</Link>
             </section>
             <section className="mail-container">
-                <MailFolderList />
+                <MailFolderList onSetFilterBy={onSetFilterBy} />
                 <MailList
                     mails={mails}
                     onRemoveMail={onRemoveMail}
