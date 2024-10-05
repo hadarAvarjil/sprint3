@@ -1,9 +1,5 @@
 const { useState, useEffect } = React
 
-
-
-
-
 export function NoteForm({ onSave, existingNote }) {
     const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
 
