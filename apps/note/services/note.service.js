@@ -37,7 +37,15 @@ const notes = [
             todos: [{ txt: 'Driving license', doneAt: null }, { txt: 'Coding power', doneAt: 187111111 }]
         },
         style: {backgroundColor: '#b4b7ff'}
-    }
+    },
+    {
+        id: 'n105',
+        createdAt: Date.now(),
+        type: 'NoteAudio',
+        isPinned: true,
+        style: { backgroundColor: '#b4ffe0' },
+        info: { title: 'NoteAudio',url: 'assets/audio/be-happy.mp3' }
+    },
 ];
 
 export const noteService = {

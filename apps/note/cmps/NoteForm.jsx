@@ -63,6 +63,7 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
             <option value="NoteImg">Image Note</option>
             <option value="NoteVideo">Video Note</option>
             <option value="NoteTodos">Todo List Note</option>
+            <option value="NoteAudio">Audio Note</option>
         </select>
         {note.type === 'NoteTxt' && (
             <input
@@ -89,6 +90,15 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
                 value={note.info.url}
                 onChange={handleChange}
                 placeholder="Video URL"
+            />
+        )}
+        {note.type === 'NoteAudio' && (
+           <input
+            type="text"
+            name="url"
+            value={note.info.url}
+            onChange={handleChange}
+            placeholder="Audio URL" 
             />
         )}
         {note.type === 'NoteTodos' && (
