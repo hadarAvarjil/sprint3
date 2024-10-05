@@ -1,1 +1,137 @@
- /* note list */
+.note-list-container {
+    flex: 1 1 auto;
+    overflow-y: auto;
+}
+
+.note-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+    padding: 20px;
+}
+
+.note-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: start;
+    word-wrap: break-word;
+    max-height: 350px;
+    overflow: hidden;
+    position: relative; 
+}
+
+.audio-content {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.buttons-container {
+    display: flex; /* Use flexbox to align buttons horizontally */
+    justify-content: flex-end; /* Align buttons to the right */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Space between buttons */
+}
+
+.note-item:hover .buttons-container {
+    opacity: 1; 
+}
+
+.note-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon-button {
+    background: none; 
+    border: none; 
+    cursor: pointer;
+    padding: 5px; 
+    border-radius: 50%; 
+    transition: background-color 0.3s ease; 
+}
+
+.icon-button:hover {
+    background-color: #e8e8e8; 
+}
+
+.icon-button .icon {
+    width: 24px; 
+    height: 24px; 
+}
+
+.note-card {
+    position: relative; 
+    padding: 30px; 
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+    min-height: 150px; 
+    width: 450px; 
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px;
+}
+
+.note-card:hover .buttons-container {
+    opacity: 1; 
+}
+
+.note-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar {
+    width: 240px; 
+    background-color: #fff; 
+    padding: 20px 0; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+    position: fixed; 
+    height: 100%; 
+}
+
+.sidebar-item {
+    display: flex; 
+    align-items: center; 
+    padding: 10px 20px; 
+    color: #333;
+    text-decoration: none; 
+    transition: background-color 0.3s; 
+}
+
+.sidebar-item.active {
+    background-color: #feefc3; 
+    color: #000; 
+}
+
+.sidebar-item:hover {
+    background-color: #f1f3f4;
+}
+
+.icon {
+    width: 24px; 
+    height: 24px; 
+    margin-right: 10px; 
+}
+
+button {
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    padding: 0; 
+    outline: none; 
+    transition: background-color 0.3s; 
+}
