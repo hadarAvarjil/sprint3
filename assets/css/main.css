@@ -16,6 +16,10 @@
 /* @import './apps/mail/pages/MailIndex.css'; */
 
 /* Cmps */
+/* Cmps note */
+@import './apps/note/pages/NoteIndex.css';
+@import './apps/note/cmps/NoteList.css';
+@import './apps/note/cmps/NoteForm.css';
 
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
