@@ -2,38 +2,49 @@ const { Link } = ReactRouterDOM
 import { MailPreview } from "./MailPreview.jsx";
 
 
-export function MailList({ mails, onRemoveMail }) {
-
+export function MailList({ mails, onRemoveMail, onUnReadMail }) {
     return (
         <section className="mail-list">
-            < table className="mail-container">
+            <table className="mail-container">
                 <tbody>
-                    {mails.map(mail =>
+                    {mails.map(mail => (
                         <tr key={mail.id}>
                             <td>
-                            <img
-                                src={mail.isStarred ? '../../../assets/img/star_indicator_fillIn.png' : '../../../assets/img/star_indicator.png'}
-                                alt="Inbox Icon"
-                                className="icon"
-                            />
+                                <img
+                                    src={mail.isStarred ? '../../../assets/img/star_indicator_fillIn.png' : '../../../assets/img/star_indicator.png'}
+                                    alt="Inbox Icon"
+                                    className="icon"
+                                />
                             </td>
                             <td>
-                                <MailPreview mail={mail} />
+                                <Link to={`/mail/${mail.id}`}>
+                                    <MailPreview mail={mail} />
+                                </Link>
                             </td>
                             <td>
                                 <section className="mail-actions">
-                                    <button onClick={() => onRemoveMail(mail.id)}>Remove</button>
-                                    <button><Link to={`/mail/${mail.id}`}>Details</Link></button>
-                                    <button><Link to={`/mail/edit/${mail.id}`}>Edit</Link></button>
+                                    <button onClick={(e) => { e.stopPropagation(); onRemoveMail(mail.id); }}>
+                                        <img
+                                            src='../../../assets/img/trash.png'
+                                            alt="Remove Icon"
+                                            className="icon remove-btn"
+                                        />
+                                    </button>
+                                    <button onClick={(e) => { e.stopPropagation(); onUnReadMail(mail.id); }}>
+                                        <img
+                                            src='../../../assets/img/unread.png'
+                                            alt="Unread Icon"
+                                            className="icon unread-btn"
+                                        />
+                                    </button>
                                 </section>
                             </td>
                         </tr>
-                    )}
+                    ))}
                 </tbody>
             </table>
         </section>
-    )
-
+    );
 }
 
 // id: utilService.makeId(),

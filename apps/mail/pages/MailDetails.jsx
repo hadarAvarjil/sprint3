@@ -53,13 +53,3 @@ export function MailDetails() {
     )
 }
 
-// id: utilService.makeId(),
-// createdAt: 1551133930500,
-// subject: utilService.makeLorem(4),
-// body: utilService.makeLorem(20),
-// isRead: Math.random() > 0.7,
-// isStarred: Math.random() > 0.7,
-// sentAt: utilService.randomPastTime(),
-// removedAt: null,
-// from: 'momo@momo.com',
-// to: 'user@appsus.com'

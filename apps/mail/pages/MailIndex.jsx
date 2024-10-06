@@ -20,7 +20,7 @@ export function MailIndex() {
         }
     })
 
-    
+
 
     useEffect(() => {
         loadMails()
@@ -47,6 +47,15 @@ export function MailIndex() {
             })
     }
 
+    function onUnReadMail(mailId) {
+        mailService.unReadMail(mailId)
+            .then(() => {
+                setMails(mails => mails.map(mail =>
+                    mail.id === mailId ? { ...mail, isRead: false } : mail
+                ))
+            })
+    }
+
 
     function onSetFilterBy(filterBy) {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
@@ -56,14 +65,21 @@ export function MailIndex() {
     return (
         <section className="mail-index">
             <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <section>
-                <Link to="/mail/edit" >Compose</Link>
-            </section>
             <section className="mail-container">
-                <MailFolderList onSetFilterBy={onSetFilterBy} />
+                <section className="mail-container-left">
+                    <button className="compose-btn"><Link to={"/mail/edit"}>
+                        <img
+                            src='../../../assets/img/compose.png'
+                            alt="Inbox Icon"
+                            className="icon"
+                        />
+                        Compose</Link></button>
+                    <MailFolderList onSetFilterBy={onSetFilterBy} />
+                </section>
                 <MailList
                     mails={mails}
                     onRemoveMail={onRemoveMail}
+                    onUnReadMail={onUnReadMail}
                 />
             </section>
 
