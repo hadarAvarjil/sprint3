@@ -19,7 +19,7 @@ export function MailFolderList({ onSetFilterBy }) {
                     <li className={selectedLink === 'inbox' ? 'bold-txt' : ''}>
                         <Link to="/mail/inbox" onClick={() => handleLinkClick('inbox')}>
                             <img
-                                src={selectedLink === 'inbox' ? './assets/img/inbox_clicked.png' : '../../../assets/img/inbox.png'}
+                                src={selectedLink === 'inbox' ? './assets/img/inbox_clicked.png' : './assets/img/inbox.png'}
                                 alt="Inbox Icon"
                                 className="icon"
                             />
@@ -30,7 +30,7 @@ export function MailFolderList({ onSetFilterBy }) {
                     <li className={selectedLink === 'starred' ? 'bold-txt' : ''}>
                         <Link to="/mail/starred" onClick={() => handleLinkClick('starred')}>
                             <img
-                                src={selectedLink === 'starred' ? '../../../../assets/img/starred_clicked.png' : '../../../assets/img/starred.png'}
+                                src={selectedLink === 'starred' ? './assets/img/starred_clicked.png' : './assets/img/starred.png'}
                                 alt="starred Icon"
                                 className="icon"
                             />
@@ -41,7 +41,7 @@ export function MailFolderList({ onSetFilterBy }) {
                     <li className={selectedLink === 'sent' ? 'bold-txt' : ''}>
                         <Link to="/mail/sent" onClick={() => handleLinkClick('sent')}>
                             <img
-                                src={selectedLink === 'sent' ? '../../../assets/img/send_clicked.png' : '../../../assets/img/send.png'}
+                                src={selectedLink === 'sent' ? './assets/img/send_clicked.png' : './assets/img/send.png'}
                                 alt="sent Icon"
                                 className="icon"
                             />
@@ -51,7 +51,7 @@ export function MailFolderList({ onSetFilterBy }) {
                     <li className={selectedLink === 'draft' ? 'bold-txt' : ''}>
                         <Link to="/mail/draft" onClick={() => handleLinkClick('draft')}>
                             <img
-                                src={selectedLink === 'draft' ? '../../../assets/img/draft_clicked.png' : '../../../assets/img/draft.png'}
+                                src={selectedLink === 'draft' ? './assets/img/draft_clicked.png' : './assets/img/draft.png'}
                                 alt="draft Icon"
                                 className="icon"
                             />
@@ -61,7 +61,7 @@ export function MailFolderList({ onSetFilterBy }) {
                     <li className={selectedLink === 'trash' ? 'bold-txt' : ''}>
                         <Link to="/mail/trash" onClick={() => handleLinkClick('trash')}>
                             <img
-                                src={selectedLink === 'trash' ? '../../../assets/img/trash_clicked.png' : '../../../assets/img/trash.png'}
+                                src={selectedLink === 'trash' ? './assets/img/trash_clicked.png' : './assets/img/trash.png'}
                                 alt="draft Icon"
                                 className="icon"
                             />

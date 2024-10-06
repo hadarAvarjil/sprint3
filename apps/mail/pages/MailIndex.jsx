@@ -69,7 +69,7 @@ export function MailIndex() {
                 <section className="mail-container-left">
                     <button className="compose-btn"><Link to={"/mail/edit"}>
                         <img
-                            src='../../../assets/img/compose.png'
+                            src='./assets/img/compose.png'
                             alt="Inbox Icon"
                             className="icon"
                         />

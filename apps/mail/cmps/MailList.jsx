@@ -11,10 +11,10 @@ export function MailList({ mails, onRemoveMail, onUnReadMail }) {
                         <tr key={mail.id}>
                             <td>
                                 <img
-                                    // src={mail.isStarred ? '../../../assets/img/star_indicator_fillIn.png' : '../../../assets/img/star_indicator.png'}
+                                    src={mail.isStarred ? './assets/img/star_indicator_fillIn.png' : './assets/img/star_indicator.png'}
                                     alt="Inbox Icon"
                                     className="icon"
-                                    src={`assets/img/${mail.isStarred ? 'star_indicator_fillIn.png' : 'star_indicator.png'}`} 
+                                    // src={`assets/img/${mail.isStarred ? 'star_indicator_fillIn.png' : 'star_indicator.png'}`} 
                                 />
                             </td>
                             <td>
@@ -26,14 +26,14 @@ export function MailList({ mails, onRemoveMail, onUnReadMail }) {
                                 <section className="mail-actions">
                                     <button onClick={(e) => { e.stopPropagation(); onRemoveMail(mail.id); }}>
                                         <img
-                                            src='../../../assets/img/trash.png'
+                                            src='./assets/img/trash.png'
                                             alt="Remove Icon"
                                             className="icon remove-btn"
                                         />
                                     </button>
                                     <button onClick={(e) => { e.stopPropagation(); onUnReadMail(mail.id); }}>
                                         <img
-                                            src='../../../assets/img/unread.png'
+                                            src='./assets/img/unread.png'
                                             alt="Unread Icon"
                                             className="icon unread-btn"
                                         />
