@@ -2,19 +2,22 @@ const { Link } = ReactRouterDOM
 import { MailPreview } from "./MailPreview.jsx";
 
 
-export function MailList({ mails, onRemoveMail, onUnReadMail }) {
+export function MailList({ mails, onRemoveMail, onUnReadMail, onReadMail }) {
     return (
-        <section className="mail-list">
+        <section className="mail-list"
+        style={{ backgroundColor: 'white' }}>
             <table className="mail-container">
                 <tbody>
                     {mails.map(mail => (
-                        <tr key={mail.id}>
+                        <tr key={mail.id}
+                        onClick={() =>onReadMail(mail.id)}
+                        className={mail.isRead ? 'read-mail' : ''}
+                        >
                             <td>
                                 <img
                                     src={mail.isStarred ? './assets/img/star_indicator_fillIn.png' : './assets/img/star_indicator.png'}
                                     alt="Inbox Icon"
                                     className="icon"
-                                    // src={`assets/img/${mail.isStarred ? 'star_indicator_fillIn.png' : 'star_indicator.png'}`} 
                                 />
                             </td>
                             <td>
@@ -23,7 +26,7 @@ export function MailList({ mails, onRemoveMail, onUnReadMail }) {
                                 </Link>
                             </td>
                             <td>
-                                <section className="mail-actions">
+                                <section className="mail-actions" >
                                     <button onClick={(e) => { e.stopPropagation(); onRemoveMail(mail.id); }}>
                                         <img
                                             src={'./assets/img/trash.png'}

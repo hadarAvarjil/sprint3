@@ -1,10 +1,15 @@
-.mail-preview{
+.mail-preview {
     display: flex;
+    width: 100%;
 }
 
-.mail-preview p{
+.mail-preview p {
+    margin: 0;
+    padding:0;
     margin-left: 5em;
+
 }
 
-
-
+.read-mail {
+    background: rgb(242 246 252);
+}

@@ -20,7 +20,8 @@ export const mailService = {
     getDefaultFilter,
     getFilterFromSearchParams,
     debounce,
-    unReadMail
+    unReadMail,
+    readMail
 }
 
 function query(filterBy = {}) {
@@ -87,6 +88,22 @@ function unReadMail(mailId) {
 
 function _unReadMail(mail){
     mail.isRead = false
+    return mail
+}
+
+function readMail(mailId){
+    return storageService.get(MAIL_KEY, mailId)
+    .then(mail => {
+        return _readMail(mail)
+    }
+    )
+    .then(updatedMail => {
+        return storageService.put(MAIL_KEY, updatedMail)
+    })
+}
+
+function _readMail(mail){
+    mail.isRead = true
     return mail
 }
 

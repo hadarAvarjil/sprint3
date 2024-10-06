@@ -1,22 +1,22 @@
-.mail-list{
+section.mail-list {
     flex-grow: 1;
     padding: 20px;
-    border-radius: 10px solid #ddd;
-  
+    /* border: 0.5px solid #ddd;  */
+    border-radius: 20px; 
 }
  .mail-container {
     width: 100%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     flex-direction: row;
 }
 
 .mail-container tr {
-    padding: 0.5em;
+    /* padding: 0.5em; */
     transition: all 0.3s ease;
-    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
 .mail-container tr:hover {
@@ -35,7 +35,6 @@
 
 .mail-actions button {
     background:  #cce5ff;
-    color: rgb(6, 5, 5);
     border: none;
     padding: 5px 10px;
     border-radius: 3px;

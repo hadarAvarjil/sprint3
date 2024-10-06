@@ -1,0 +1,16 @@
+:root {
+    --mail-primary-base: #040A2C;
+    --mail-primary-base1: RGBA(4, 10, 44, 1);
+    --mail-primary-1: RGBA(138, 138, 138, 1);
+    --mail-primary-2: RGBA(227, 227, 227, 1);
+    --mail-primary-3: #FFFFFF;
+
+    --mail-secondary-1: #FF7F00;
+  
+}
+/* var(--primary-base); */
+/* rgb(211 227 253) - mouseover on the bar side btn */
+/* rgb(246 248 252) - bg general */
+/* rgb(194 231 255) - compose btn */
+/* rgb(242 246 252) - mail read */
+/* rgb(234 241 251) - search field */
