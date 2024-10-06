@@ -44,7 +44,7 @@ export function MailList({ mails, onRemoveMail, onUnReadMail }) {
                 </tbody>
             </table>
         </section>
-    );
+    )
 }
 
 // id: utilService.makeId(),
