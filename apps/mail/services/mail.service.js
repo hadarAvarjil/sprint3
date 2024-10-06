@@ -19,7 +19,8 @@ export const mailService = {
     getEmptyMail,
     getDefaultFilter,
     getFilterFromSearchParams,
-    debounce
+    debounce,
+    unReadMail
 }
 
 function query(filterBy = {}) {
@@ -72,6 +73,23 @@ function _moveMailToTrash(mail) {
     mail.removedAt = Date.now()
     return mail
 }
+
+function unReadMail(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+        .then(mail => {
+            return _unReadMail(mail)
+        }
+        )
+        .then(updatedMail => {
+            return storageService.put(MAIL_KEY, updatedMail)
+        })
+}
+
+function _unReadMail(mail){
+    mail.isRead = false
+    return mail
+}
+
 
 
 

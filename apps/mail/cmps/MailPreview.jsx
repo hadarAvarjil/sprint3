@@ -6,7 +6,7 @@ export function MailPreview({ mail }) {
 
 
     function getMailReadClass() {
-        return mail.isRead ? 'bold-txt' : ''
+        return mail.isRead ? '': 'bold-txt'
     }
 
     return (

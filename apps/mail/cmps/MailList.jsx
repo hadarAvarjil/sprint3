@@ -2,13 +2,12 @@ const { Link } = ReactRouterDOM
 import { MailPreview } from "./MailPreview.jsx";
 
 
-export function MailList({ mails, onRemoveMail }) {
-
+export function MailList({ mails, onRemoveMail, onUnReadMail }) {
     return (
         <section className="mail-list">
-            < table className="mail-container">
+            <table className="mail-container">
                 <tbody>
-                    {mails.map(mail =>
+                    {mails.map(mail => (
                         <tr key={mail.id}>
                             <td>
                                 <img
@@ -18,35 +17,34 @@ export function MailList({ mails, onRemoveMail }) {
                                 />
                             </td>
                             <td>
-                                <MailPreview mail={mail} />
+                                <Link to={`/mail/${mail.id}`}>
+                                    <MailPreview mail={mail} />
+                                </Link>
                             </td>
                             <td>
                                 <section className="mail-actions">
-                                    <button onClick={() => onRemoveMail(mail.id)}>
+                                    <button onClick={(e) => { e.stopPropagation(); onRemoveMail(mail.id); }}>
                                         <img
                                             src='../../../assets/img/trash.png'
                                             alt="Remove Icon"
                                             className="icon remove-btn"
                                         />
                                     </button>
-
-                                    <button><Link to={`/mail/${mail.id}`}>Details</Link></button>
-                                    <button onClick={() => onRemoveMail(mail.id)}>
+                                    <button onClick={(e) => { e.stopPropagation(); onUnReadMail(mail.id); }}>
                                         <img
                                             src='../../../assets/img/unread.png'
-                                            alt="Remove Icon"
+                                            alt="Unread Icon"
                                             className="icon unread-btn"
                                         />
                                     </button>
                                 </section>
                             </td>
                         </tr>
-                    )}
+                    ))}
                 </tbody>
             </table>
         </section>
-    )
-
+    );
 }
 
 // id: utilService.makeId(),
