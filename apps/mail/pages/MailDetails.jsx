@@ -36,10 +36,10 @@ export function MailDetails() {
         <section className="mail-details">
             <header className="mail-header">
                 <h3 className="mail-subject">{mail.subject}</h3>
-                <div className="mail-meta">
+                <section className="mail-data">
                     <h4 className="mail-from">{mail.from}</h4>
                     <span className="mail-date">{utilService.elapsedTime(mail.sentAt)}</span>
-                </div>
+                </section>
             </header>
             
             <div className="mail-body">
