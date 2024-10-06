@@ -19,7 +19,7 @@ export function MailFolderList({ onSetFilterBy }) {
                     <li className={selectedLink === 'inbox' ? 'bold-txt' : ''}>
                         <Link to="/mail/inbox" onClick={() => handleLinkClick('inbox')}>
                             <img
-                                src={selectedLink === 'inbox' ? './../../../assets/img/inbox_clicked.png' : '../../../assets/img/inbox.png'}
+                                src={selectedLink === 'inbox' ? '/assets/img/inbox_clicked.png' : '../../../assets/img/inbox.png'}
                                 alt="Inbox Icon"
                                 className="icon"
                             />
