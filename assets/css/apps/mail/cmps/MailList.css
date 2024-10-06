@@ -36,8 +36,8 @@ section.mail-list {
 .mail-actions button {
     background:  #cce5ff;
     border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
+    padding: 8px;
+    border-radius: 50px;
     cursor: pointer;
 }
 
