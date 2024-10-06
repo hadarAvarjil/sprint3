@@ -1,5 +1,6 @@
 
 import { NotePreview } from "../cmps/NotePreview.jsx"
+import { NoteAudio } from './path/to/NoteAudio'
 const { useState, useEffect } = React
 
 export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, onDuplicate}) {
@@ -41,13 +42,17 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, 
                             </ul>
                         </div>
                     )}
+                    {note.type === 'NoteAudio' && (
+                        <NoteAudio info={note.info} />
+                    )}
+
                     <div className="buttons-container">
                         <button onClick={() => onTogglePin(note.id)} className="icon" title={note.isPinned ? "Unpin Note" : "Pin Note"}>
                             <img className="icon" src={note.isPinned ? "assets/img/unpin.svg" : "assets/img/pin.svg"} alt="Pin Icon" />
                         </button>
 
                         <button onClick={() => onEdit(note)}>
-                        <img className="icon" src="assets/img/edit.svg" alt="Edit Icon"/> 
+                            <img className="icon" src="assets/img/edit.svg" alt="Edit Icon" />
                         </button>
 
                         <button onClick={() => onDelete(note.id)}>
@@ -58,7 +63,7 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, 
                             <img className="icon" src="assets/img/palette.svg" alt="Palette Icon" />
                         </button>
 
-                        <button onClick={() => onDuplicate(note.id)}> 
+                        <button onClick={() => onDuplicate(note.id)}>
                             <img className="icon" src="assets/img/duplicate.svg" alt="Duplicate Icon" />
                         </button>
 
@@ -84,5 +89,5 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, 
                 </div>
             ))}
         </div>
-    );
+    )
 }

@@ -1,28 +1,23 @@
-const { useState, useEffect } = React
+const { useState, useEffect } = React;
 
-import { NoteList } from '../cmps/NoteList.jsx'
-import { NoteForm } from '../cmps/NoteForm.jsx'
-import { SearchBar } from '../cmps/NoteSearch.jsx'
-import { noteService } from '../services/note.service.js'
-import { SideBar } from '../cmps/SideBar.jsx'
-import { utilService } from '../../../services/util.service.js'
+import { NoteList } from '../cmps/NoteList.jsx';
+import { NoteForm } from '../cmps/NoteForm.jsx';
+import { SearchBar } from '../cmps/NoteSearch.jsx';
+import { noteService } from '../services/note.service.js';
+import { SideBar } from '../cmps/SideBar.jsx';
+import { utilService } from '../../../services/util.service.js';
 
 export function NoteIndex() {
-    const [notes, setNotes] = useState([])
-    const [noteToEdit, setNoteToEdit] = useState(null)
-    const [searchTerm, setSearchTerm] = useState('')
-    const [filteredNotes, setFilteredNotes] = useState(notes)
-    const [showAddNoteForm, setShowAddNoteForm] = useState(false)
-    const [noteType, setNoteType] = useState('NoteTxt')
+    const [notes, setNotes] = useState([]);
+    const [noteToEdit, setNoteToEdit] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredNotes, setFilteredNotes] = useState(notes);
+    const [showAddNoteForm, setShowAddNoteForm] = useState(false);
+    const [noteType, setNoteType] = useState('NoteTxt');
 
     useEffect(() => {
-        loadNotes()
-    }, [])
-
-    useEffect(() => {
-        const fetchedNotes = noteService.query()
-        setNotes(fetchedNotes)
-    }, [])
+        loadNotes();
+    }, []);
 
     useEffect(() => {
         setFilteredNotes(
@@ -30,91 +25,82 @@ export function NoteIndex() {
                 (note.info.txt && note.info.txt.toLowerCase().includes(searchTerm.toLowerCase())) ||
                 (note.info.title && note.info.title.toLowerCase().includes(searchTerm.toLowerCase()))
             )
-        )
+        );
     }, [searchTerm, notes]);
 
     const loadNotes = () => {
-        const notes = noteService.query()
-        setNotes(notes)
-    }
+        const fetchedNotes = noteService.query();
+        setNotes(fetchedNotes);
+    };
 
     const handleAddNote = (newNote) => {
-        const addedNote = noteService.post(newNote)
-        setNotes((prevNotes) => [...prevNotes, addedNote])
-        setNoteToEdit(null)
-        setShowAddNoteForm(false)
-    }
+        const addedNote = noteService.post(newNote);
+        setNotes((prevNotes) => [...prevNotes, addedNote]);
+        setNoteToEdit(null);
+        setShowAddNoteForm(false);
+    };
 
     const handleEditNote = (updatedNote) => {
-        if (updatedNote.type === 'NoteTodos') {
-            updatedNote.info.todos = updatedNote.info.todos.map(todo => ({
-                ...todo,
-                doneAt: todo.doneAt ? new Date(todo.doneAt) : null,
-            }))
-        }
-
         const updatedNotes = notes.map(note =>
             note.id === updatedNote.id ? updatedNote : note
-        )
+        );
 
-        setNotes(updatedNotes)
-        setNoteToEdit(null)
-        setShowAddNoteForm(false)
-    }
+        setNotes(updatedNotes);
+        setNoteToEdit(null);
+        setShowAddNoteForm(false);
+    };
 
     const handleDeleteNote = (noteId) => {
-        noteService.remove(noteId)
-        setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
-    }
+        noteService.remove(noteId);
+        setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId));
+    };
 
     const handleEditClick = (note) => {
         setNoteToEdit(note);
-        setShowAddNoteForm(true)
-    }
+        setShowAddNoteForm(true);
+    };
 
     const handleColorChange = (noteId, color) => {
         const updatedNotes = notes.map(note =>
             note.id === noteId ? { ...note, style: { ...note.style, backgroundColor: color } } : note
-        )
-        setNotes(updatedNotes)
-        noteService.put(updatedNotes.find(note => note.id === noteId))
-    }
+        );
+        setNotes(updatedNotes);
+        noteService.put(updatedNotes.find(note => note.id === noteId));
+    };
 
     const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value)
-    }
+        setSearchTerm(event.target.value);
+    };
 
     function handleTogglePin(noteId) {
         setNotes(prevNotes => 
             prevNotes.map(note => note.id === noteId ? { ...note, isPinned: !note.isPinned } : note)
         );
-        noteService.togglePin(noteId)
+        noteService.togglePin(noteId);
     }
 
     const duplicateNote = (noteId) => {
-        const noteToDuplicate = notes.find(note => note.id === noteId)
+        const noteToDuplicate = notes.find(note => note.id === noteId);
         if (noteToDuplicate) {
             const duplicatedNote = {
                 ...noteToDuplicate,
                 id: utilService.makeId(),
-                isPinned: false, 
+                isPinned: false,
             };
-            console.log('dup', duplicatedNote)
-            setNotes(prevNotes => [...prevNotes, duplicatedNote])
+            setNotes(prevNotes => [...prevNotes, duplicatedNote]);
         }
-    }
+    };
 
     const handleCancel = () => {
-        console.log("Cancel clicked")
-        setShowAddNoteForm(false)
-        setNoteToEdit(null)
-    }
+        setShowAddNoteForm(false);
+        setNoteToEdit(null);
+    };
 
     return (
         <div className="note-index-container">
             <SideBar />
             <div className="main-content">
-                <SearchBar searchTerm={searchTerm} onSearchChange={(event) => setSearchTerm(event.target.value)} />
+                <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
 
                 <div className="add-note-container">
                     <div className="take-note-input" onClick={() => setShowAddNoteForm(true)}>
@@ -138,10 +124,10 @@ export function NoteIndex() {
                     onEdit={handleEditClick} 
                     onDelete={handleDeleteNote}  
                     onColorChange={handleColorChange} 
-                    onTogglePin={handleTogglePin}
-                    onDuplicate={duplicateNote}
+                    onTogglePin={handleTogglePin} 
+                    onDuplicate={duplicateNote} 
                 />
             </div>
         </div>
-    )
+    );
 }

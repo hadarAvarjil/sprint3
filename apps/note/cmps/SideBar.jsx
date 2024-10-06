@@ -2,17 +2,17 @@ const { useState } = React;
 const { Link } = ReactRouterDOM;
 
 export function SideBar() {
-    const [selectedLink, setSelectedLink] = useState("all");
+    const [selectedLink, setSelectedLink] = useState("all")
 
     const handleLinkClick = (linkName) => {
-        setSelectedLink(linkName);
-    };
+        setSelectedLink(linkName)
+    }
 
     return (
-        <aside className="sidebar-keep">
+        <aside className="sidebar">
             <nav>
                 <ul style={{ listStyleType: 'none', padding: 0 }}> {}
-                    <li className={`sidebar-keep-item ${selectedLink === 'all' ? 'active' : ''}`}>
+                    <li>
                         <Link 
                             to="/note/all" 
                             onClick={() => handleLinkClick('all')}
@@ -24,7 +24,7 @@ export function SideBar() {
                             Notes
                         </Link>
                     </li>
-                    <li className={`sidebar-keep-item ${selectedLink === 'pinned' ? 'active' : ''}`}>
+                    <li>
                         <Link 
                             to="/note/pinned" 
                             onClick={() => handleLinkClick('pinned')}
@@ -35,8 +35,8 @@ export function SideBar() {
                             />
                             Reminders
                         </Link>
-                    </li>
-                    <li className={`sidebar-keep-item ${selectedLink === 'archived' ? 'active' : ''}`}>
+                        </li>
+                        <li> 
                         <Link 
                             to="/note/archived" 
                             onClick={() => handleLinkClick('archived')}
@@ -48,8 +48,8 @@ export function SideBar() {
                             />
                             Archived
                         </Link>
-                    </li>
-                    <li className={`sidebar-keep-item ${selectedLink === 'trash' ? 'active' : ''}`}>
+                        </li>
+                        <li>  
                         <Link 
                             to="/note/trash" 
                             onClick={() => handleLinkClick('trash')}
@@ -61,7 +61,7 @@ export function SideBar() {
                             />
                             Trash
                         </Link>
-                    </li>
+                        </li>
                     {}
                 </ul>
             </nav>
