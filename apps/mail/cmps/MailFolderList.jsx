@@ -19,7 +19,7 @@ export function MailFolderList({ onSetFilterBy }) {
                     <li className={selectedLink === 'inbox' ? 'bold-txt' : ''}>
                         <Link to="/mail/inbox" onClick={() => handleLinkClick('inbox')}>
                             <img
-                                src={selectedLink === 'inbox' ? '../../../assets/img/inbox_clicked.png' : '../../../assets/img/inbox.png'}
+                                src={selectedLink === 'inbox' ? './../../../assets/img/inbox_clicked.png' : '../../../assets/img/inbox.png'}
                                 alt="Inbox Icon"
                                 className="icon"
                             />
@@ -30,7 +30,7 @@ export function MailFolderList({ onSetFilterBy }) {
                     <li className={selectedLink === 'starred' ? 'bold-txt' : ''}>
                         <Link to="/mail/starred" onClick={() => handleLinkClick('starred')}>
                             <img
-                                src={selectedLink === 'starred' ? '../../../assets/img/starred_clicked.png' : '../../../assets/img/starred.png'}
+                                src={selectedLink === 'starred' ? '../../../../assets/img/starred_clicked.png' : '../../../assets/img/starred.png'}
                                 alt="starred Icon"
                                 className="icon"
                             />
