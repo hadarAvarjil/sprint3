@@ -11,9 +11,10 @@ export function MailList({ mails, onRemoveMail, onUnReadMail }) {
                         <tr key={mail.id}>
                             <td>
                                 <img
-                                    src={mail.isStarred ? '../../../assets/img/star_indicator_fillIn.png' : '../../../assets/img/star_indicator.png'}
+                                    // src={mail.isStarred ? '../../../assets/img/star_indicator_fillIn.png' : '../../../assets/img/star_indicator.png'}
                                     alt="Inbox Icon"
                                     className="icon"
+                                    src={`assets/img/${mail.isStarred ? 'star_indicator_fillIn.png' : 'star_indicator.png'}`} 
                                 />
                             </td>
                             <td>
