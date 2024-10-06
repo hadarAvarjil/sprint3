@@ -42,13 +42,13 @@ export function MailDetails() {
                 </section>
             </header>
             
-            <div className="mail-body">
+            <section className="mail-body">
                 <p>{mail.body}</p>
-            </div>
+            </section>
 
-            <div className="mail-actions">
+            <section className="mail-actions">
                 <button className="btn-back" onClick={onBack}>Back</button>
-            </div>
+            </section>
         </section>
     )
 }
