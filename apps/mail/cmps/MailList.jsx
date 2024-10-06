@@ -26,7 +26,7 @@ export function MailList({ mails, onRemoveMail, onUnReadMail }) {
                                 <section className="mail-actions">
                                     <button onClick={(e) => { e.stopPropagation(); onRemoveMail(mail.id); }}>
                                         <img
-                                            src='./assets/img/trash.png'
+                                            src={'./assets/img/trash.png'}
                                             alt="Remove Icon"
                                             className="icon remove-btn"
                                         />
