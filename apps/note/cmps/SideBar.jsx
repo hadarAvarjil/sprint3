@@ -9,7 +9,7 @@ export function SideBar() {
     }
 
     return (
-        <aside className="sidebar">
+        <aside className="sidebar-folder">
             <nav>
                 <ul style={{ listStyleType: 'none', padding: 0 }}> {}
                     <li>
