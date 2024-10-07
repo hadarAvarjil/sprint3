@@ -65,6 +65,15 @@ export function MailIndex() {
             })
     }
 
+    function onStarredMail(mailId) {
+        mailService.starredMail(mailId)
+        .then(() => {
+            setMails(mails => mails.map(mail =>
+                mail.id === mailId ? { ...mail, isStarred: !mail.isStarred } : mail
+            ))
+        })
+    }
+
 
     function onSetFilterBy(filterBy) {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
@@ -73,7 +82,7 @@ export function MailIndex() {
     if (!mails) return <h1>Loading...</h1>
     return (
         <section className="mail-index"
-        style={{ backgroundColor: 'rgb(246, 248, 252)' }}>
+            style={{ backgroundColor: 'rgb(246, 248, 252)' }}>
             <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <section className="mail-container">
                 <section className="mail-container-left">
@@ -91,7 +100,8 @@ export function MailIndex() {
                     onRemoveMail={onRemoveMail}
                     onUnReadMail={onUnReadMail}
                     onReadMail={onReadMail}
-                    
+                    onStarredMail={onStarredMail}
+
                 />
             </section>
 

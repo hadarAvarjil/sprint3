@@ -21,7 +21,8 @@ export const mailService = {
     getFilterFromSearchParams,
     debounce,
     unReadMail,
-    readMail
+    readMail,
+    starredMail
 }
 
 function query(filterBy = {}) {
@@ -107,8 +108,21 @@ function _readMail(mail){
     return mail
 }
 
+function starredMail(mailId){
+    return storageService.get(MAIL_KEY, mailId)
+    .then(mail => {
+        return _starredMailToggle(mail)
+    }
+    )
+    .then(updatedMail => {
+        return storageService.put(MAIL_KEY, updatedMail)
+    })
+}
 
-
+function _starredMailToggle(mail){
+    mail.isStarred = !mail.isStarred;
+    return mail
+}
 
 function save(mail) {
     if (mail.id) {

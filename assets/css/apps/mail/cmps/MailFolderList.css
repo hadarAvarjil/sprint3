@@ -10,27 +10,24 @@
 }
 
 .sidebar ul li {
-    align-items: center;
-    padding: 0.3em;
-    cursor: pointer;
-    font-size: 16px;
-    color: #444;
     width: 12em;
-    margin-left: 2.5em;
+    padding: 0.3em;
+    color: #444;
+    margin-left: 0;
     margin-bottom: .2em;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .sidebar ul li img.icon {
     width: 20px;
     height: 25px;
     vertical-align: middle;
+    margin-right: 15px;
 }
 
-
-.sidebar ul li .count {
-    font-size: 14px;
-    color: #888;
-}
 
 .sidebar ul li:hover {
     background-color: rgb(235, 237, 241);
