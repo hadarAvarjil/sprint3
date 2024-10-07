@@ -1,10 +1,10 @@
 section.mail-list {
     flex-grow: 1;
     padding: 20px;
-    /* border: 0.5px solid #ddd;  */
-    border-radius: 20px; 
+    border-radius: 20px;
 }
- .mail-container {
+
+.mail-container {
     width: 100%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
@@ -14,17 +14,16 @@ section.mail-list {
 }
 
 .mail-container tr {
-    /* padding: 0.5em; */
     transition: all 0.3s ease;
     border-bottom: 1px solid #ddd;
 }
 
 .mail-container tr:hover {
     background-color: #fff;
-    transform: scale(1.02); 
-    box-shadow: 0 4px 8px #1e1e1e1a; 
-    z-index: 1; 
-    position: relative; 
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px #1e1e1e1a;
+    z-index: 1;
+    position: relative;
 }
 
 
@@ -34,14 +33,14 @@ section.mail-list {
 }
 
 .mail-actions button {
-    background:  #cce5ff;
+    background: #cce5ff;
     border: none;
     padding: 8px;
     border-radius: 50px;
     cursor: pointer;
 }
 
-.mail-actions .icon{
+.mail-actions .icon {
     width: 20px;
     height: 22px;
     margin: auto;
@@ -53,3 +52,28 @@ section.mail-list {
     background-color: #f1f1f1;
 }
 
+
+.star-btn {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star-btn .icon {
+    width: 20px;
+    height: 22px;
+    margin: 0; 
+}
+
+.star-btn:hover {
+    background-color: #b0d4f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    padding: 4px;
+}
+
+td .star-btn:hover {
+    padding: 0px;
+}

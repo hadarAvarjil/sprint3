@@ -21,7 +21,8 @@ export const mailService = {
     getFilterFromSearchParams,
     debounce,
     unReadMail,
-    readMail
+    readMail,
+    starredMail
 }
 
 function query(filterBy = {}) {
@@ -32,14 +33,14 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => regExp.test(mail.subject))
             }
             if (filterBy.status === 'inbox') {
-                mails = mails.filter(mail => mail.to === loggedinUser.email)
+                mails = mails.filter(mail => mail.to === loggedinUser.email && !mail.removedAt)
             }
 
             if (filterBy.status === 'sent') {
-                mails = mails.filter(mail => mail.from === loggedinUser.email)
+                mails = mails.filter(mail => mail.from === loggedinUser.email && !mail.removedAt)
             }
             if (filterBy.status === 'starred') {
-                mails = mails.filter(mail => mail.isStarred)
+                mails = mails.filter(mail => mail.isStarred && !mail.removedAt)
             }
             if (filterBy.status === 'trash') {
                 mails = mails.filter(mail => mail.removedAt)
@@ -86,29 +87,42 @@ function unReadMail(mailId) {
         })
 }
 
-function _unReadMail(mail){
+function _unReadMail(mail) {
     mail.isRead = false
     return mail
 }
 
-function readMail(mailId){
+function readMail(mailId) {
     return storageService.get(MAIL_KEY, mailId)
-    .then(mail => {
-        return _readMail(mail)
-    }
-    )
-    .then(updatedMail => {
-        return storageService.put(MAIL_KEY, updatedMail)
-    })
+        .then(mail => {
+            return _readMail(mail)
+        }
+        )
+        .then(updatedMail => {
+            return storageService.put(MAIL_KEY, updatedMail)
+        })
 }
 
-function _readMail(mail){
+function _readMail(mail) {
     mail.isRead = true
     return mail
 }
 
+function starredMail(mailId) {
+    return storageService.get(MAIL_KEY, mailId)
+        .then(mail => {
+            return _starredMailToggle(mail)
+        }
+        )
+        .then(updatedMail => {
+            return storageService.put(MAIL_KEY, updatedMail)
+        })
+}
 
-
+function _starredMailToggle(mail) {
+    mail.isStarred = !mail.isStarred;
+    return mail
+}
 
 function save(mail) {
     if (mail.id) {
@@ -118,8 +132,8 @@ function save(mail) {
     }
 }
 
-function getEmptyMail(subject = '', createdAt = '', body = '', isRead = false, isStarred = false, sentAt = Date.now, to = 'user@appsus.com',) {
-    return { subject, createdAt, body, isRead, isStarred, sentAt, to }
+function getEmptyMail(subject = '', createdAt = '', body = '', isRead = false, isStarred = false, sentAt = Date.now(), to = '', from = 'user@appsus.com',) {
+    return { subject, createdAt, body, isRead, isStarred, sentAt, to, from }
 }
 
 function getDefaultFilter() {

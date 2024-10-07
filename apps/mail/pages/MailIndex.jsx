@@ -8,12 +8,14 @@ import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailFolderList } from "../cmps/MailFolderList.jsx"
+import { ComposeModal } from "../cmps/ComposeModal.jsx";
 
 
 export function MailIndex() {
 
     const [mails, setMails] = useState(null)
     const [searchPrms, setSearchPrms] = useSearchParams()
+    const [composeNewMail, setComposeNewMail] = useState(null)
     const [filterBy, setFilterBy] = useState(() => {
         return {
             status: searchPrms.get('status') || 'inbox'
@@ -65,25 +67,42 @@ export function MailIndex() {
             })
     }
 
+    function onStarredMail(mailId) {
+        mailService.starredMail(mailId)
+            .then(() => {
+                setMails(mails => mails.map(mail =>
+                    mail.id === mailId ? { ...mail, isStarred: !mail.isStarred } : mail
+                ))
+            })
+    }
 
     function onSetFilterBy(filterBy) {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
     }
 
+    function onComposeNewMail() {
+        const emptyMail = mailService.getEmptyMail()
+        setComposeNewMail(emptyMail)
+    }
+
+
     if (!mails) return <h1>Loading...</h1>
     return (
         <section className="mail-index"
-        style={{ backgroundColor: 'rgb(246, 248, 252)' }}>
+            style={{ backgroundColor: 'rgb(246, 248, 252)' }}>
             <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <section className="mail-container">
                 <section className="mail-container-left">
-                    <button className="compose-btn"><Link to={"/mail/edit"}>
+
+                    <button className="compose-btn"
+                    onClick={() => onComposeNewMail()}>
                         <img
                             src='./assets/img/compose.png'
                             alt="Inbox Icon"
                             className="icon"
                         />
-                        Compose</Link></button>
+                        Compose</button>
+
                     <MailFolderList onSetFilterBy={onSetFilterBy} />
                 </section>
                 <MailList
@@ -91,10 +110,15 @@ export function MailIndex() {
                     onRemoveMail={onRemoveMail}
                     onUnReadMail={onUnReadMail}
                     onReadMail={onReadMail}
-                    
+                    onStarredMail={onStarredMail}
+
                 />
             </section>
-
+            {composeNewMail &&
+                <ComposeModal
+                    onClose={() => setComposeNewMail(null)}
+                />
+            }
         </section>
     )
 
