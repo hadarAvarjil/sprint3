@@ -1,15 +1,30 @@
 .mail-preview {
     display: flex;
     width: 100%;
+    justify-content: space-between;
+    align-items: center; 
 }
 
 .mail-preview p {
     margin: 0;
     padding:0;
-    margin-left: 5em;
-
+    margin-right: 10em;
+    font-size: .875rem;
+    letter-spacing: normal;
+    text-overflow: ellipsis;
 }
 
 .read-mail {
     background: rgb(242 246 252);
+}
+
+
+.mail-preview .p-date {
+    flex-shrink: 0; 
+    margin-right: 2em;
+}
+
+.mail-preview .p-from {
+    flex-shrink: 0; 
+    margin-left: 1.5em;
 }

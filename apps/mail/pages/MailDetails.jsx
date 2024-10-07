@@ -4,6 +4,8 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 import { mailService } from "../services/mail.service.js"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { utilService } from "../../../services/util.service.js"
+import { LongTxt } from "../../../cmps/LongTxt.jsx";
+
 
 
 

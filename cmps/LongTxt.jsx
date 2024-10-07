@@ -1,6 +1,6 @@
 const { useState } = React
 
-export function LongTxt({ txt, length = 100 }) {
+export function LongTxt({ txt, length = 20 }) {
     const [isShowLong, setIsShowLong] = useState(false)
 
     function onToggleIsShowLong() {
@@ -14,9 +14,9 @@ export function LongTxt({ txt, length = 100 }) {
             <h4>
                 {textToShow}
                 {isLongText &&
-                    <button onClick={onToggleIsShowLong}>
-                        {isShowLong ? ' Less...' : ' More...'}
-                    </button>
+                    <span >
+                        {isShowLong ? ' ' : '...'}
+                    </span>
                 }
             </h4>
         </section>
