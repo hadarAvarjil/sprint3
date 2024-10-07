@@ -1,7 +1,6 @@
 section.mail-list {
     flex-grow: 1;
     padding: 20px;
-    /* border: 0.5px solid #ddd;  */
     border-radius: 20px;
 }
 
@@ -15,7 +14,6 @@ section.mail-list {
 }
 
 .mail-container tr {
-    /* padding: 0.5em; */
     transition: all 0.3s ease;
     border-bottom: 1px solid #ddd;
 }

@@ -1,0 +1,74 @@
+.compose-modal {
+    background-color: white;
+    border-radius: 10px;
+    padding: 0;
+    width: 40vw;
+    height: 60vh;
+    position: fixed;
+    bottom: 0; 
+    right: 20px; 
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.compose-modal h1 {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0;
+    padding: 8px;
+    color: #3f3f41;
+    font-family: Arial, sans-serif;
+    background-color: rgb(234 241 251);
+}
+
+.compose-modal form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 0
+}
+
+.compose-modal input,
+.compose-modal textarea {
+    margin-top: 2px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    outline: none;
+}
+
+.compose-modal textarea {
+    resize: none;
+    height: 200px;
+}
+
+.compose-modal .send-btn {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: .8em;
+    width: 20%;
+    align-self: flex-start;
+    margin-right: 20px;
+}
+
+.compose-modal .x-btn {
+    background-color: transparent;
+    color: #3f3f41;
+    border: none;
+    cursor: pointer;
+    font-size: .8em;
+    font-weight: 700;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    padding: 5px;
+}
