@@ -1,4 +1,6 @@
 import { utilService } from "../../../services/util.service.js"
+import { LongTxt } from "../../../cmps/LongTxt.jsx";
+
 
 export function MailPreview({ mail }) {
 
@@ -11,19 +13,10 @@ export function MailPreview({ mail }) {
 
     return (
         <article className={`mail-preview ${mailClass}`} >
-            <p> {mail.from}</p >
-            <p>{mail.subject}</p>
-            <p>{utilService.elapsedTime(mail.sentAt)}</p>
+            <p className="p-from"> {mail.from}</p >
+            <p className="p-subject">{mail.subject && <LongTxt txt={mail.subject} />}</p>
+            <p className="p-date">{utilService.elapsedTime(mail.sentAt)}</p>
         </article >
     )
 }
 
-// id: utilService.makeId(),
-// createdAt : 1551133930500,
-// subject: utilService.makeLorem(4),
-// body: utilService.makeLorem(20),
-// isRead:  Math.random() > 0.7,
-// sentAt : 1551133930594,
-// removedAt : null,
-// from: 'momo@momo.com',
-// to: 'user@appsus.com'

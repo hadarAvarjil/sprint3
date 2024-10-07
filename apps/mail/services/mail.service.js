@@ -157,8 +157,8 @@ function _createMails() {
         const mail = {
             id: utilService.makeId(),
             createdAt: 1551133930500,
-            subject: utilService.makeLorem(4),
-            body: utilService.makeLorem(20),
+            subject: utilService.makeLorem(7),
+            body: utilService.makeLorem(40),
             isRead: Math.random() > 0.7,
             isStarred: Math.random() > 0.7,
             sentAt: utilService.randomPastTime(),
