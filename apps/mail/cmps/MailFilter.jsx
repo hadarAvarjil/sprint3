@@ -31,9 +31,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
-    const { txt} = filterByToEdit
-
-    // const isValid = !!txt || !!minSpeed
+    const { txt } = filterByToEdit
     return (
         <section className="mail-filter">
             <form onSubmit={onSubmit}>
@@ -48,6 +46,16 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
                         placeholder="Search mail"
                         className="search-input"
                     />
+                    <input
+                        type="checkbox"
+                        id="isread"
+                        name="isread"
+                        checked={isOnSale}
+                        onChange={handleChange}
+                        className="search-input"
+                    />
+
+
                     <button type="submit" className="filter-icon">
                         <i className="fas fa-sliders-h"></i>
                     </button>

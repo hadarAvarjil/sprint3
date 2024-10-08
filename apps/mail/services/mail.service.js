@@ -45,6 +45,10 @@ function query(filterBy = {}) {
             if (filterBy.status === 'trash') {
                 mails = mails.filter(mail => mail.removedAt)
             }
+            if (filterBy.isRead) {
+                mails = mails.filter(mail => mail.isRead)
+            }
+        
 
             return mails
         })
