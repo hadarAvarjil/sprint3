@@ -1,10 +1,9 @@
-
 import { NotePreview } from "../cmps/NotePreview.jsx"
 import { NoteAudio } from './path/to/NoteAudio'
-const { useState, useEffect } = React
+const { useState } = React
 
-export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, onDuplicate}) {
-    const [colorPickerVisible, setColorPickerVisible] = useState(null)
+export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, onDuplicate, onDrop }) {
+    const [colorPickerVisible, setColorPickerVisible] = useState(null);
     const colors = ['#ffb4b4', '#b4ffe0', '#b4b7ff', '#f9b4ff', '#c0e794', '#91c6f0']
 
     const sortedNotes = [...notes].sort((a, b) => b.isPinned - a.isPinned)
@@ -14,10 +13,35 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, 
         setColorPickerVisible(null)
     }
 
+    const handleDragStart = (event, noteId) => {
+        event.dataTransfer.setData("text/plain", noteId)
+    }
+
+    const handleDrop = (event, targetNoteId) => {
+        event.preventDefault()
+        const noteId = event.dataTransfer.getData("text/plain")
+        if (noteId && noteId !== targetNoteId) {
+            const noteIdToMove = noteId; 
+            onDrop(noteIdToMove, targetNoteId)
+        }
+    }
+
+    const handleDragOver = (event) => {
+        event.preventDefault()
+    }
+
     return (
         <div className="note-list">
             {sortedNotes.map(note => (
-                <div key={note.id} className="note-card" style={{ backgroundColor: (note.style && note.style.backgroundColor) || '#fff' }}>
+                <div 
+                    key={note.id} 
+                    className="note-card" 
+                    style={{ backgroundColor: (note.style && note.style.backgroundColor) || '#fff' }}
+                    draggable
+                    onDragStart={(event) => handleDragStart(event, note.id)}
+                    onDrop={(event) => handleDrop(event, note.id)}
+                    onDragOver={handleDragOver}
+                >
                     {note.type === 'NoteTxt' && (
                         <div>
                             <h3>{note.info.title ? `Title: ${note.info.title}` : ''}</h3>

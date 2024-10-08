@@ -1,14 +1,21 @@
-const { useState, useEffect } = React
+const { useState, useEffect,useRef } = React
 import { NoteRecorder } from './dynamic-note/NoteRecorder.jsx'; 
 
 export function NoteForm({ onSave, existingNote,onCancel }) {
     const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
-    const [audioUrl, setAudioUrl] = useState('');
-
+    const [audioUrl, setAudioUrl] = useState('')
+    const textAreaRef = useRef(null)
 
     useEffect(() => {
         setNote(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
     }, [existingNote])
+
+    useEffect(() => {
+        if (textAreaRef.current) {
+            textAreaRef.current.style.height = 'auto'
+            textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`
+        }
+    }, [note.info.txt])
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -21,12 +28,28 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
     const handleTodoChange = (index, value) => {
         const updatedTodos = note.info.todos.map((todo, i) => (
             i === index ? { ...todo, txt: value } : todo
-        ));
+        ))
         setNote((prev) => ({
             ...prev,
             info: { ...prev.info, todos: updatedTodos }
         }))
     }
+
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const url = reader.result; // Base64 encoded string
+                // Update the note's info with the new image
+                setNote(prev => ({
+                    ...prev,
+                    info: { ...prev.info, url, title: file.name }
+                }));
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL
+        }
+    };
 
     const handleAddTodo = () => {
         setNote((prev) => ({
@@ -56,44 +79,51 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
     const handleAudioSave = (audioUrl) => {
         setNote((prev) => ({
             ...prev,
-            info: { ...prev.info, url: audioUrl } // עדכון עם ה-URL של האודיו
+            info: { ...prev.info, url: audioUrl }
         }));
     };
-
     return (
         <form onSubmit={handleSubmit} className="note-form">
             <input
+                key={`note-textarea-${note.id}`}
                 type="text"
                 name="title"
                 value={note.info.title}
                 onChange={handleChange}
-                placeholder="Note Title"
+                placeholder="Title"
+                className="note-input title"
             />
             <select name="type" value={note.type} onChange={(e) => setNote({ ...note, type: e.target.value })}>
-                <option value="NoteTxt">Text Note</option>
+                <option >Choose note</option>
                 <option value="NoteImg">Image Note</option>
-                <option value="NoteVideo">Video Note</option>
                 <option value="NoteTodos">Todo List Note</option>
                 <option value="NoteAudio">Audio Note</option>
             </select>
+            
             {note.type === 'NoteTxt' && (
-                <input
-                    type="text"
+                <textarea
+                    key={`note-textarea-${note.id}`}
                     name="txt"
                     value={note.info.txt}
                     onChange={handleChange}
-                    placeholder="Note Content"
+                    placeholder="New Note..."
+                    className="note-input content"
+                    rows="1" 
+                    ref={textAreaRef} 
                 />
             )}
+            
             {note.type === 'NoteImg' && (
-                <input
-                    type="text"
-                    name="url"
-                    value={note.info.url}
-                    onChange={handleChange}
-                    placeholder="Image URL"
-                />
+                <div>
+                    <input
+                        type="file"
+                        accept="image/*" 
+                        onChange={handleFileUpload}
+                    />
+                    {note.info.url && <img src={note.info.url} alt={note.info.title} style={{ maxWidth: '100%', marginTop: '10px' }} />}
+                </div>
             )}
+            
             {note.type === 'NoteVideo' && (
                 <input
                     type="text"
@@ -101,14 +131,17 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
                     value={note.info.url}
                     onChange={handleChange}
                     placeholder="Video URL"
+                    className="note-input"
                 />
             )}
+            
             {note.type === 'NoteAudio' && (
                 <div>
                     <NoteRecorder onSave={handleAudioSave} />
                     {audioUrl && <p>Audio recorded successfully! <audio src={audioUrl} controls /></p>}
                 </div>
             )}
+            
             {note.type === 'NoteTodos' && (
                 <div>
                     {note.info.todos && note.info.todos.length > 0 ? (
@@ -119,6 +152,7 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
                                     value={todo.txt}
                                     onChange={(e) => handleTodoChange(index, e.target.value)}
                                     placeholder={`Todo ${index + 1}`}
+                                    className="note-input"
                                 />
                             </div>
                         ))
@@ -126,8 +160,9 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
                     <button type="button" onClick={handleAddTodo} className="add-todo-button">Add Todo</button>
                 </div>
             )}
+            
             <button type="submit">{existingNote ? 'Update Note' : 'Add Note'}</button>
             <button type="button" onClick={handleCancelClick} className="cancel-button">Cancel</button>
         </form>
-    );
+    )
 }
