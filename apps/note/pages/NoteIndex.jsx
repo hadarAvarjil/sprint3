@@ -121,8 +121,8 @@ export function NoteIndex() {
             <div className="main-content">
                 <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
 
-                <div className="add-note-container">
-                    <div className="take-note-input" onClick={() => setShowAddNoteForm(true)}>
+                <div className="take-note-input">
+                    <div onClick={() => setShowAddNoteForm(true)}>
                         {!showAddNoteForm ? (
                             <span>Take a note...</span>
                         ) : null}

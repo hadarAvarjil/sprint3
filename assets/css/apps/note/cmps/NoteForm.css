@@ -1,5 +1,4 @@
-
-.note-index-container{
+.note-index-container {
     display: flex;
     flex-direction: row;
     height: 90vh;
@@ -14,9 +13,10 @@
     padding: 20px;
     overflow-y: auto;
     border-left: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;;
+    border-top: 1px solid #e0e0e0;
     border-right: 1px solid #e0e0e0;
 }
+
 .search-bar {
     width: 100%;
     padding: 10px; 
@@ -38,28 +38,38 @@
 }
 
 .note-form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+    min-height: 150px;
+    /* max-width: 400px; */
     display: flex;
     flex-direction: column;
-    width: 80%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    min-height: 150px; 
-    max-height: none; 
-    transition: height 0.3s ease; 
+    word-wrap: break-word;
+    overflow: hidden;
+    flex-grow: 1;
+    align-content: stretch;
+    justify-content: center;
+    align-items: flex-end;
 }
-
-.add-note-container {
-    width: 300px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    transition: max-height 0.3s ease;
+.note-input {
+    width: 100%; 
+    border: none; 
+    padding: 10px; 
+    color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px; 
+    margin-bottom: 10px; 
+    resize: none; 
+    letter-spacing: .0178571429em;
+    font-family: "Google Sans", Roboto, Arial, sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    height: 5px;
+    max-height: none; 
+    overflow-y: hidden; 
 }
 
 .add-note-options {
@@ -68,19 +78,24 @@
     gap: 10px;
 }
 
-.add-note-container:hover {
-    background-color: #e0e0e0;
-}
-
 .note-input:last-child {
     margin-bottom: 0;
 }
 
-.note-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.note-input:focus {
+    outline: none; 
+    box-shadow: 0 0 5px rgba(241, 243, 244, 0.5); 
+}
+
+
+
+.add-note-container {
+    width: 300px;
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+    padding: 10px;
+    transition: max-height 0.3s ease;
 }
 
 .take-note-input span {
@@ -88,6 +103,7 @@
     font-size: 16px;
     color: #555;
 }
+
 
 button:hover {
     background-color: #0056b3; 
