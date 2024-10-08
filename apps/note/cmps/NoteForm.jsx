@@ -35,6 +35,22 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
         }))
     }
 
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const url = reader.result; // Base64 encoded string
+                // Update the note's info with the new image
+                setNote(prev => ({
+                    ...prev,
+                    info: { ...prev.info, url, title: file.name }
+                }));
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL
+        }
+    };
+
     const handleAddTodo = () => {
         setNote((prev) => ({
             ...prev,
@@ -98,14 +114,14 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
             )}
             
             {note.type === 'NoteImg' && (
-                <input
-                    type="text"
-                    name="url"
-                    value={note.info.url}
-                    onChange={handleChange}
-                    placeholder="Image URL"
-                    className="note-input"
-                />
+                <div>
+                    <input
+                        type="file"
+                        accept="image/*" 
+                        onChange={handleFileUpload}
+                    />
+                    {note.info.url && <img src={note.info.url} alt={note.info.title} style={{ maxWidth: '100%', marginTop: '10px' }} />}
+                </div>
             )}
             
             {note.type === 'NoteVideo' && (
