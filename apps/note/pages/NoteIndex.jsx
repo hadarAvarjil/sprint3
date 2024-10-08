@@ -117,38 +117,39 @@ export function NoteIndex() {
 
     return (
         <div className="note-index-container">
-            <SideBar />
-            <div className="main-content">
-                <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
-
-                <div className="take-note-input">
-                    <div onClick={() => setShowAddNoteForm(true)}>
-                        {!showAddNoteForm ? (
-                            <span>Take a note...</span>
-                        ) : null}
+            <header className="keep-header"></header>
+            <div className="sidebar-main-container"> {/* קונטיינר חדש */}
+                <SideBar />
+                <div className="main-content">
+                    <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
+                    <div className="take-note-input">
+                        <div onClick={() => setShowAddNoteForm(true)}>
+                            {!showAddNoteForm ? (
+                                <span>Take a note...</span>
+                            ) : null}
+                        </div>
+                        {showAddNoteForm && (
+                            <NoteForm 
+                                onSave={noteToEdit ? handleEditNote : handleAddNote}
+                                existingNote={noteToEdit} 
+                                noteType={noteType}
+                                onTypeChange={setNoteType}
+                                onCancel={handleCancel} 
+                            />
+                        )}
                     </div>
-                    {showAddNoteForm && (
-                        <NoteForm 
-                            onSave={noteToEdit ? handleEditNote : handleAddNote}
-                            existingNote={noteToEdit} 
-                            noteType={noteType}
-                            onTypeChange={setNoteType}
-                            onCancel={handleCancel} 
-                        />
-                    )}
+                    <NoteList 
+                        notes={filteredNotes} 
+                        onEdit={handleEditClick} 
+                        onDelete={handleDeleteNote}  
+                        onColorChange={handleColorChange} 
+                        onTogglePin={handleTogglePin} 
+                        onDuplicate={duplicateNote} 
+                        onDrop={handleDrop} 
+                    />
                 </div>
-
-                <NoteList 
-                    notes={filteredNotes} 
-                    onEdit={handleEditClick} 
-                    onDelete={handleDeleteNote}  
-                    onColorChange={handleColorChange} 
-                    onTogglePin={handleTogglePin} 
-                    onDuplicate={duplicateNote} 
-                    onDrop={handleDrop} 
-
-                />
             </div>
         </div>
+
     )
 }
