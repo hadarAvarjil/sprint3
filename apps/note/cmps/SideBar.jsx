@@ -18,7 +18,7 @@ export function SideBar() {
                             onClick={() => handleLinkClick('all')}
                         >
                             <img 
-                                src={`assets/img/${selectedLink === 'all' ? 'notes.svg' : 'notes.svg'}`} 
+                                src={`./assets/img/${selectedLink === 'all' ? 'notes.svg' : 'notes.svg'}`} 
                                 className="icon" 
                             />
                             Notes
@@ -30,7 +30,7 @@ export function SideBar() {
                             onClick={() => handleLinkClick('pinned')}
                         >
                             <img 
-                                src={`assets/img/${selectedLink === 'pinned' ? 'pinned_clicked.svg' : 'reminder.svg'}`} 
+                                src={`./assets/img/${selectedLink === 'pinned' ? 'pinned_clicked.svg' : 'Reminder.svg'}`} 
                                 className="icon" 
                             />
                             Reminders
@@ -42,7 +42,7 @@ export function SideBar() {
                             onClick={() => handleLinkClick('archived')}
                         >
                             <img 
-                                src={`assets/img/${selectedLink === 'archived' ? 'archive_clicked.svg' : 'archive.svg'}`} 
+                                src={`./assets/img/${selectedLink === 'archived' ? 'archive_clicked.svg' : 'archive.svg'}`} 
                                 alt="Archived Notes" 
                                 className="icon" 
                             />
@@ -55,7 +55,7 @@ export function SideBar() {
                             onClick={() => handleLinkClick('trash')}
                         >
                             <img 
-                                src={`assets/img/${selectedLink === 'trash' ? 'trash_clicked.svg' : 'trash.svg'}`} 
+                                src={`./assets/img/${selectedLink === 'trash' ? 'trash_clicked.svg' : 'trash.svg'}`} 
                                 alt="Trash Notes" 
                                 className="icon" 
                             />

@@ -1,7 +1,16 @@
+.note-card {
+    background-color: #ffffff; 
+    border-radius: 8px; 
+    padding: 30px; 
+    width: 200px; 
+    min-height: 150px; 
+    transition: transform 0.2s, height 0.2s; 
+    word-break: break-word;
+}
+
 .note-index {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between;  */
     padding: 20px;
     background-color: #f9f9f9; 
     border-radius: 10px; 
@@ -11,32 +20,11 @@
     width: 60%;
 }
 
-
-
-
-.note-index:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
-}
-
-
-.note-card {
-    background-color: #ffffff; 
-    border-radius: 8px; 
-    
-    
-    padding: 30px; 
-    width: 200px; 
-    transition: transform 0.2s; 
-  
-}
-
-/* Hover effect for individual cards */
 .note-card:hover {
     transform: scale(1.05); 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 }
 
-/* Add some responsive design */
 @media (max-width: 768px) {
     .note-card {
         width: 90%; 

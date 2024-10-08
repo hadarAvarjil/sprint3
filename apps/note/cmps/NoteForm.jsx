@@ -56,7 +56,7 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
     const handleAudioSave = (audioUrl) => {
         setNote((prev) => ({
             ...prev,
-            info: { ...prev.info, url: audioUrl } // עדכון עם ה-URL של האודיו
+            info: { ...prev.info, url: audioUrl }
         }));
     };
 
