@@ -94,7 +94,7 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
                 className="note-input title"
             />
             <select name="type" value={note.type} onChange={(e) => setNote({ ...note, type: e.target.value })}>
-                <option >Choose note</option>
+                <option value="NoteTxt">Text note</option>
                 <option value="NoteImg">Image Note</option>
                 <option value="NoteTodos">Todo List Note</option>
                 <option value="NoteAudio">Audio Note</option>
