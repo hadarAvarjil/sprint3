@@ -68,7 +68,7 @@ export function MailFolderList({ onSetFilterBy }) {
                         </Link>
                     </li>
                 </ul>
-            <Outlet />
+            {/* <Outlet /> */}
         </aside>
     )
 }
