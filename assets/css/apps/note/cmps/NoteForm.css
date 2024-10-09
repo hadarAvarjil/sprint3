@@ -13,30 +13,38 @@
     height: 100%;
     padding: 20px;
     overflow-y: auto;
-    border-left: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;
-    /* border-right: 1px solid #e0e0e0; */
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    background-color: #f1f3f4;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-left: 2em;
+}
+
+.search-icon {
+    color: #888;
+    font-size: 18px;
+    margin-right: 10px;
 }
 
 .search-bar {
-    width: 90%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 2px;
+    border: none;
+    background-color: transparent;
+    outline: none;
     font-size: 16px;
-    margin-left: 3px;
-    transition: border-color 0.3s; 
+    width: 100%;
+    color: #555;
+   
 }
 
 .search-bar::placeholder {
-    color: #aaa; 
-}
-
-.search-bar:focus {
-    outline: none;
-    border-color: #1a73e8; 
-    box-shadow: 0 0 5px rgba(26, 115, 232, 0.5); 
+    color: #888;
 }
 
 .note-form {
@@ -46,7 +54,6 @@
     padding: 20px;
     transition: box-shadow 0.3s ease;
     min-height: 150px;
-    /* max-width: 400px; */
     display: flex;
     flex-direction: column;
     word-wrap: break-word;
@@ -56,22 +63,23 @@
     justify-content: center;
     align-items: flex-end;
 }
+
 .note-input {
-    width: 100%; 
-    border: none; 
-    padding: 10px; 
+    width: 100%;
+    border: none;
+    padding: 10px;
     color: rgba(0, 0, 0, 0.7);
-    border-radius: 4px; 
-    margin-bottom: 10px; 
-    resize: none; 
+    border-radius: 4px;
+    margin-bottom: 10px;
+    resize: none;
     letter-spacing: .0178571429em;
     font-family: "Google Sans", Roboto, Arial, sans-serif;
     font-size: .875rem;
     font-weight: 500;
     line-height: 1.25rem;
     height: 5px;
-    max-height: none; 
-    overflow-y: hidden; 
+    max-height: none;
+    overflow-y: hidden;
 }
 
 .add-note-options {
@@ -85,8 +93,8 @@
 }
 
 .note-input:focus {
-    outline: none; 
-    box-shadow: 0 0 5px rgba(241, 243, 244, 0.5); 
+    outline: none;
+    box-shadow: 0 0 5px rgba(241, 243, 244, 0.5);
 }
 
 
@@ -108,24 +116,25 @@
 
 
 button:hover {
-    background-color: #0056b3; 
+    background-color: #0056b3;
 }
 
 
 .delete-todo-button {
     background: none;
     border: none;
-    color: red; 
+    color: red;
     cursor: pointer;
-    font-size: 16px; 
-    margin-left: 10px; 
+    font-size: 16px;
+    margin-left: 10px;
     margin-bottom: 10px;
 }
-.add-todo-button{
+
+.add-todo-button {
     margin-left: 93px;
     margin-top: 30px;
 }
 
 .delete-todo-button:hover {
-    opacity: 0.7; 
+    opacity: 0.7;
 }
