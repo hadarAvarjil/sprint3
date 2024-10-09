@@ -1,5 +1,5 @@
 const { useState, useEffect,useRef } = React
-import { NoteRecorder } from './dynamic-note/NoteRecorder.jsx'; 
+import { NoteRecorder } from './dynamic-note/NoteRecorder.jsx'
 
 export function NoteForm({ onSave, existingNote,onCancel }) {
     const [note, setNote] = useState(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
@@ -26,30 +26,38 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
     }
 
     const handleTodoChange = (index, value) => {
-        const updatedTodos = note.info.todos.map((todo, i) => (
-            i === index ? { ...todo, txt: value } : todo
-        ))
-        setNote((prev) => ({
-            ...prev,
-            info: { ...prev.info, todos: updatedTodos }
-        }))
+        setNote((prev) => {
+            const updatedTodos = prev.info.todos.map((todo, i) => {
+                if (i === index) {
+                    return value !== null ? { ...todo, txt: value } : null; // עדכון טקסט או מחיקה
+                }
+                return todo;
+            }).filter(todo => todo !== null); // מסנן טודואים שלא קיימים (שכבר נמחקו)
+    
+            return {
+                ...prev,
+                info: { ...prev.info, todos: updatedTodos }
+            };
+        });
     }
 
+   
+
     const handleFileUpload = (event) => {
-        const file = event.target.files[0];
+        const file = event.target.files[0]
         if (file) {
-            const reader = new FileReader();
+            const reader = new FileReader()
             reader.onloadend = () => {
-                const url = reader.result; // Base64 encoded string
-                // Update the note's info with the new image
+                const url = reader.result
+            
                 setNote(prev => ({
                     ...prev,
                     info: { ...prev.info, url, title: file.name }
-                }));
-            };
-            reader.readAsDataURL(file); // Read the file as a data URL
+                }))
+            }
+            reader.readAsDataURL(file);
         }
-    };
+    }
 
     const handleAddTodo = () => {
         setNote((prev) => ({
@@ -75,6 +83,14 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
     const handleCancelClick = () => {
         onCancel()
     }
+
+    const handleDeleteTodo = (index) => {
+        const updatedTodos = note.info.todos.filter((_, i) => i !== index);
+        setNote((prev) => ({
+            ...prev,
+            info: { ...prev.info, todos: updatedTodos }
+        }));
+    };
 
     const handleAudioSave = (audioUrl) => {
         setNote((prev) => ({
@@ -143,26 +159,29 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
             )}
             
             {note.type === 'NoteTodos' && (
-                <div>
-                    {note.info.todos && note.info.todos.length > 0 ? (
-                        note.info.todos.map((todo, index) => (
-                            <div key={index} className="todo-item">
-                                <input
-                                    type="text"
-                                    value={todo.txt}
-                                    onChange={(e) => handleTodoChange(index, e.target.value)}
-                                    placeholder={`Todo ${index + 1}`}
-                                    className="note-input"
-                                />
-                            </div>
-                        ))
-                    ) : null}
-                    <button type="button" onClick={handleAddTodo} className="add-todo-button">Add Todo</button>
+    <div>
+        {note.info.todos && note.info.todos.length > 0 ? (
+            note.info.todos.map((todo, index) => (
+                <div key={index} className="todo-item">
+                    <input
+                        type="text"
+                        value={todo.txt}
+                        onChange={(e) => handleTodoChange(index, e.target.value)}
+                        placeholder={`Todo ${index + 1}`}
+                        className="note-input"
+                    />
+                    <button onClick={() => handleDeleteTodo(index)} className="delete-todo-button">
+                        &#10005; 
+                    </button>
                 </div>
-            )}
+            ))
+        ) : null}
+        <button type="button" onClick={handleAddTodo} className="add-todo-button">Add Todo</button>
+    </div>
+)}
             
             <button type="submit">{existingNote ? 'Update Note' : 'Add Note'}</button>
-            <button type="button" onClick={handleCancelClick} className="cancel-button">Cancel</button>
+            <button type="button" onClick={handleCancelClick} className="cancel-button">Cancel Note</button>
         </form>
     )
 }
