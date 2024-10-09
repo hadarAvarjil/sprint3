@@ -10,15 +10,13 @@ export function LongTxt({ txt, length = 20 }) {
     const isLongText = txt.length > length
     const textToShow = isShowLong ? txt : (txt.substring(0, length))
     return (
-        <section className="long-txt">
-            <h4>
-                {textToShow}
-                {isLongText &&
-                    <span >
-                        {isShowLong ? ' ' : '...'}
-                    </span>
-                }
-            </h4>
-        </section>
+        <span className="long-txt">
+            {textToShow}
+            {isLongText && (
+                <span>
+                    {isShowLong ? ' ' : '...'}
+                </span>
+            )}
+        </span>
     );
 }

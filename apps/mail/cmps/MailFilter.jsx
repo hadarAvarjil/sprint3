@@ -3,6 +3,7 @@ const { useState, useEffect } = React
 export function MailFilter({ filterBy, onSetFilterBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+    
 
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
@@ -31,7 +32,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
-    const { txt } = filterByToEdit
+    const { txt, isRead } = filterByToEdit
     return (
         <section className="mail-filter">
             <form onSubmit={onSubmit}>
@@ -48,11 +49,11 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
                     />
                     <input
                         type="checkbox"
-                        id="isread"
-                        name="isread"
-                        checked={isOnSale}
-                        onChange={handleChange}
+                        id="isRead"
+                        name="isRead"
+                        checked={isRead}
                         className="search-input"
+                        onChange={handleChange}
                     />
 
 

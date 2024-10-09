@@ -12,11 +12,13 @@ export function MailPreview({ mail }) {
     }
 
     return (
-        <article className={`mail-preview ${mailClass}`} >
-            <p className="p-from"> {mail.from}</p >
-            <p className="p-subject">{mail.subject && <LongTxt txt={mail.subject} />}</p>
+        <article className={`mail-preview ${mailClass}`}>
+            <p className="p-from"> {mail.from}</p>
+            <p className="p-subject">
+                {mail.subject && <LongTxt txt={mail.subject} />}
+            </p>
             <p className="p-date">{utilService.elapsedTime(mail.sentAt)}</p>
-        </article >
+        </article>
     )
 }
 

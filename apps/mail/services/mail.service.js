@@ -33,22 +33,24 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => regExp.test(mail.subject))
             }
             if (filterBy.status === 'inbox') {
-                mails = mails.filter(mail => mail.to === loggedinUser.email && !mail.removedAt)
+                if (filterBy.isRead) mails = mails.filter(mail => mail.to === loggedinUser.email && !mail.removedAt && !mail.isRead)
+                else mails = mails.filter(mail => mail.to === loggedinUser.email && !mail.removedAt)
             }
 
             if (filterBy.status === 'sent') {
                 mails = mails.filter(mail => mail.from === loggedinUser.email && !mail.removedAt)
             }
             if (filterBy.status === 'starred') {
-                mails = mails.filter(mail => mail.isStarred && !mail.removedAt)
+                if (filterBy.isRead) mails = mails.filter(mail => mail.isStarred && !mail.removedAt && !mail.isRead)
+                else mails = mails.filter(mail => mail.isStarred && !mail.removedAt)
             }
             if (filterBy.status === 'trash') {
                 mails = mails.filter(mail => mail.removedAt)
             }
-            if (filterBy.isRead) {
-                mails = mails.filter(mail => mail.isRead)
-            }
-        
+            // if (filterBy.isRead) {
+            //     mails = mails.filter(mail => mail.isRead)
+            // }
+
 
             return mails
         })
@@ -183,17 +185,16 @@ function _createMail(subject, createdAt = Date.now) {
     return mail
 }
 
-
-
 function getFilterFromSearchParams(searchParams) {
     const txt = searchParams.get('txt') || ''
-    const mincreatedAt = searchParams.get('mincreatedAt') || ''
+    const isRead = searchParams.get('isread') === 'true';
+    const status = searchParams.get('status') || 'inbox';
     return {
         txt,
-        mincreatedAt
-    }
+        isRead,
+        status
+    };
 }
-
 
 function _setNextPrevMailId(mail) {
     return query().then((mails) => {

@@ -16,12 +16,7 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [searchPrms, setSearchPrms] = useSearchParams()
     const [composeNewMail, setComposeNewMail] = useState(null)
-    const [filterBy, setFilterBy] = useState(() => {
-        return {
-            status: searchPrms.get('status') || 'inbox'
-        }
-    })
-
+    const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
 
 
     useEffect(() => {
