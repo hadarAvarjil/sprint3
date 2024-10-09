@@ -1,6 +1,13 @@
 header {
     background: lightcyan;
     border-bottom: 2px solid white;
+    font-family: ShadowsIntoLight, sans-serif;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
 }
 
 nav a {
