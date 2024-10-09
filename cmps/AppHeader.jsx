@@ -4,13 +4,13 @@ export function AppHeader() {
 
     return <header className="app-header">
         <Link to="/">
-            <section>
-                <h3>Appsus</h3>
+            <section className="logo">
                 <img
                     src='./assets/img/logo.png'
                     alt="Inbox Icon"
                     className="icon-logo"
                 />
+                <h3>Appsus</h3>
             </section>
         </Link>
         <nav>
