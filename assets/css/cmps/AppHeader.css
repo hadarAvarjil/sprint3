@@ -3,19 +3,6 @@ header {
     border-bottom: 2px solid white;
 }
 
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
-    position: fixed; /* מיקום קבוע */
-    top: 0; /* ממקם בחלק העליון */
-    left: 0; /* ממקם מהצד השמאלי */
-    width: 100%; /* רוחב מלא */
-    z-index: 1000; /* ממקם מעל לתוכן אחר */
-    background-color: #fff; /* צבע רקע */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* צל קל */
-}
-
 nav a {
     margin: .5em;
 }
