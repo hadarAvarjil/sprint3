@@ -54,6 +54,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
                         checked={isRead}
                         className="search-input"
                         onChange={handleChange}
+                        
                     />
 
 
