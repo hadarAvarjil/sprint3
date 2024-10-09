@@ -110,3 +110,22 @@
 button:hover {
     background-color: #0056b3; 
 }
+
+
+.delete-todo-button {
+    background: none;
+    border: none;
+    color: red; 
+    cursor: pointer;
+    font-size: 16px; 
+    margin-left: 10px; 
+    margin-bottom: 10px;
+}
+.add-todo-button{
+    margin-left: 93px;
+    margin-top: 30px;
+}
+
+.delete-todo-button:hover {
+    opacity: 0.7; 
+}

@@ -66,6 +66,7 @@
     flex-direction: row; 
 }
 
+
 .keep-header {
     display: flex;
     align-items: center;
@@ -83,6 +84,15 @@
     width: 100%;
     z-index: 1000;
     background-color: #fff;
+     display: flex;
+     position: absolute;
+     margin-top: -82px;
+     height: 60px;
+     left: 0;
+     width: 100%;
+     z-index: 1000;
+     background-color: #fff;
+     align-items: stretch;
 }
 
 .keep-logo-header {
@@ -97,6 +107,7 @@
 }
 
 .search-input-container {
+    position: relative;
     margin-left: 20px;
     flex: 1;
 }

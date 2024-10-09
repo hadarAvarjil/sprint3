@@ -119,4 +119,5 @@ button {
     padding: 0;
     outline: none;
     transition: background-color 0.3s;
+    margin-top: 10px;
 }

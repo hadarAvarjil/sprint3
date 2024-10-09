@@ -118,7 +118,7 @@ export function NoteIndex() {
     return (
         <div className="note-index-container">
             <header className="keep-header"></header>
-            <div className="sidebar-main-container"> {/* קונטיינר חדש */}
+            <div className="sidebar-main-container"> 
                 <SideBar />
                 <div className="main-content">
                     <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
