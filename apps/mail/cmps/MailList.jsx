@@ -38,7 +38,7 @@ export function MailList({ mails, onRemoveMail, onUnReadMail, onReadMail, onStar
                                     </button>
                                     <button onClick={(e) => { e.stopPropagation(); onUnReadMail(mail.id); }}>
                                         <img
-                                            src='./assets/img/unread.png'
+                                            src={mail.isRead ? './assets/img/unread.png' : './assets/img/read.png'}
                                             alt="Unread Icon"
                                             className="icon unread-btn"
                                         />

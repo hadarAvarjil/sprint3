@@ -94,7 +94,7 @@ function unReadMail(mailId) {
 }
 
 function _unReadMail(mail) {
-    mail.isRead = false
+    mail.isRead = !mail.isRead
     return mail
 }
 

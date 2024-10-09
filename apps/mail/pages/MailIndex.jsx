@@ -48,7 +48,7 @@ export function MailIndex() {
         mailService.unReadMail(mailId)
             .then(() => {
                 setMails(mails => mails.map(mail =>
-                    mail.id === mailId ? { ...mail, isRead: false } : mail
+                    mail.id === mailId ? { ...mail, isRead: !mail.isRead } : mail
                 ))
             })
     }
@@ -90,7 +90,7 @@ export function MailIndex() {
                 <section className="mail-container-left">
 
                     <button className="compose-btn"
-                    onClick={() => onComposeNewMail()}>
+                        onClick={() => onComposeNewMail()}>
                         <img
                             src='./assets/img/compose.png'
                             alt="Inbox Icon"
