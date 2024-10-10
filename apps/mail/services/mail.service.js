@@ -22,7 +22,8 @@ export const mailService = {
     debounce,
     unReadMail,
     readMail,
-    starredMail
+    starredMail,
+    getUnreadMailCount
 }
 
 function query(filterBy = {}) {
@@ -216,4 +217,9 @@ function debounce(func, delay) {
             func(...args)
         }, delay)
     }
+}
+
+function getUnreadMailCount() {
+    return storageService.query(MAIL_KEY)
+        .then(mails => mails.filter(mail => !mail.isRead).length)
 }
