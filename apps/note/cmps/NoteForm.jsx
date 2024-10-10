@@ -29,16 +29,16 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
         setNote((prev) => {
             const updatedTodos = prev.info.todos.map((todo, i) => {
                 if (i === index) {
-                    return value !== null ? { ...todo, txt: value } : null; // עדכון טקסט או מחיקה
+                    return value !== null ? { ...todo, txt: value } : null
                 }
                 return todo;
-            }).filter(todo => todo !== null); // מסנן טודואים שלא קיימים (שכבר נמחקו)
+            }).filter(todo => todo !== null)
     
             return {
                 ...prev,
                 info: { ...prev.info, todos: updatedTodos }
-            };
-        });
+            }
+        })
     }
 
    
@@ -73,7 +73,7 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
         event.preventDefault()
         if (!note.info.title.trim() || (note.type === 'NoteTxt' && !note.info.txt.trim())) {
             alert('Please enter a title and some content.')
-            return;
+            return
         }
         onSave(note)
         setNote({ type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
@@ -85,23 +85,26 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
     }
 
     const handleDeleteTodo = (index) => {
-        const updatedTodos = note.info.todos.filter((_, i) => i !== index);
+        const updatedTodos = note.info.todos.filter((_, i) => i !== index)
         setNote((prev) => ({
             ...prev,
             info: { ...prev.info, todos: updatedTodos }
-        }));
-    };
+        }))
+    }
 
     const handleAudioSave = (audioUrl) => {
         setNote((prev) => ({
             ...prev,
             info: { ...prev.info, url: audioUrl }
-        }));
-    };
+        }))
+    }
+
     return (
-        <form onSubmit={handleSubmit} className="note-form">
+        <form 
+            onSubmit={handleSubmit} className={`note-form ${existingNote ? 'edit-mode' : ''}`}
+       
+        >
             <input
-                key={`note-textarea-${note.id}`}
                 type="text"
                 name="title"
                 value={note.info.title}
@@ -109,8 +112,12 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
                 placeholder="Title"
                 className="note-input title"
             />
-            <select name="type" value={note.type} onChange={(e) => setNote({ ...note, type: e.target.value })}>
-                <option value="NoteTxt">Text note</option>
+            <select 
+                name="type" 
+                value={note.type} 
+                onChange={(e) => setNote({ ...note, type: e.target.value })}
+            >
+                <option>Choose note</option>
                 <option value="NoteImg">Image Note</option>
                 <option value="NoteTodos">Todo List Note</option>
                 <option value="NoteAudio">Audio Note</option>
@@ -118,14 +125,13 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
             
             {note.type === 'NoteTxt' && (
                 <textarea
-                    key={`note-textarea-${note.id}`}
                     name="txt"
                     value={note.info.txt}
                     onChange={handleChange}
                     placeholder="New Note..."
                     className="note-input content"
-                    rows="1" 
-                    ref={textAreaRef} 
+                    rows="1"
+                    ref={textAreaRef}
                 />
             )}
             
@@ -159,29 +165,30 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
             )}
             
             {note.type === 'NoteTodos' && (
-    <div>
-        {note.info.todos && note.info.todos.length > 0 ? (
-            note.info.todos.map((todo, index) => (
-                <div key={index} className="todo-item">
-                    <input
-                        type="text"
-                        value={todo.txt}
-                        onChange={(e) => handleTodoChange(index, e.target.value)}
-                        placeholder={`Todo ${index + 1}`}
-                        className="note-input"
-                    />
-                    <button onClick={() => handleDeleteTodo(index)} className="delete-todo-button">
-                        &#10005; 
-                    </button>
+                <div>
+                    {note.info.todos && note.info.todos.length > 0 ? (
+                        note.info.todos.map((todo, index) => (
+                            <div key={index} className="todo-item">
+                                <input
+                                    type="text"
+                                    value={todo.txt}
+                                    onChange={(e) => handleTodoChange(index, e.target.value)}
+                                    placeholder={`Todo ${index + 1}`}
+                                    className="note-input"
+                                />
+                                <button onClick={() => handleDeleteTodo(index)} className="delete-todo-button">
+                                    &#10005; 
+                                </button>
+                            </div>
+                        ))
+                    ) : null}
+                    <button type="button" onClick={handleAddTodo} className="add-todo-button">Add Todo</button>
                 </div>
-            ))
-        ) : null}
-        <button type="button" onClick={handleAddTodo} className="add-todo-button">Add Todo</button>
-    </div>
-)}
+            )}
             
             <button type="submit">{existingNote ? 'Update Note' : 'Add Note'}</button>
             <button type="button" onClick={handleCancelClick} className="cancel-button">Cancel Note</button>
         </form>
     )
+    
 }
