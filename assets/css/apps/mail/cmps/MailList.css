@@ -1,21 +1,24 @@
-section.mail-list {
-    flex-grow: 1;
+/* section.mail-list {
+    flex-grow: 2;
     padding: 20px;
     border-radius: 20px;
-}
+    display: flex;
+} */
 
 .mail-container {
     width: 100%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: start;
-    flex-direction: row;
+    table-layout: auto; 
 }
 
 .mail-container tr {
     transition: all 0.3s ease;
     border-bottom: 1px solid #ddd;
+}
+.mail-container td {
+    padding: 10px;
+    width: auto; 
 }
 
 .mail-container tr:hover {
@@ -54,6 +57,7 @@ section.mail-list {
 
 
 .star-btn {
+    padding: 0;
     border: none;
     cursor: pointer;
     display: flex;
@@ -76,4 +80,9 @@ section.mail-list {
 
 td .star-btn:hover {
     padding: 0px;
+}
+
+table .mail-container{
+    display: flex;
+
 }

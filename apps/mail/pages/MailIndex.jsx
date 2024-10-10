@@ -17,12 +17,18 @@ export function MailIndex() {
     const [searchPrms, setSearchPrms] = useSearchParams()
     const [composeNewMail, setComposeNewMail] = useState(null)
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
+    const [unreadMailsCount, setUnreadMailsCount] = useState(0)
 
 
     useEffect(() => {
         loadMails()
         setSearchPrms(utilService.getTruthyValues(filterBy))
     }, [filterBy])
+
+
+    useEffect(() => {
+        mailService.getUnreadMailCount().then(count => setUnreadMailsCount(count))
+    }, [])
 
     function loadMails() {
         mailService.query(filterBy)
@@ -50,6 +56,7 @@ export function MailIndex() {
                 setMails(mails => mails.map(mail =>
                     mail.id === mailId ? { ...mail, isRead: !mail.isRead } : mail
                 ))
+                mailService.getUnreadMailCount().then(count => setUnreadMailsCount(count))
             })
     }
 
@@ -59,6 +66,7 @@ export function MailIndex() {
                 setMails(mails => mails.map(mail =>
                     mail.id === mailId ? { ...mail, isRead: true } : mail
                 ))
+                mailService.getUnreadMailCount().then(count => setUnreadMailsCount(count))
             })
     }
 
@@ -98,7 +106,8 @@ export function MailIndex() {
                         />
                         Compose</button>
 
-                    <MailFolderList onSetFilterBy={onSetFilterBy} />
+                    <MailFolderList onSetFilterBy={onSetFilterBy}
+                        unreadMailsCount={unreadMailsCount} />
                 </section>
                 <MailList
                     mails={mails}
@@ -106,6 +115,7 @@ export function MailIndex() {
                     onUnReadMail={onUnReadMail}
                     onReadMail={onReadMail}
                     onStarredMail={onStarredMail}
+                    unreadMailsCount={unreadMailsCount}
 
                 />
             </section>
