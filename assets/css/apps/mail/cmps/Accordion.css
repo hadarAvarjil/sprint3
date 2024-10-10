@@ -1,0 +1,26 @@
+.accordion {
+    width: 60px; 
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+.accordion.open {
+    width: 100%; 
+}
+
+.title-container {
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    width: 24px;
+    margin-right: 10px;
+}

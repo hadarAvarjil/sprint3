@@ -1,6 +1,7 @@
 const { Outlet, Link } = ReactRouterDOM
 const { useState } = React
 
+import { Accordion } from "../../mail/cmps/Accordion.jsx"
 
 
 export function MailFolderList({ onSetFilterBy }) {
@@ -14,6 +15,12 @@ export function MailFolderList({ onSetFilterBy }) {
 
     return (
         <aside className={"sidebar"}>
+            <Accordion title={<img
+                src='./assets/img/menu.png' 
+                alt="Inbox Icon"
+                className="icon"
+            />}>
+                
                 <ul>
                     <li className={selectedLink === 'inbox' ? 'selected-link' : ''}>
                         <Link to="/mail/inbox" onClick={() => handleLinkClick('inbox')}>
@@ -68,7 +75,7 @@ export function MailFolderList({ onSetFilterBy }) {
                         </Link>
                     </li>
                 </ul>
-            {/* <Outlet /> */}
+            </Accordion>
         </aside>
     )
 }
