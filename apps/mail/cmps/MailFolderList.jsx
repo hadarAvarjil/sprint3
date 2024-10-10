@@ -22,9 +22,8 @@ export function MailFolderList({ onSetFilterBy, unreadMailsCount }) {
                             alt="Inbox Icon"
                             className="icon"
                         />
-                        Inbox <span>{unreadMailsCount > 0 ? `${unreadMailsCount}` : ''}</span>
+                        Inbox <span className={selectedLink === 'inbox'?'bold-txt':'' }>{unreadMailsCount > 0 ? `${unreadMailsCount}` : ''}</span>
                     </Link>
-                    <span></span>
                 </li>
 
                 <li className={selectedLink === 'starred' ? 'selected-link' : ''}>
