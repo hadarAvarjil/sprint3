@@ -1,6 +1,17 @@
 .mail-index {
     background-color: rgb(246, 248, 252);
 }
+
+.page{
+    display: flex;
+}
+
+.left{
+    display: flex;
+    min-width: 330px;
+}
+
+
 .mail-container {
     display: flex;
     flex-direction: row;
@@ -13,31 +24,5 @@
     flex-direction: column;
     justify-content: flex-start; 
     padding-top: 10px;  
-    margin-left: 1em;
 }
 
-.compose-btn {
-    background-color: #cce5ff ; 
-    border: none;
-    border-radius: 22px;
-    color: #040404;
-    padding: 15px;
-    cursor: pointer;
-    font-size: 16px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    margin-bottom: 1.1em;
-    width: 70%;
-}
-
-.compose-btn:hover {
-    background-color: #b3d7ff;
-}
-
-
-.compose-btn .icon {
-    width: 22px;
-    height: 20px;
-    margin-right: 15px;
-    vertical-align: middle;
-}

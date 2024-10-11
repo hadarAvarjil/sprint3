@@ -55,16 +55,18 @@ section.mail-details {
     text-align: right;
 }
 
-.mail-actions .btn-back {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+button.btn-back {
+    background-color: transparent; 
+    border: none; 
+    padding: 8px; 
+    border-radius: 50%; 
     cursor: pointer;
-    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease; 
 }
 
-.mail-actions .btn-back:hover {
-    background-color: #45a049;
+.mail-actions .btn-back button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }

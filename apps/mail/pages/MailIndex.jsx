@@ -1,6 +1,6 @@
 
 const { useEffect, useState } = React
-const { Link, useSearchParams } = ReactRouterDOM
+const { useParams, Link, useSearchParams, Outlet } = ReactRouterDOM
 
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { utilService } from "../../../services/util.service.js"
@@ -18,6 +18,7 @@ export function MailIndex() {
     const [composeNewMail, setComposeNewMail] = useState(null)
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
     const [unreadMailsCount, setUnreadMailsCount] = useState(0)
+    const { mailId } = useParams()
 
 
     useEffect(() => {
@@ -93,37 +94,37 @@ export function MailIndex() {
     return (
         <section className="mail-index"
             style={{ backgroundColor: 'rgb(246, 248, 252)' }}>
-            <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <section className="mail-container">
-                <section className="mail-container-left">
+                
+            <section className="page">
+                <section className="left">
 
-                    <button className="compose-btn"
-                        onClick={() => onComposeNewMail()}>
-                        <img
-                            src='./assets/img/compose.png'
-                            alt="Inbox Icon"
-                            className="icon"
-                        />
-                        Compose</button>
+                    <section className="mail-container-left">
+                        <MailFolderList
+                            onComposeNewMail={onComposeNewMail}
+                            onSetFilterBy={onSetFilterBy}
+                            unreadMailsCount={unreadMailsCount} />
+                    </section>
 
-                    <MailFolderList onSetFilterBy={onSetFilterBy}
-                        unreadMailsCount={unreadMailsCount} />
                 </section>
-                <MailList
-                    mails={mails}
-                    onRemoveMail={onRemoveMail}
-                    onUnReadMail={onUnReadMail}
-                    onReadMail={onReadMail}
-                    onStarredMail={onStarredMail}
-                    unreadMailsCount={unreadMailsCount}
 
-                />
+                <section className="right">
+
+                    <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+                    {mailId ? (
+                        <Outlet />
+                    ) : (
+                        <MailList
+                            mails={mails}
+                            onRemoveMail={onRemoveMail}
+                            onUnReadMail={onUnReadMail}
+                            onReadMail={onReadMail}
+                            onStarredMail={onStarredMail}
+                            unreadMailsCount={unreadMailsCount}
+                        />
+                    )}
+                </section>
+                {composeNewMail && <ComposeModal onClose={() => setComposeNewMail(null)} />}
             </section>
-            {composeNewMail &&
-                <ComposeModal
-                    onClose={() => setComposeNewMail(null)}
-                />
-            }
         </section>
     )
 

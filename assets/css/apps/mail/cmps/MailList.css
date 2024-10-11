@@ -1,9 +1,13 @@
-/* section.mail-list {
-    flex-grow: 2;
+.mail-list {
+    flex-grow: 1;
     padding: 20px;
     border-radius: 20px;
     display: flex;
-} */
+    flex-direction: column;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: calc(100vh - 150px); 
+    background-color: white;
+}
 
 .mail-container {
     width: 100%;
@@ -82,7 +86,3 @@ td .star-btn:hover {
     padding: 0px;
 }
 
-table .mail-container{
-    display: flex;
-
-}

@@ -4,10 +4,6 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 import { mailService } from "../services/mail.service.js"
 import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/event-bus.service.js"
 import { utilService } from "../../../services/util.service.js"
-import { LongTxt } from "../../../cmps/LongTxt.jsx";
-
-
-
 
 export function MailDetails() {
 
@@ -36,6 +32,15 @@ export function MailDetails() {
     if (!mail) return <div>Loading...</div>
     return (
         <section className="mail-details">
+
+            <section className="mail-actions">
+                <button className="btn-back" onClick={onBack}> <img
+                    src= './assets/img/arrow_back.png' 
+                    alt="arrow-back Icon"
+                    className="icon arrow-back-btn"
+                /></button>
+            </section>
+
             <header className="mail-header">
                 <h3 className="mail-subject">{mail.subject}</h3>
                 <section className="mail-data">
@@ -43,13 +48,9 @@ export function MailDetails() {
                     <span className="mail-date">{utilService.elapsedTime(mail.sentAt)}</span>
                 </section>
             </header>
-            
+
             <section className="mail-body">
                 <p>{mail.body}</p>
-            </section>
-
-            <section className="mail-actions">
-                <button className="btn-back" onClick={onBack}>Back</button>
             </section>
         </section>
     )
