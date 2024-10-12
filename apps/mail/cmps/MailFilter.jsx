@@ -3,7 +3,7 @@ const { useState, useEffect } = React
 export function MailFilter({ filterBy, onSetFilterBy }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-    
+
 
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
@@ -47,19 +47,26 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
                         placeholder="Search mail"
                         className="search-input"
                     />
-                    <input
-                        type="checkbox"
-                        id="isRead"
-                        name="isRead"
-                        checked={isRead}
-                        className="search-input"
-                        onChange={handleChange}
-                        
-                    />
+                    <div className="unread-container">
+                        <input
+                            type="checkbox"
+                            id="isRead"
+                            name="isRead"
+                            checked={isRead}
+                            className="checkbox-input"
+                            onChange={handleChange}
+                            title =  "Unread"
+                        />
+                        <img
+                            src={'./assets/img/unread.png'}
+                            alt="Unread Icon"
+                            className="unread-icon"
+                        />
+                    </div>
 
 
                     <button type="submit" className="filter-icon">
-                        <i className="fas fa-sliders-h"></i>
+
                     </button>
                 </div>
             </form>
