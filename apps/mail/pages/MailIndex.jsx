@@ -6,6 +6,7 @@ import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/eve
 import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
+import { MailSort} from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailFolderList } from "../cmps/MailFolderList.jsx"
 import { ComposeModal } from "../cmps/ComposeModal.jsx";
@@ -82,6 +83,10 @@ export function MailIndex() {
 
     function onSetFilterBy(filterBy) {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
+    }
+
+    function onSetSortBy(sortBy){
+        setSortBy(preSort => ({ ...preSort, ...sortBy }))
     }
 
     function onComposeNewMail() {
