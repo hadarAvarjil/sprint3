@@ -1,6 +1,12 @@
+section.mail-filter{
+  /* display: flex; */
+  /* align-self: start; */
+}
+
 .mail-filter {
   display: flex;
-  justify-content: center;
+  padding: 0;
+  margin-right: 0;
 }
 
 .search-container {
