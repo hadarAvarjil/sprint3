@@ -23,7 +23,8 @@ export const mailService = {
     unReadMail,
     readMail,
     starredMail,
-    getUnreadMailCount
+    getUnreadMailCount,
+    getDefaultSort
 }
 
 function query(filterBy = {}) {
@@ -31,7 +32,7 @@ function query(filterBy = {}) {
         .then(mails => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail => regExp.test(mail.subject))
+                mails = mails.filter(mail => regExp.test(mail.subject)||regExp.test(mail.body))
             }
             if (filterBy.status === 'inbox') {
                 if (filterBy.isRead) mails = mails.filter(mail => mail.to === loggedinUser.email && !mail.removedAt && !mail.isRead)
@@ -48,9 +49,8 @@ function query(filterBy = {}) {
             if (filterBy.status === 'trash') {
                 mails = mails.filter(mail => mail.removedAt)
             }
-            // if (filterBy.isRead) {
-            //     mails = mails.filter(mail => mail.isRead)
-            // }
+
+
 
 
             return mails
@@ -153,6 +153,12 @@ function getDefaultFilter() {
     }
 }
 
+function getDefaultSort() {
+    return {
+        date: -1
+    }
+}
+
 function _createMails() {
     const ctgs = ['Critical', 'Family', 'Work', 'Friends', 'Spam', 'Memories', 'Romantic']
     const mails = utilService.loadFromStorage(MAIL_KEY) || []
@@ -194,7 +200,7 @@ function getFilterFromSearchParams(searchParams) {
         txt,
         isRead,
         status
-    };
+    }
 }
 
 function _setNextPrevMailId(mail) {

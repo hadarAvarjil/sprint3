@@ -6,11 +6,13 @@ const { useState } = React
 export function MailFolderList({ onSetFilterBy, unreadMailsCount, onComposeNewMail }) {
 
     const [selectedLink, setSelectedLink] = useState('inbox')
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
     const handleLinkClick = (linkName) => {
         setSelectedLink(linkName)
         onSetFilterBy({ status: linkName })
     }
+    
 
     return (
         <section>

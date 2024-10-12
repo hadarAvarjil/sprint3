@@ -17,6 +17,9 @@ export function MailPreview({ mail }) {
             <p className="p-subject">
                 {mail.subject && <LongTxt txt={mail.subject} />}
             </p>
+            <p className="p-body">
+                {mail.subject && <LongTxt txt={mail.body} length={60} />}
+            </p>
             <p className="p-date">{utilService.elapsedTime(mail.sentAt)}</p>
         </article>
     )

@@ -8,7 +8,7 @@
 .mail-preview p {
     margin: 0;
     padding:0;
-    margin-right: 10em;
+    margin-right: 4em;
     font-size: .875rem;
     letter-spacing: normal;
     text-overflow: ellipsis;
@@ -21,11 +21,16 @@
 
 .mail-preview .p-date {
     flex-shrink: 0; 
-    margin-right: 2em;
+    margin-right: .5em;
 }
 
 .mail-preview .p-from {
     flex-shrink: 0; 
     margin-left: 1.5em;
+}
+
+.mail-preview .p-body{
+    margin: 0;
+    margin-right: 4em;
 }
 

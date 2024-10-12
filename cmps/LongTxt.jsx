@@ -1,6 +1,6 @@
 const { useState } = React
 
-export function LongTxt({ txt, length = 20 }) {
+export function LongTxt({ txt, length = 25 }) {
     const [isShowLong, setIsShowLong] = useState(false)
 
     function onToggleIsShowLong() {

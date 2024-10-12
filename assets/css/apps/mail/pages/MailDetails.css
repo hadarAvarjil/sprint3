@@ -2,7 +2,6 @@ section.mail-details {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
     font-family: Arial, sans-serif;
@@ -55,18 +54,16 @@ section.mail-details {
     text-align: right;
 }
 
-button.btn-back {
-    background-color: transparent; 
-    border: none; 
-    padding: 8px; 
-    border-radius: 50%; 
+
+.btn-back{
+    height: 30px;
+    width: 35px;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease; 
+    padding: 8px; 
+    margin-bottom: 1em;
 }
 
-.mail-actions .btn-back button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+.btn-back:hover {
+    background-color: rgba(29, 29, 29, 0.1);
+    border-radius: 50%; 
 }

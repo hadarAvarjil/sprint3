@@ -2,12 +2,12 @@ const { useState, useEffect } = React
 
 export function MailSort({ sortBy, onSetSortBy }) {
 
-    const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+    const [sortByToEdit, setSortByToEdit] = useState({ ...sortBy })
 
 
     useEffect(() => {
-        onSetFilterBy(filterByToEdit)
-    }, [filterByToEdit])
+        onSetSortBy(sortByToEdit)
+    }, [sortByToEdit])
 
     function handleChange({ target }) {
         const field = target.name
@@ -23,55 +23,58 @@ export function MailSort({ sortBy, onSetSortBy }) {
                 value = target.checked
                 break
         }
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+        setSortByToEdit(prevSort => ({ ...prevSort, [field]: value }))
     }
 
 
     function onSubmit(ev) {
         ev.preventDefault()
-        onSetFilterBy(filterByToEdit)
+        onSetSortBy(sortByToEdit)
     }
 
-    const { txt, isRead } = filterByToEdit
+    const { sentAt, subject } = sortByToEdit
     return (
-        // <section className="mail-filter">
-        //     <form onSubmit={onSubmit}>
-        //         <div className="search-container">
-        //             <i className="fas fa-search search-icon"></i>
-        //             <input
-        //                 value={txt}
-        //                 onChange={handleChange}
-        //                 type="text"
-        //                 name="txt"
-        //                 id="txt"
-        //                 placeholder="Search mail"
-        //                 className="search-input"
-        //             />
-        //             <div className="unread-container">
-        //                 <input
-        //                     type="checkbox"
-        //                     id="isRead"
-        //                     name="isRead"
-        //                     checked={isRead}
-        //                     className="checkbox-input"
-        //                     onChange={handleChange}
-        //                     title =  "Unread"
-        //                 />
-        //                 <img
-        //                     src={'./assets/img/unread.png'}
-        //                     alt="Unread Icon"
-        //                     className="unread-icon"
-        //                 />
-        //             </div>
+        <section className="mail-sort">
+            <form onSubmit={onSubmit}>
 
+                <img
+                    src={'./assets/img/sort.png'}
+                    alt="Sort Icon"
+                    className="icon"
+                />
 
-        //             <button type="submit" className="filter-icon">
+                <div className="sentAt-sort-container">
+                    <label htmlFor="sentAt" className="sentAt-sort">
+                        Date
+                    </label>
+                    <input
+                        type="checkbox"
+                        id="date"
+                        name="date"
+                        checked={sentAt}
+                        className="checkbox-input"
+                        onChange={handleChange}
+                        title="date"
+                    />
+                </div>
 
-        //             </button>
-        //         </div>
-        //     </form>
-        // </section>
-        console.log('hey')
-        
+                <div className="subject-sort-container">
+                    <label htmlFor="subject" className="subject-sort">
+                        Subject
+                    </label>
+                    <input
+                        type="checkbox"
+                        id="subject"
+                        name="subject"
+                        checked={subject}
+                        className="checkbox-input"
+                        onChange={handleChange}
+                        title="subject"
+                    />
+                </div>
+
+            </form>
+        </section>
+
     )
 }

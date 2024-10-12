@@ -33,12 +33,14 @@ export function MailDetails() {
     return (
         <section className="mail-details">
 
-            <section className="mail-actions">
-                <button className="btn-back" onClick={onBack}> <img
-                    src= './assets/img/arrow_back.png' 
-                    alt="arrow-back Icon"
-                    className="icon arrow-back-btn"
-                /></button>
+            <section className="mail-actions-details">
+                <button className="btn-back" onClick={onBack}>
+                    <img
+                        src='./assets/img/arrow_back.png'
+                        alt="arrow-back Icon"
+                        className="arrow-back-btn"
+                    />
+                </button>
             </section>
 
             <header className="mail-header">
