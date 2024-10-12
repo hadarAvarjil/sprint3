@@ -1,43 +1,56 @@
 .mail-filter {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin: 1em;
-  }
-  
-  .search-icon {
-    position: absolute;
-    left: 16px;
-    font-size: 16px;
-  }
-  
-  .search-input {
-    padding: 10px 80px;
-    border-radius: 25px;
-    border: .5px solid  rgb(234 241 251);
-    outline: none;
-    font-size: 1.5em;
-    background-color: rgb(234 241 251);
-  }
-  
-  .filter-icon {
-    background: none;
-    border: none;
-    position: absolute;
-    right: 20px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .search-input::placeholder {
-    color: gray;
-  }
-  
-  .search-container input:focus {
-    border-color: #cce5ff;;
-  }
+  display: flex;
+  justify-content: center;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 1em;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  font-size: 16px;
+}
+
+.search-input {
+  padding: 10px 80px;
+  border-radius: 25px;
+  border: .5px solid rgb(234 241 251);
+  outline: none;
+  font-size: 1.5em;
+  background-color: rgb(234 241 251);
+}
+
+.filter-icon {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-input::placeholder {
+  color: gray;
+}
+
+.search-container input:focus {
+  border-color: #cce5ff;
+  ;
+}
+
+.unread-container {
+  display: flex;
+}
+
+
+.unread-icon {
+  width: 20px;
+  height: 20px;
+  margin: .2em;
+  padding: .1em;
+}
