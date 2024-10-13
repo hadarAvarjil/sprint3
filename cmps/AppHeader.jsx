@@ -6,7 +6,7 @@ export function AppHeader() {
         <Link to="/">
             <section className="logo">
                 <img
-                    src='./assets/img/logo.png'
+                    src='./assets/img/logo1.png'
                     alt="Inbox Icon"
                     className="icon-logo"
                 />
