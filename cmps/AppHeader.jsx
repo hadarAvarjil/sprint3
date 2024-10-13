@@ -3,12 +3,13 @@ const { Link, NavLink } = ReactRouterDOM
 export function AppHeader() {
 
     return <header className="app-header">
+        
         <Link to="/">
-            <section className="logo">
+            <section className="logo-container">
                 <img
                     src='./assets/img/logo1.png'
                     alt="Inbox Icon"
-                    className="icon-logo"
+                    className="icon-logo-app"
                 />
                 <h3>Appsus</h3>
             </section>
