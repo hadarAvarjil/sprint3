@@ -50,9 +50,6 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => mail.removedAt)
             }
 
-
-
-
             return mails
         })
 }

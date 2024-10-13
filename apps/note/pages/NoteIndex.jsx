@@ -11,7 +11,7 @@ export function NoteIndex() {
     const [notes, setNotes] = useState([])
     const [noteToEdit, setNoteToEdit] = useState(null)
     const [searchTerm, setSearchTerm] = useState('')
-    const [filteredNotes, setFilteredNotes] = useState(notes)
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [showAddNoteForm, setShowAddNoteForm] = useState(false)
     const [noteType, setNoteType] = useState('NoteTxt')
 
@@ -28,9 +28,17 @@ export function NoteIndex() {
         )
     }, [searchTerm, notes])
 
-    const loadNotes = () => {
-        const fetchedNotes = noteService.query()
-        setNotes(fetchedNotes)
+    // const loadNotes = () => {
+    //     const fetchedNotes = noteService.query()
+    //     setNotes(fetchedNotes)
+    // }
+
+    function loadNotes() {
+        noteService.query(filterBy)
+            .then(setNotes)
+            .catch(err => {
+                console.log('Problems getting notes:', err)
+            })
     }
 
     const handleAddNote = (newNote) => {

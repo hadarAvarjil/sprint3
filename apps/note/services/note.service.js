@@ -59,8 +59,47 @@ export const noteService = {
     remove,
     filterNotesBySearch,
     filterNotesByType,
-    togglePin
+    togglePin,
+    getDefaultFilter
 }
+
+
+
+function query(filterBy = {}) {
+    return storageService.query(NOTE_KEY)
+        .then(notes => {
+            if (filterBy.txt) {
+                const regExp = new RegExp(filterBy.txt, 'i')
+                notes = notes.filter(note => regExp.test(note.info.txt)||regExp.test(note.info.title))
+            }
+            if (filterBy.status === 'pinned') {
+                notes =notes.filter(note => note.isPinned)
+
+               
+            }
+            if (filterBy.status === 'archived') {
+                notes =notes.filter(note => note.archived)
+               
+            }
+
+            if (filterBy.status === 'trash') {
+                mails = mails.filter(mail => mail.removedAt)
+            }
+
+            return notes
+        })
+
+}
+
+function getDefaultFilter(){
+    return {
+        status: '',
+        txt: '',
+        isPinned: '',
+        lables: '',
+    }
+}
+
 
 function filterNotesBySearch(searchTerm) {
     return notes.filter(note => {
@@ -74,9 +113,6 @@ function filterNotesByType(type) {
     return notes.filter(note => note.type === type)
 }
 
-function query() {
-    return notes
-}
 
 function get(noteId) {
     return storageService.get(NOTE_KEY, noteId)
