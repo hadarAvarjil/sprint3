@@ -1,1 +1,58 @@
- /* home */
+.home-view {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .home-view .hero {
+    max-width: 600px;
+  }
+  
+  .home-view .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #b14e9d,  #2ce676);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+  }
+  
+  .home-view .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+  
+  .home-view .hero .btn {
+    background: linear-gradient(45deg, #af95b4, #2ce676);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+  }
+  
+  .home-view .hero .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .logo {
+    width: 50%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  /* For mobile */
+  @media only screen and (max-width: 600px) {
+    .home-view,
+    .home-view .hero p,
+    .logo {
+      max-width: 95%;
+      padding: 0 10px;
+    }
+  }
+  
