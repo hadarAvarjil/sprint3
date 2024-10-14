@@ -43,7 +43,7 @@ function get(noteId) {
 
 function post(note) {
     const newNote = { ...note, id: utilService.makeId(), createdAt: Date.now() }
-    notes.push(newNote)
+    notes = [...notes, newNote];
     utilService.saveToStorage(NOTE_KEY, notes)
     return newNote
 }
