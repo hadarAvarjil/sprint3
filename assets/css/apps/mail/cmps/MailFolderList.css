@@ -60,10 +60,10 @@
     padding-right: 10px;
 }
 
-.sidebar a{
+.sidebar a {
     color: #444;
     width: 100%;
-    text-decoration: none; 
+    text-decoration: none;
     display: flex;
     align-items: center;
 }
@@ -75,7 +75,7 @@
 
 
 .sidebar.collapsed {
-    width: 80px; 
+    width: 80px;
     transition: width 0.3s ease;
 }
 
@@ -90,7 +90,7 @@
 .first-line {
     display: flex;
     align-items: center;
-    gap: 15px; 
+    gap: 15px;
 }
 
 .icon-menu {
@@ -107,17 +107,17 @@
 
 .app-title {
     font-size: 2rem;
-    margin-left: 10px; 
+    margin-left: 10px;
 }
 
-.logo-title{
+.logo-title {
     font-family: RobotoLight;
     font-size: 2rem;
-    color: #3f4042; 
+    color: #3f4042;
 }
 
 .compose-btn {
-    background-color: #cce5ff ; 
+    background-color: #cce5ff;
     border: none;
     border-radius: 22px;
     color: #040404;
@@ -135,7 +135,7 @@
 }
 
 
-.icon-compose{
+.icon-compose {
     padding-left: 0;
     margin: 0;
     width: 22px;
@@ -145,3 +145,70 @@
 }
 
 
+@media (max-width: 650px) {
+
+    .sidebar ul li {
+        max-width: 7em;
+        padding: 0.1em;
+    }
+
+    .sidebar ul li img.icon {
+        width: 15px;
+        height: 20px;
+        margin-right: 10px;
+        margin-left: 5px;
+    }
+
+    .sidebar ul li span {
+        margin-left: .7em;
+    }
+
+    .compose-btn {
+        padding: .8em;
+        padding-inline: .7em;
+        font-size: .9rem;
+        margin-top: 1.7em;
+        margin-left: 1px;
+    }
+
+    .icon-compose {
+        padding: 2px;
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+    }
+    img.icon-compose{
+        margin-left: 0px;
+    }
+
+    .header-section {
+        padding: 5px;
+        margin-left: 1.2em;
+    
+    }
+    
+    .first-line {
+        align-items: start;
+        gap: 2px;
+    }
+    
+    .icon-menu {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .icon-logo {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .app-title {
+        font-size: 1.1rem;
+        margin-left: 2px;
+    }
+    
+    .logo-title {
+        font-size: 1.1rem;
+   
+    }
+}

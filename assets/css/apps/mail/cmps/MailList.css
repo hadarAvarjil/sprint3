@@ -31,7 +31,6 @@ section.mail-list{
 
 .mail-container tr:hover {
     background-color: #fff;
-    /* box-shadow: 0 4px 8px #1e1e1e1a; */
     position: relative;
     border: 1px solid #a29f9f;
 }
@@ -64,7 +63,6 @@ section.mail-list{
     height: 22px;
     margin: auto;
     vertical-align: middle;
-
 }
 
 .mail-container tr:hover {
@@ -101,3 +99,39 @@ section.mail-list{
     padding: 0px;
 }
 
+@media (max-width: 650px) {
+
+    section.mail-list{
+        flex-grow: 1; 
+    }
+    
+    
+    .mail-container td {
+        padding-right: .5px;
+    }
+    
+    
+    .mail-actions button {
+        padding: 1px;
+        border-radius: 50px;
+        margin-bottom: .4em;
+        margin-left: .4em;
+    }
+    
+
+    .mail-actions .icon {
+        width: 15px;
+        height: 15px;
+        margin: 1px;
+        vertical-align: middle;
+    
+    }
+    
+    .star-btn {
+        padding: 0;
+        margin-left: 1em;
+        margin-bottom: .8em;
+    }
+    
+    
+}

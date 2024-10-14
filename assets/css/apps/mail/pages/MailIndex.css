@@ -26,3 +26,11 @@
     padding-top: 10px;  
 }
 
+
+@media (max-width: 650px) {
+   
+    .left{
+        min-width: 120px;
+    }
+    
+}

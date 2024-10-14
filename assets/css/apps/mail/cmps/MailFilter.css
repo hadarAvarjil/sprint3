@@ -1,8 +1,3 @@
-section.mail-filter{
-  /* display: flex; */
-  /* align-self: start; */
-}
-
 .mail-filter {
   display: flex;
   padding: 0;
@@ -65,4 +60,45 @@ section.mail-filter{
 
 .filter-sort{
   display: flex;
+}
+
+@media (max-width: 650px) {
+   
+  .right{
+      min-width: 150px;
+  }
+ 
+  
+  .search-container {
+    margin: .5em;
+  }
+  
+  .search-icon {
+    left: 16px;
+    font-size: .8em;
+  }
+  
+  .search-input {
+    min-width: 6em;
+    padding: 7px 2em;
+    font-size: 1.1em;
+  }
+  
+  .filter-icon {
+    right: 20px;
+    font-size: 16px;
+  }
+  
+
+  img.icon {
+    width: 15px;
+    height: 15px;
+    margin: .2em;
+    padding: .1em;
+  }
+
+  label{
+    font-size: .6rem;
+  }
+
 }
