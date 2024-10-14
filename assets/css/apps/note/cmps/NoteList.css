@@ -34,7 +34,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
+    flex-wrap: wrap;
 }
 
 .note-item:hover {
