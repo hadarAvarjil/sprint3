@@ -12,27 +12,31 @@
 /* Pages */
 @import './pages/Home.css';
 @import './pages/About.css';
+@import './cmps/AppHeader.css';
 
 /* @import './apps/note/pages/NoteIndex.css'; */
 
 @import './apps/mail/pages/MailIndex.css';
 @import './apps/mail/pages/MailDetails.css';
 
-
-/* Cmps */
 /* Cmps note */
 @import './apps/note/pages/NoteIndex.css';
 @import './apps/note/cmps/NoteList.css';
 @import './apps/note/cmps/NoteForm.css';
 @import './apps/note/cmps/SideBar.css';
 
-/* Cmps */
 
-@import './cmps/UserMsg.css';
-@import './cmps/AppHeader.css';
-
+/* Cmps mail*/
 @import './apps/mail/cmps/MailList.css';
 @import './apps/mail/cmps/MailFolderList.css';
 @import './apps/mail/cmps/MailFilter.css';
 @import './apps/mail/cmps/MailPreview.css';
 @import './apps/mail/cmps/ComposeModal.css';
+
+/* Cmps books*/
+@import "./apps/missBooks/cmps/BookDetails.css";
+@import "./apps/missBooks/cmps/BookEdit.css";
+@import "./apps/missBooks/cmps/BookFilter.css";
+@import "./apps/missBooks/cmps/BookList.css";
+@import "./apps/missBooks/cmps/BookPreview.css";
+@import "./apps/missBooks/cmps/UserMsg.css";
