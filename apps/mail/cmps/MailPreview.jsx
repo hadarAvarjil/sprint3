@@ -8,7 +8,7 @@ export function MailPreview({ mail }) {
 
 
     function getMailReadClass() {
-        return mail.isRead ? '': 'bold-txt'
+        return mail.isRead ? '' : 'bold-txt'
     }
 
     return (
@@ -20,7 +20,8 @@ export function MailPreview({ mail }) {
             <p className="p-body">
                 {mail.subject && <LongTxt txt={mail.body} length={60} />}
             </p>
-            <p className="p-date">{utilService.elapsedTime(mail.sentAt)}</p>
+            <p className="p-date">{mail.sentAt ? utilService.elapsedTime(mail.sentAt) : utilService.elapsedTime(mail.createdAt)}
+            </p>
         </article>
     )
 }

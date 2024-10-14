@@ -81,11 +81,8 @@
 
 .sidebar-keep-header {
     padding: 20px;
-    /* Optional: Header padding */
     background-color: #f5f5f5;
-    /* Light gray background */
     border-bottom: 1px solid #e0e0e0;
-    /* Light border */
 }
 
 .sidebar-keep-header h2 {

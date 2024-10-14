@@ -24,7 +24,8 @@ export const mailService = {
     readMail,
     starredMail,
     getUnreadMailCount,
-    getDefaultSort
+    getDefaultSort,
+    saveDraftMail
 }
 
 function query(filterBy = {}) {
@@ -32,7 +33,7 @@ function query(filterBy = {}) {
         .then(mails => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail => regExp.test(mail.subject)||regExp.test(mail.body))
+                mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body))
             }
             if (filterBy.status === 'inbox') {
                 if (filterBy.isRead) mails = mails.filter(mail => mail.to === loggedinUser.email && !mail.removedAt && !mail.isRead)
@@ -40,7 +41,7 @@ function query(filterBy = {}) {
             }
 
             if (filterBy.status === 'sent') {
-                mails = mails.filter(mail => mail.from === loggedinUser.email && !mail.removedAt)
+                mails = mails.filter(mail => mail.from === loggedinUser.email && !mail.removedAt && mail.sentAt)
             }
             if (filterBy.status === 'starred') {
                 if (filterBy.isRead) mails = mails.filter(mail => mail.isStarred && !mail.removedAt && !mail.isRead)
@@ -50,8 +51,10 @@ function query(filterBy = {}) {
                 mails = mails.filter(mail => mail.removedAt)
             }
 
+            if (filterBy.status === 'draft') {
+                mails = mails.filter(mail => mail.from === loggedinUser.email && !mail.removedAt && !mail.sentAt )
 
-
+            }
 
             return mails
         })
@@ -131,15 +134,35 @@ function _starredMailToggle(mail) {
     return mail
 }
 
+
 function save(mail) {
-    if (mail.id) {
-        return storageService.put(MAIL_KEY, mail)
-    } else {
-        return storageService.post(MAIL_KEY, mail)
-    }
+    const updatedMail = _sendMessage(mail)
+    return storageService.post(MAIL_KEY, updatedMail)
+        .then(savedMail => {
+            return savedMail
+        })
+        .catch(err => {
+            console.log('Error saving mail:', err);
+        })
 }
 
-function getEmptyMail(subject = '', createdAt = '', body = '', isRead = false, isStarred = false, sentAt = Date.now(), to = '', from = 'user@appsus.com',) {
+function _sendMessage(mail) {
+    mail.sentAt = Date.now()
+    return mail
+}
+
+function saveDraftMail(mail) {
+    return storageService.post(MAIL_KEY, mail)
+        .then(savedMail => {
+            return savedMail
+        })
+        .catch(err => {
+            console.log('Error saving mail:', err);
+        })
+}
+
+
+function getEmptyMail(subject = '', createdAt = Date.now(), body = '', isRead = true, isStarred = false, sentAt = '', to = '', from = 'user@appsus.com',) {
     return { subject, createdAt, body, isRead, isStarred, sentAt, to, from }
 }
 

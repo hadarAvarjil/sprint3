@@ -9,7 +9,8 @@ import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailSort} from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailFolderList } from "../cmps/MailFolderList.jsx"
-import { ComposeModal } from "../cmps/ComposeModal.jsx";
+import { ComposeModal } from "../cmps/ComposeModal.jsx"
+
 
 
 export function MailIndex() {
@@ -73,14 +74,18 @@ export function MailIndex() {
     }
 
     function onStarredMail(mailId) {
+        setMails(mails => mails.map(mail =>
+            mail.id === mailId ? { ...mail, isStarred: !mail.isStarred } : mail
+        ))
+    
         mailService.starredMail(mailId)
-            .then(() => {
+            .catch(err => {
+                console.log('Error:', err)
                 setMails(mails => mails.map(mail =>
                     mail.id === mailId ? { ...mail, isStarred: !mail.isStarred } : mail
                 ))
             })
     }
-
     function onSetFilterBy(filterBy) {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
     }

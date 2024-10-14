@@ -47,7 +47,7 @@ export function MailDetails() {
                 <h3 className="mail-subject">{mail.subject}</h3>
                 <section className="mail-data">
                     <h4 className="mail-from">{mail.from}</h4>
-                    <span className="mail-date">{utilService.elapsedTime(mail.sentAt)}</span>
+                    <span className="mail-date">{mail.sentAt ? utilService.elapsedTime(mail.sentAt) : utilService.elapsedTime(mail.createdAt)}</span>
                 </section>
             </header>
 

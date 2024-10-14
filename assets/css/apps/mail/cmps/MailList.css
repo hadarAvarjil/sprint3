@@ -31,10 +31,9 @@ section.mail-list{
 
 .mail-container tr:hover {
     background-color: #fff;
-    transform: scale(1.02);
-    box-shadow: 0 4px 8px #1e1e1e1a;
-    z-index: 1;
+    /* box-shadow: 0 4px 8px #1e1e1e1a; */
     position: relative;
+    border: 1px solid #a29f9f;
 }
 
 
