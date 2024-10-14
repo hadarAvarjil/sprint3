@@ -52,7 +52,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
                         <img
                             src={'./assets/img/filter.png'}
                             alt="Sort Icon"
-                            className="icon"
+                            className="icon sort-icon"
                         />
                         <label htmlFor="isRead" className="isRead">
                             Unread
