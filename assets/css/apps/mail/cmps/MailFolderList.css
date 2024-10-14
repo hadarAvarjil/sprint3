@@ -148,8 +148,9 @@
 @media (max-width: 650px) {
 
     .sidebar ul li {
-        max-width: 7em;
-        padding: 0.1em;
+        max-width: 9em;
+        padding: 0.1em; 
+        font-size: .75rem;
     }
 
     .sidebar ul li img.icon {
@@ -161,10 +162,11 @@
 
     .sidebar ul li span {
         margin-left: .7em;
+        font-size: .75rem;
     }
 
     .compose-btn {
-        padding: .8em;
+        padding: .4em;
         padding-inline: .7em;
         font-size: .9rem;
         margin-top: 1.7em;
@@ -172,7 +174,7 @@
     }
 
     .icon-compose {
-        padding: 2px;
+        padding: 1px;
         width: 15px;
         height: 15px;
         margin-right: 10px;
