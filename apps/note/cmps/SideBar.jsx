@@ -1,7 +1,7 @@
 const { useState } = React;
 const { Link } = ReactRouterDOM;
 
-export function SideBar({  onSelectTrash, onSelectAllNotes  }) {
+export function SideBar({  onSelectTrash, onSelectAllNotes,onSelectArchive  }) {
     const [selectedLink, setSelectedLink] = useState("all")
 
     const handleLinkClick = (linkName) => {
@@ -15,9 +15,9 @@ export function SideBar({  onSelectTrash, onSelectAllNotes  }) {
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                     <li>
                     <Link 
-                            to="/note/all" 
+                            to="/note" 
                             onClick={() => {
-                                handleLinkClick('all');
+                                handleLinkClick('note');
                                 onSelectAllNotes();
                             }}
                         >
@@ -27,28 +27,31 @@ export function SideBar({  onSelectTrash, onSelectAllNotes  }) {
                     </li>
                     <li>
                         <Link 
-                            to="/note/pinned" 
+                            to="/note/reminders" 
                             onClick={() => handleLinkClick('pinned')}
                         >
                             <img 
-                                src={`./assets/img/${selectedLink === 'pinned' ? 'pinned_clicked.svg' : 'Reminder.svg'}`} 
+                                src={`./assets/img/${selectedLink === 'reminders' ? 'reminders.svg' : 'Reminder.svg'}`} 
                                 className="icon" 
                             />
                             Reminders
                         </Link>
                     </li>
                     <li> 
-                        <Link 
+                    <Link 
                             to="/note/archived" 
-                            onClick={() => handleLinkClick('archived')}
-                        >
+                            onClick={() => {
+                                handleLinkClick('archived')
+                                onSelectArchive()
+                            } }
+                    >
                             <img 
-                                src={`./assets/img/${selectedLink === 'archived' ? 'archive_clicked.svg' : 'archive.svg'}`} 
+                                src={`./assets/img/${selectedLink === 'archived' ? 'archive.svg' : 'archive.svg'}`} 
                                 alt="Archived Notes" 
                                 className="icon" 
                             />
                             Archived
-                        </Link>
+                    </Link>
                     </li>
                     <li>  
                     <Link 
@@ -58,7 +61,7 @@ export function SideBar({  onSelectTrash, onSelectAllNotes  }) {
                                 onSelectTrash();
                             }}
                         >
-                            <img src={`./assets/img/${selectedLink === 'trash' ? 'trash_clicked.svg' : 'trash.svg'}`} className="icon" />
+                            <img src={`./assets/img/${selectedLink === 'trash' ? 'trash.svg' : 'trash.svg'}`} className="icon" />
                             Trash
                         </Link>
                     </li>

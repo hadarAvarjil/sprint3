@@ -2,8 +2,8 @@ import { NotePreview } from "../cmps/NotePreview.jsx"
 import { NoteAudio } from './path/to/NoteAudio'
 const { useState } = React
 
-export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, onDuplicate, onDrop }) {
-    const [colorPickerVisible, setColorPickerVisible] = useState(null);
+export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, onDuplicate, onArchive, onRestore,onDrop }) {
+    const [colorPickerVisible, setColorPickerVisible] = useState(null)
     const colors = ['#ffb4b4', '#b4ffe0', '#b4b7ff', '#f9b4ff', '#c0e794', '#91c6f0']
 
     const sortedNotes = [...notes].sort((a, b) => b.isPinned - a.isPinned)
@@ -21,8 +21,7 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, 
         event.preventDefault()
         const noteId = event.dataTransfer.getData("text/plain")
         if (noteId && noteId !== targetNoteId) {
-            const noteIdToMove = noteId; 
-            onDrop(noteIdToMove, targetNoteId)
+            onDrop(noteId, targetNoteId)
         }
     }
 
@@ -59,7 +58,7 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, 
                             <h3>{note.info.title ? `Title: ${note.info.title}` : 'Untitled Todo'}</h3>
                             <ul>
                                 {note.info.todos.map((todo, index) => (
-                                    <li key={index} style={{ textDecoration: todo.doneAt ? 'line-through' : 'none' }}>
+                                    <li key={todo.id} style={{ textDecoration: todo.doneAt ? 'line-through' : 'none' }}>
                                         {todo.txt}
                                     </li>
                                 ))}
@@ -90,6 +89,16 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, 
                         <button onClick={() => onDuplicate(note.id)}>
                             <img className="icon" src="assets/img/duplicate.svg" alt="Duplicate Icon" />
                         </button>
+
+                        <button onClick={() => onArchive(note.id)}>
+                            <img className="icon" src="assets/img/archive.svg" alt="Archive Icon" />
+                        </button>
+                        {note.isTrashed && (
+                            <button onClick={() => onRestore(note.id)}>
+                                <img src="assets/img/X.svg" alt="Restore" />
+                            </button>
+                        )}
+                        
 
                         {colorPickerVisible === note.id && (
                             <div style={{ display: 'flex', gap: '10px', margin: '10px 0' }}>

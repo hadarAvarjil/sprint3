@@ -7,16 +7,19 @@ export function Trash() {
     const [trashedNotes, setTrashedNotes] = useState([])
 
     useEffect(() => {
-        noteService.query({ isTrashed: true })
-            .then(notes => setTrashedNotes(notes))
+        noteService.filterTrashedNotes() 
+            .then(notes => {
+                console.log(notes) 
+                setTrashedNotes(notes)
+            })
             .catch(err => showErrorMsg('Failed to fetch trashed notes'))
     }, [])
 
     function restoreNote(noteId) {
         noteService.get(noteId)
             .then(note => {
-                note.isTrashed = false
-                return noteService.save(note)
+                note.isTrashed = false;
+                return noteService.save(note);
             })
             .then(() => {
                 setTrashedNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
@@ -36,6 +39,7 @@ export function Trash() {
 
     return (
         <section className="note-index-container">
+            <h1>Trash</h1>
             <div className="note-list-container">
                 {trashedNotes.length === 0 ? (
                     <div className="empty-message">No notes in the trash</div>
