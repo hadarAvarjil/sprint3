@@ -4,19 +4,30 @@
 
 .page{
     display: flex;
+    width: 100%;
+    height: 100vh;
 }
 
 .left{
     display: flex;
     min-width: 290px;
+    flex-shrink: 0;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    padding: 1em;
 }
 
 
 .mail-container {
-    display: flex;
+    padding: 1em;
+    flex-grow: 1;
     flex-direction: row;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .mail-container-left {
@@ -24,6 +35,9 @@
     flex-direction: column;
     justify-content: flex-start; 
     padding-top: 10px;  
+}
+table.mail-container{
+    width: 100%;
 }
 
 
