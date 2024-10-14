@@ -11,7 +11,7 @@ import {Trash} from './apps/note/pages/Trash.jsx';
 import {Archive} from './apps/note/pages/Archive.jsx';
 import {Reminders} from './apps/note/pages/Reminders.jsx';
 import { BookIndex } from "./apps/missBooks/views/BookIndex.jsx"
-import { BookDetails } from "./apps/missBooks/views/BookDetails.jsx"
+import { BookDetails } from "./apps/missBooks/views/bookDetails.jsx"
 import { BookEdit } from "./apps/missBooks/views/BookEdit.jsx"
 
 export function App() {
