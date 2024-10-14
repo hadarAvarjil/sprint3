@@ -42,7 +42,7 @@ export function MailSort({ sortBy, onSetSortBy }) {
                     <img
                         src={'./assets/img/sort.png'}
                         alt="Sort Icon"
-                        className="icon"
+                        className="icon sort-icon"
                     />
                     <label htmlFor="sentAt" className="sentAt-sort">
                         Date
@@ -63,7 +63,7 @@ export function MailSort({ sortBy, onSetSortBy }) {
                     <img
                         src={'./assets/img/sort.png'}
                         alt="Sort Icon"
-                        className="icon"
+                        className="icon sort-icon"
                     />
                     <label htmlFor="subject" className="subject-sort">
                         Subject
