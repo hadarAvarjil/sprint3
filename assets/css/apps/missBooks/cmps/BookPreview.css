@@ -1,0 +1,23 @@
+.book-preview {
+    display: grid;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .book-preview h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  
+  .book-preview p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .book-preview img {
+    max-width: 60%;
+    height: auto;
+    margin: 0 auto;
+  }

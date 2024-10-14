@@ -1,0 +1,19 @@
+.book-details{
+    display: grid;
+    padding: 10px;
+    margin-block-start: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.book-details button {
+    justify-self: end;
+}
+
+.book-details .actions {
+    display: flex;
+    gap: 10px;
+    margin-block-start: 10px;
+}

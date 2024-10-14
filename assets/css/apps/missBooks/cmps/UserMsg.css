@@ -1,0 +1,43 @@
+.user-msg {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    height: 6rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: #f1f1f1;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.user-msg p {
+    margin: 0;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+
+.user-msg button {
+    color: inherit;
+    background: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    margin: 10px;
+    cursor: pointer;
+}

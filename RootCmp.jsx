@@ -10,6 +10,9 @@ import { MailDetails } from "./apps/mail/pages/MailDetails.jsx"
 import {Trash} from './apps/note/pages/Trash.jsx';
 import {Archive} from './apps/note/pages/Archive.jsx';
 import {Reminders} from './apps/note/pages/Reminders.jsx';
+import { BookIndex } from "./apps/missBooks/views/BookIndex.jsx"
+import { BookDetails } from "./apps/missBooks/views/BookDetails.jsx"
+import { BookEdit } from "./apps/missBooks/views/BookEdit.jsx"
 
 export function App() {
     return <Router>
@@ -26,6 +29,10 @@ export function App() {
                 <Route path="/note/archived" element={<Archive />} />
                 <Route path="/note/reminders" element={<Reminders />} />
                 </Route>
+                <Route path="/book" element={<BookIndex />} />
+                <Route path="/book/:bookId" element={<BookDetails />} />
+                <Route path="/book/edit/" element={<BookEdit />} />
+                <Route path="/book/edit/:bookId" element={<BookEdit />} />
             </Routes>
         </section>
     </Router>
