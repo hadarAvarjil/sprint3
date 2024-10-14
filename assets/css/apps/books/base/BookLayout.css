@@ -1,0 +1,92 @@
+.main-layout {
+
+  display: grid;
+  grid-template-columns:
+      0 1fr 0
+}
+
+.container {
+  padding: 1em;
+  margin: auto;
+}
+
+.main-layout>*.full {
+  grid-column: 1 / -1;
+}
+
+.main-layout>*:not(.full) {
+  grid-column: 2 / 3;
+}
+
+@media(max-width: 640px) {
+  .app-header {
+    color: var(--clr2bg);
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
+}
+
+@media (max-width:780px) {
+  .main-layout {
+      grid-template-columns:
+      minmax(20px, 100px)  minmax(auto, 980px)  minmax(20px, 100px);
+  }
+
+  
+.app-header section{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.book-details {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 150px 150px 100px 100px;
+  grid-template-areas: 
+      "title title thumbnail thumbnail"
+      "description description thumbnail thumbnail"
+      "publishedDate pageCount thumbnail thumbnail"
+      "language pay authors authors"
+      "button . . categories ";
+  gap: 2px; 
+  align-items: center;
+}
+
+
+
+}
+
+@media (min-width:780px) {
+  .main-layout {
+      grid-template-columns:
+          minmax(100px, 1fr) minmax(auto, 980px) minmax(100px, 1fr);
+  }
+
+  .book-details {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 150px 150px 100px 100px;
+    grid-template-areas: 
+        "title title thumbnail thumbnail"
+        "description description thumbnail thumbnail"
+        "publishedDate pageCount thumbnail thumbnail"
+        "language pay authors authors"
+        "button . . categories ";
+    gap: 2px; 
+    align-items: center;
+  }
+}
+
+
+.app-header h1{
+  font-size: 2.5em;
+}
+
+

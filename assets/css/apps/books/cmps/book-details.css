@@ -1,0 +1,120 @@
+/* .book-details {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 150px 150px 100px 100px;
+    grid-template-areas: 
+        "title title thumbnail thumbnail"
+        "description description thumbnail thumbnail"
+        "publishedDate pageCount thumbnail thumbnail"
+        "language pay authors authors"
+        "button . . categories ";
+    gap: 2px; 
+    align-items: center;
+} */
+
+.title-container {
+    grid-area: title;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 2px;
+}
+
+
+.title-container .subtitle {
+    color: rgb(97, 94, 94); 
+}
+
+.book-details h1 {
+    text-transform: uppercase;
+    grid-area: title;
+    font-size: 2.5em;
+    color: #DEE2FF;
+}
+
+.book-details .subtitle {
+    grid-area: title;
+    font-size: 1.2rem; 
+}
+
+.book-details .authors {
+    grid-area: authors;
+    font-family: roboto-medium;
+    align-self: start;
+    justify-self: center;
+}
+.book-thumbnail-container {
+    grid-area: thumbnail;
+    position: relative;
+    display: inline-block;
+}
+
+.book-thumbnail-container .book-thumbnail {
+    display: block;
+    max-width: 250px; 
+    max-height: 300px;
+}
+.sale-icon {
+    position: absolute;
+    top: 0;  
+    left: 210px; 
+    width: 70px;
+    height: auto;
+    z-index: 10; 
+}
+
+.book-details p {
+    grid-area: description;
+}
+
+.book-details .book-publishedDate {
+    grid-area: publishedDate;
+}
+
+.book-details .book-pageCount {
+    grid-area: pageCount;
+
+}
+
+.book-details .book-language {
+    grid-area: language;
+}
+
+.book-details .book-pay {
+    grid-area: pay;
+}
+
+.categories{
+    grid-area: authors; 
+    justify-self: center;
+}
+
+.book-details h1, 
+.book-details h2, 
+.book-details p {
+    text-align: left;
+    font-family: roboto-medium;
+}
+
+.book-details img {
+    max-width: 100%;
+}
+
+.details-icon{
+    height: 40px 
+}
+
+.back-btn{
+    grid-area: button  
+}
+
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
+
+

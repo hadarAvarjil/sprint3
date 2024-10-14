@@ -36,3 +36,20 @@
 @import './apps/mail/cmps/MailFilter.css';
 @import './apps/mail/cmps/MailPreview.css';
 @import './apps/mail/cmps/ComposeModal.css';
+
+/*Books*/
+
+/* Base */
+@import './apps/books/base/BookBase.css';
+@import './apps/books/base/BookForms.css';
+@import './apps/books/base/BookHelpers.css';
+@import './apps/books/base/BookLayout.css';
+@import './apps/books/base/BookTypo.css';
+@import './apps/books/base/BookVars.css';
+@import './apps/books/base/typography.css';
+
+/* Components */
+
+@import './apps/books/cmps/book-details.css';
+@import './apps/books/cmps/book-list.css';
+@import './apps/books/cmps/user-msg.css';
