@@ -186,8 +186,8 @@ function getDefaultFilter() {
 
 function getDefaultSort() {
     return {
-        sentAt: false,
-        subject: false,
+        sentAt: 1,
+        subject: 1,
     }
 }
 

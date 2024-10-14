@@ -104,7 +104,7 @@ section.mail-sort{
   }
   
   .search-input {
-    min-width: 6em;
+    max-width: 5.5em;
     padding: 7px 2em;
     font-size: 1.1em;
   }
