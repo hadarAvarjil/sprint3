@@ -9,33 +9,48 @@ import { utilService } from '../../../services/util.service.js'
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
+    const [filteredNotes, setFilteredNotes] = useState([])
     const [noteToEdit, setNoteToEdit] = useState(null)
     const [searchTerm, setSearchTerm] = useState('')
-    const [filteredNotes, setFilteredNotes] = useState(notes)
     const [showAddNoteForm, setShowAddNoteForm] = useState(false)
     const [noteType, setNoteType] = useState('NoteTxt')
+    const [filterBy, setFilterBy] = useState('all')
+    const [showTrash, setShowTrash] = useState(false)
 
     useEffect(() => {
-        loadNotes()
+        noteService.loadNotesFromStorage()
+        const loadedNotes = noteService.query()
+        setNotes(loadedNotes)
     }, [])
 
     useEffect(() => {
-        setFilteredNotes(
-            notes.filter(note =>
-                (note.info.txt && note.info.txt.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                (note.info.title && note.info.title.toLowerCase().includes(searchTerm.toLowerCase()))
-            )
-        )
-    }, [searchTerm, notes])
+        if (notes.length > 0 || searchTerm) {
+            applyFilter()
+        }
+    }, [notes, searchTerm, filterBy])
 
-    const loadNotes = () => {
-        const fetchedNotes = noteService.query()
-        setNotes(fetchedNotes)
+    const applyFilter = () => {
+        let filtered = notes;
+
+        if (filterBy === 'trash') {
+            filtered = notes.filter(note => note.isTrashed)
+        } else if (filterBy === 'archived') {
+            filtered = notes.filter(note => note.isArchived)
+        } else if (filterBy === 'pinned') {
+            filtered = notes.filter(note => note.isPinned)
+        }
+
+        filtered = filtered.filter(note =>
+            (note.info.txt && note.info.txt.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (note.info.title && note.info.title.toLowerCase().includes(searchTerm.toLowerCase()))
+        );
+
+        setFilteredNotes(filtered)
     }
 
     const handleAddNote = (newNote) => {
         const addedNote = noteService.post(newNote)
-        setNotes((prevNotes) => [...prevNotes, addedNote])
+        setNotes(prevNotes => [...prevNotes, addedNote])
         setNoteToEdit(null)
         setShowAddNoteForm(false)
     }
@@ -44,14 +59,13 @@ export function NoteIndex() {
         const updatedNotes = notes.map(note =>
             note.id === updatedNote.id ? updatedNote : note
         )
-
         setNotes(updatedNotes)
         setNoteToEdit(null)
         setShowAddNoteForm(false)
     }
 
     const handleDeleteNote = (noteId) => {
-        noteService.remove(noteId);
+        noteService.remove(noteId)
         setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
     }
 
@@ -72,7 +86,7 @@ export function NoteIndex() {
         setSearchTerm(event.target.value)
     }
 
-    function handleTogglePin(noteId) {
+    const handleTogglePin = (noteId) => {
         setNotes(prevNotes => 
             prevNotes.map(note => note.id === noteId ? { ...note, isPinned: !note.isPinned } : note)
         )
@@ -100,9 +114,9 @@ export function NoteIndex() {
         setNotes(prevNotes => {
             const movingNoteIndex = prevNotes.findIndex(note => note.id === noteIdToMove)
             const targetNoteIndex = prevNotes.findIndex(note => note.id === targetNoteId)
-    
+
             if (movingNoteIndex < 0 || targetNoteIndex < 0) return prevNotes
-    
+
             const updatedNotes = [...prevNotes]
             const [movingNote] = updatedNotes.splice(movingNoteIndex, 1)
             if (targetNoteIndex < movingNoteIndex) {
@@ -110,16 +124,22 @@ export function NoteIndex() {
             } else {
                 updatedNotes.splice(targetNoteIndex + 1, 0, movingNote)
             }
-    
             return updatedNotes
         })
     }
 
+    useEffect(() => {
+        applyFilter()
+    }, [notes, searchTerm, showTrash])
+
     return (
         <div className="note-index-container">
             <header className="keep-header"></header>
-            <div className="sidebar-main-container"> 
-                <SideBar />
+            <div className="sidebar-main-container">
+                <SideBar 
+                    onSelectTrash={() => setShowTrash(true)} 
+                    onSelectAllNotes={() => setShowTrash(false)} 
+                />
                 <div className="main-content">
                     <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
                     <div className="take-note-input">
@@ -150,6 +170,5 @@ export function NoteIndex() {
                 </div>
             </div>
         </div>
-
     )
 }

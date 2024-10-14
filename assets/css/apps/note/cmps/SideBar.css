@@ -1,7 +1,7 @@
 .sidebar-folder {
     width: 250px;
     padding: 10px;
-    height: 100vh;
+    height: 70vh;
 }
 
 .sidebar-folder nav ul {
@@ -106,7 +106,6 @@
         min-width: 180px; 
     }
 
-    /* .audio-content */
     .audio-content {
         max-height: 200px; 
     }
