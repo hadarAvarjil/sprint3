@@ -1,26 +1,27 @@
 const { useState } = React;
 const { Link } = ReactRouterDOM;
 
-export function SideBar() {
+export function SideBar({  onSelectTrash, onSelectAllNotes  }) {
     const [selectedLink, setSelectedLink] = useState("all")
 
     const handleLinkClick = (linkName) => {
         setSelectedLink(linkName)
+
     }
 
     return (
         <aside className="sidebar-folder">
             <nav>
-                <ul style={{ listStyleType: 'none', padding: 0 }}> {}
+                <ul style={{ listStyleType: 'none', padding: 0 }}>
                     <li>
-                        <Link 
+                    <Link 
                             to="/note/all" 
-                            onClick={() => handleLinkClick('all')}
+                            onClick={() => {
+                                handleLinkClick('all');
+                                onSelectAllNotes();
+                            }}
                         >
-                            <img 
-                                src={`./assets/img/${selectedLink === 'all' ? 'notes.svg' : 'notes.svg'}`} 
-                                className="icon" 
-                            />
+                            <img src={`./assets/img/${selectedLink === 'all' ? 'notes.svg' : 'notes.svg'}`} className="icon" />
                             Notes
                         </Link>
                     </li>
@@ -35,8 +36,8 @@ export function SideBar() {
                             />
                             Reminders
                         </Link>
-                        </li>
-                        <li> 
+                    </li>
+                    <li> 
                         <Link 
                             to="/note/archived" 
                             onClick={() => handleLinkClick('archived')}
@@ -48,21 +49,19 @@ export function SideBar() {
                             />
                             Archived
                         </Link>
-                        </li>
-                        <li>  
-                        <Link 
+                    </li>
+                    <li>  
+                    <Link 
                             to="/note/trash" 
-                            onClick={() => handleLinkClick('trash')}
+                            onClick={() => {
+                                handleLinkClick('trash');
+                                onSelectTrash();
+                            }}
                         >
-                            <img 
-                                src={`./assets/img/${selectedLink === 'trash' ? 'trash_clicked.svg' : 'trash.svg'}`} 
-                                alt="Trash Notes" 
-                                className="icon" 
-                            />
+                            <img src={`./assets/img/${selectedLink === 'trash' ? 'trash_clicked.svg' : 'trash.svg'}`} className="icon" />
                             Trash
                         </Link>
-                        </li>
-                    {}
+                    </li>
                 </ul>
             </nav>
         </aside>

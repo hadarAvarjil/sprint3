@@ -1,7 +1,7 @@
 .sidebar-folder {
     width: 250px;
     padding: 10px;
-    height: 100vh;
+    height: 70vh;
 }
 
 .sidebar-folder nav ul {
@@ -87,9 +87,122 @@
 
 .sidebar-keep-header h2 {
     margin: 0;
-    /* Remove default margin */
     font-size: 20px;
-    /* Header font size */
     color: #333;
-    /* Dark text color */
 }
+
+
+
+@media (max-width: 1780px) {
+
+   
+    .note-list {
+        padding: 10px; 
+    }
+
+   
+    .note-item {
+        padding: 15px; 
+        min-width: 180px; 
+    }
+
+    .audio-content {
+        max-height: 200px; 
+    }
+
+    audio{
+        width: 90%;
+    }
+
+   
+    .buttons-container {
+        gap: 5px; 
+    }
+
+    
+    .note-card {
+        padding: 20px; 
+        width: 180px; 
+    }
+
+  
+    .note-card p {
+        font-size: 0.9rem; 
+    }
+
+   
+    .note-index {
+        margin: 5%; 
+    }
+
+   
+    .take-note-input {
+        width: 70%; 
+        padding: 8px; 
+    }
+
+  
+    .note-card:hover {
+        transform: scale(1.03);
+    }
+
+   
+    .sidebar-folder {
+        width: 220px; 
+    }
+
+   
+    .sidebar-folder nav ul li {
+        font-size: 0.9rem; 
+    }
+
+   
+    .sidebar-folder nav ul li img.icon {
+        width: 18px; 
+        height: 20px;
+    }
+
+   
+    .sidebar-folder nav ul li:hover {
+        background-color: rgba(235, 237, 241, 0.8); 
+    }
+
+
+    .sidebar-folder nav ul li:active {
+        background-color: rgba(214, 233, 255, 0.8); 
+    }
+
+  
+    .sidebar-main-container {
+        margin-top: 40px; 
+    }
+
+    .nav a {
+        font-size: 0.9rem; 
+    }
+
+    .keep-header {
+        height: 35px; 
+    }
+
+    .keep-logo {
+        width: 28px;
+        height: 28px;
+    }
+
+    
+    .search-input-container {
+        margin-left: 15px; 
+    }
+
+  
+    .sidebar-keep-header {
+        padding: 15px; 
+    }
+
+ 
+    .sidebar-keep-header h2 {
+        font-size: 18px; 
+    }
+}
+

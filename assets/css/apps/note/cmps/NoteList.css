@@ -27,14 +27,15 @@
 
 .audio-content {
     flex-grow: 1;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 .buttons-container {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
+    flex-wrap: wrap;
 }
 
 .note-item:hover {
@@ -76,14 +77,14 @@
 .note-card p {
     margin: 0;
     line-height: 1.5;
-    overflow-wrap: break-word;
+    /* overflow-wrap: break-word; */
 }
 
 .note-item p {
     margin: 0;
     padding: 0;
     flex-grow: 1;
-    overflow-wrap: break-word;
+    /* overflow-wrap: break-word; */
 }
 
 .note-card:hover .buttons-container {
