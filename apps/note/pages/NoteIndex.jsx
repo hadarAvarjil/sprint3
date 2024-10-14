@@ -16,36 +16,47 @@ export function NoteIndex() {
     const [noteType, setNoteType] = useState('NoteTxt')
     const [filterBy, setFilterBy] = useState('all')
     const [showTrash, setShowTrash] = useState(false)
-
+     
     useEffect(() => {
         noteService.loadNotesFromStorage()
         const loadedNotes = noteService.query()
         setNotes(loadedNotes)
     }, [])
 
+    const handleSelectTrash = () => {
+        setFilterBy('trash')
+        setShowTrash(true)
+    }
+    const handleSelectArchive = () => {
+        setFilterBy('archived')
+        setShowTrash(false)
+    }
+
     useEffect(() => {
         if (notes.length > 0 || searchTerm) {
             applyFilter()
         }
     }, [notes, searchTerm, filterBy])
-
     const applyFilter = () => {
-        let filtered = notes;
-
+        let filtered = notes
+    
         if (filterBy === 'trash') {
             filtered = notes.filter(note => note.isTrashed)
         } else if (filterBy === 'archived') {
             filtered = notes.filter(note => note.isArchived)
         } else if (filterBy === 'pinned') {
             filtered = notes.filter(note => note.isPinned)
+        } else {
+            filtered = notes.filter(note => !note.isTrashed && !note.isArchived)
         }
-
+    
+   
         filtered = filtered.filter(note =>
             (note.info.txt && note.info.txt.toLowerCase().includes(searchTerm.toLowerCase())) ||
             (note.info.title && note.info.title.toLowerCase().includes(searchTerm.toLowerCase()))
-        );
-
-        setFilteredNotes(filtered)
+        )
+    
+        setFilteredNotes(filtered);
     }
 
     const handleAddNote = (newNote) => {
@@ -65,8 +76,19 @@ export function NoteIndex() {
     }
 
     const handleDeleteNote = (noteId) => {
-        noteService.remove(noteId)
-        setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
+        const updatedNotes = notes.map(note => 
+            note.id === noteId ? { ...note, isTrashed: true, isArchived: false } : note
+        )
+        setNotes(updatedNotes);
+        noteService.put(updatedNotes.find(note => note.id === noteId))
+    }
+
+    const handleRestoreNote = (noteId) => {
+        const updatedNotes = notes.map(note => 
+            note.id === noteId ? { ...note, isTrashed: false } : note
+        )
+        setNotes(updatedNotes)
+        noteService.put(updatedNotes.find(note => note.id === noteId))
     }
 
     const handleEditClick = (note) => {
@@ -91,6 +113,16 @@ export function NoteIndex() {
             prevNotes.map(note => note.id === noteId ? { ...note, isPinned: !note.isPinned } : note)
         )
         noteService.togglePin(noteId)
+    }
+
+    const handleArchiveNote = (noteId) => {
+        setNotes((prevNotes) => {
+            const updatedNotes = prevNotes.map((note) =>
+                note.id === noteId ? { ...note, isArchived: true } : note
+            )
+            noteService.put(updatedNotes.find(note => note.id === noteId))
+            return updatedNotes;
+        })
     }
 
     const duplicateNote = (noteId) => {
@@ -129,17 +161,21 @@ export function NoteIndex() {
     }
 
     useEffect(() => {
-        applyFilter()
-    }, [notes, searchTerm, showTrash])
+        applyFilter();
+    }, [notes, searchTerm, filterBy]);
 
     return (
         <div className="note-index-container">
             <header className="keep-header"></header>
             <div className="sidebar-main-container">
-                <SideBar 
-                    onSelectTrash={() => setShowTrash(true)} 
-                    onSelectAllNotes={() => setShowTrash(false)} 
-                />
+            <SideBar 
+                onSelectTrash={handleSelectTrash} 
+                onSelectArchive={handleSelectArchive} 
+                onSelectAllNotes={() => {
+                    setShowTrash(false)
+                    setFilterBy('all')
+                }} 
+            />
                 <div className="main-content">
                     <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
                     <div className="take-note-input">
@@ -159,14 +195,16 @@ export function NoteIndex() {
                         )}
                     </div>
                     <NoteList 
-                        notes={filteredNotes} 
+                        notes={showTrash ? noteService.filterTrashedNotes() : filteredNotes} 
                         onEdit={handleEditClick} 
                         onDelete={handleDeleteNote}  
                         onColorChange={handleColorChange} 
                         onTogglePin={handleTogglePin} 
                         onDuplicate={duplicateNote} 
+                        onRestore={handleRestoreNote}
+                        onArchive={handleArchiveNote} 
                         onDrop={handleDrop} 
-                    />
+                    />  
                 </div>
             </div>
         </div>

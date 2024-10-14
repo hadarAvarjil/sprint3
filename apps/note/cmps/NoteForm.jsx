@@ -7,8 +7,11 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
     const textAreaRef = useRef(null)
 
     useEffect(() => {
-        setNote(existingNote || { type: 'NoteTxt', info: { title: '', txt: '', url: '', todos: [] } })
-    }, [existingNote])
+        if (existingNote) {
+            console.log('useEffect של existingNote הופעל');
+            setNote(existingNote);
+        }
+    }, [existingNote]);
 
     useEffect(() => {
         if (textAreaRef.current) {
@@ -40,8 +43,6 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
             }
         })
     }
-
-   
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0]
@@ -167,16 +168,16 @@ export function NoteForm({ onSave, existingNote,onCancel }) {
             {note.type === 'NoteTodos' && (
                 <div>
                     {note.info.todos && note.info.todos.length > 0 ? (
-                        note.info.todos.map((todo, index) => (
-                            <div key={index} className="todo-item">
+                        note.info.todos.map((todo) => (
+                            <div key={todo.id}  className="todo-item">
                                 <input
                                     type="text"
                                     value={todo.txt}
-                                    onChange={(e) => handleTodoChange(index, e.target.value)}
-                                    placeholder={`Todo ${index + 1}`}
+                                    onChange={(e) => handleTodoChange(todo.id, e.target.value)}
+                                    placeholder={`Todo ${todo.id}`}
                                     className="note-input"
                                 />
-                                <button onClick={() => handleDeleteTodo(index)} className="delete-todo-button">
+                                <button onClick={() => handleDeleteTodo(todo.id)} className="delete-todo-button">
                                     &#10005; 
                                 </button>
                             </div>

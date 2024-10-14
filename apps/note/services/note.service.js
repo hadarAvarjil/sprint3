@@ -27,6 +27,7 @@ export const noteService = {
     filterNotesByType,
     filterTrashedNotes,
     togglePin,
+    archiveNote,
     saveNotesToStorage,
     loadNotesFromStorage,
 }
@@ -62,6 +63,7 @@ function remove(noteId) {
         console.error(`Error: Cannot find note with id: ${noteId}`);
         return false;
     }
+    notes[index].isTrashed = true;
     notes.splice(index, 1);
     utilService.saveToStorage(NOTE_KEY, notes);
     return true;
@@ -84,16 +86,34 @@ function filterNotesBySearch(searchTerm) {
     });
 }
 
+function archiveNote(noteId) {
+    const note = notes.find(note => note.id === noteId)
+    if (!note) {
+        console.error(`Error: Cannot find note with id: ${noteId}`)
+        return null
+    }
+
+
+    const updatedNote = { ...note, isArchived: true }
+    const updatedNotes = notes.map(n => n.id === noteId ? updatedNote : n)
+    
+
+    notes = updatedNotes;
+    utilService.saveToStorage(NOTE_KEY, notes)
+
+    return updatedNote
+}
+
 function filterTrashedNotes() {
-    return notes.filter(note => note.isTrashed);
+    return notes.filter(note => note.isTrashed)
 }
 
 function filterNotesByType(type) {
-    return notes.filter(note => note.type === type);
+    return notes.filter(note => note.type === type)
 }
 
 function saveNotesToStorage() {
-    utilService.saveToStorage(NOTE_KEY, notes);
+    utilService.saveToStorage(NOTE_KEY, notes)
 }
 
 function loadNotesFromStorage() {

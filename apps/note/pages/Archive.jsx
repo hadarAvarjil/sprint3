@@ -1,14 +1,16 @@
-const { useState, useEffect } = React
-
-import { noteService } from '../services/note.service.js'
+import React, { useEffect, useState } from 'react'
+import { noteService } from '../../../services/note.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 export function Archive() {
     const [archivedNotes, setArchivedNotes] = useState([])
 
     useEffect(() => {
-        noteService.query({ isArchived: true })
-            .then(notes => setArchivedNotes(notes))
+        noteService.query()
+            .then(notes => {
+                console.log(notes)
+                setArchivedNotes(notes.filter(note => note.isArchived))
+            })
             .catch(err => showErrorMsg('Failed to fetch archived notes'))
     }, [])
 
@@ -16,7 +18,7 @@ export function Archive() {
         noteService.get(noteId)
             .then(note => {
                 note.isArchived = false
-                return noteService.save(note)
+                return noteService.put(note)
             })
             .then(() => {
                 setArchivedNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
