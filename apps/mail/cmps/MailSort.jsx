@@ -46,22 +46,23 @@ export function MailSort({ sortBy, onSetSortBy }) {
                 <div className="sentAt-sort-container">
                     <label htmlFor="sentAt" className="sentAt-sort">
                         Date
-                    </label>
+                    
                     <input
                         type="checkbox"
-                        id="date"
-                        name="date"
+                        id="sentAt"
+                        name="sentAt"
                         checked={sentAt}
                         className="checkbox-input"
                         onChange={handleChange}
-                        title="date"
+                        title="sentAt"
                     />
+                    </label>
                 </div>
 
                 <div className="subject-sort-container">
                     <label htmlFor="subject" className="subject-sort">
                         Subject
-                    </label>
+                  
                     <input
                         type="checkbox"
                         id="subject"
@@ -71,6 +72,7 @@ export function MailSort({ sortBy, onSetSortBy }) {
                         onChange={handleChange}
                         title="subject"
                     />
+                      </label>
                 </div>
 
             </form>

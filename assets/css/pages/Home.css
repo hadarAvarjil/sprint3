@@ -1,58 +1,59 @@
 .home-view {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .home-view .hero {
-    max-width: 600px;
-  }
-  
-  .home-view .hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    background: linear-gradient(45deg, #b14e9d,  #2ce676);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-decoration: none;
-  }
-  
-  .home-view .hero p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-  }
-  
-  .home-view .hero .btn {
-    background: linear-gradient(45deg, #af95b4, #2ce676);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 5px;
-  }
-  
-  .home-view .hero .btn:hover {
-    background-color: #0056b3;
-  }
-  
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(180deg, #f0f0f0, #ffffff); /* Light gradient to match the header */
+}
+
+.home-view .hero {
+  max-width: 600px;
+}
+
+.home-view .hero h1 {
+  margin: 0;
+  font-size: 3em;
+  background: linear-gradient(45deg, #888888, #cccccc); /* Subtle gradient matching the header */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+.home-view .hero p {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  color: #333; /* Adjust to a darker tone for readability */
+}
+
+.home-view .hero .btn {
+  background: linear-gradient(45deg, #cccccc, #888888); /* Muted button gradient to align with header */
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+}
+
+.home-view .hero .btn:hover {
+  background-color: #777777; /* Slightly darker on hover */
+}
+
+.logo {
+  width: 50%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* For mobile */
+@media only screen and (max-width: 600px) {
+  .home-view,
+  .home-view .hero p,
   .logo {
-    width: 50%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-  
-  /* For mobile */
-  @media only screen and (max-width: 600px) {
-    .home-view,
-    .home-view .hero p,
-    .logo {
       max-width: 95%;
       padding: 0 10px;
-    }
   }
-  
+}

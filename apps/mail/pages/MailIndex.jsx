@@ -6,7 +6,7 @@ import { showErrorMsg, showSuccessMsg, showUserMsg } from "../../../services/eve
 import { utilService } from "../../../services/util.service.js"
 import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
-import { MailSort} from "../cmps/MailFilter.jsx"
+import { MailSort } from "../cmps/MailSort.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { MailFolderList } from "../cmps/MailFolderList.jsx"
 import { ComposeModal } from "../cmps/ComposeModal.jsx"
@@ -21,12 +21,13 @@ export function MailIndex() {
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromSearchParams(searchPrms))
     const [unreadMailsCount, setUnreadMailsCount] = useState(0)
     const { mailId } = useParams()
+    const [sortBy, setSortBy] = useState(mailService.getDefaultSort())
 
 
     useEffect(() => {
         loadMails()
         setSearchPrms(utilService.getTruthyValues(filterBy))
-    }, [filterBy])
+    }, [filterBy, sortBy])
 
 
     useEffect(() => {
@@ -34,7 +35,7 @@ export function MailIndex() {
     }, [])
 
     function loadMails() {
-        mailService.query(filterBy)
+        mailService.query(filterBy, sortBy)
             .then(setMails)
             .catch(err => {
                 console.log('Problems getting mails:', err)
@@ -77,7 +78,7 @@ export function MailIndex() {
         setMails(mails => mails.map(mail =>
             mail.id === mailId ? { ...mail, isStarred: !mail.isStarred } : mail
         ))
-    
+
         mailService.starredMail(mailId)
             .catch(err => {
                 console.log('Error:', err)
@@ -90,7 +91,7 @@ export function MailIndex() {
         setFilterBy(preFilter => ({ ...preFilter, ...filterBy }))
     }
 
-    function onSetSortBy(sortBy){
+    function onSetSortBy(sortBy) {
         setSortBy(preSort => ({ ...preSort, ...sortBy }))
     }
 
@@ -104,7 +105,7 @@ export function MailIndex() {
     return (
         <section className="mail-index"
             style={{ backgroundColor: 'rgb(246, 248, 252)' }}>
-                
+
             <section className="page">
                 <section className="left">
 
@@ -118,8 +119,10 @@ export function MailIndex() {
                 </section>
 
                 <section className="right">
-
+                    <section className="filter-sort">
                     <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+                    <MailSort sortBy={sortBy} onSetSortBy={onSetSortBy} />
+                    </section>
                     {mailId ? (
                         <Outlet />
                     ) : (

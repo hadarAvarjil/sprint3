@@ -1,67 +1,74 @@
 .about-view {
-    text-align: center;
-    padding: 50px;
-  }
-  
+  text-align: center;
+  padding: 50px;
+  background-color: #f0f0f5;  /* Light background */
+}
+
+.about-view h1 {
+  background: linear-gradient(135deg, #000000, #b2b1b1); /* Vibrant gradient for a cooler look */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 3.5em;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for text */
+}
+
+.about-view .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.about-view .content p {
+  font-size: 1.2em;
+  color: #4d4d4d;
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.about-view .content .teammate {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 30px;
+  max-width: 600px;
+  text-align: left;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-view .content .teammate h4 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.about-view .content .teammate p {
+  margin-bottom: 5px;
+  font-size: 1.1em;
+  color: #666;
+}
+
+.about-view .content .teammate a {
+  color: #060707;
+  text-decoration: none;
+}
+
+.about-view .content .teammate a:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+  .about-view,
   .about-view h1 {
-    background: linear-gradient(45deg, #b14e9d, #3333ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-decoration: none;
-    font-size: 2.5em;
-    margin-bottom: 30px;
-  }
-  
-  .about-view .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .about-view .content p {
-    background: linear-gradient(45deg, #b14e9d, #3333ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-decoration: none;
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-  
-  .about-view .content .teammate-sean,
-  .about-view .content .teammate-daniel {
-    background-color: #f8f8ff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-  }
-  
-  .about-view .content .teammate-sean h4,
-  .about-view .content .teammate-daniel h4 {
-    margin-bottom: 10px;
-  }
-  
-  .about-view .content .teammate-sean p,
-  .about-view .content .teammate-daniel p {
-    margin-bottom: 5px;
-  }
-  
-  .about-view .content .teammate-sean a,
-  .about-view .content .teammate-daniel a {
-    color: #007bff;
-  }
-  
-  .about-view .content .teammate-sean a:hover,
-  .about-view .content .teammate-daniel a:hover {
-    text-decoration: underline;
-  }
-  
-  /* For mobile */
-  @media only screen and (max-width: 600px) {
-    .about-view,
-    .about-view h1 {
       max-width: 95%;
       padding: 0 10px;
-    }
   }
-  
+
+  .about-view .content .teammate {
+      width: 90%;
+      padding: 20px;
+  }
+}

@@ -1,5 +1,7 @@
 import { utilService } from "../../../services/util.service.js"
-import { LongTxt } from "../../../cmps/LongTxt.jsx";
+import { LongTxt } from "../../../cmps/LongTxt.jsx"
+import { mailService } from "../services/mail.service.js"
+
 
 
 export function MailPreview({ mail }) {
@@ -13,7 +15,7 @@ export function MailPreview({ mail }) {
 
     return (
         <article className={`mail-preview ${mailClass}`}>
-            <p className="p-from"> {mail.from}</p>
+            <p className="p-from"> {mailService.userNameDisplayOnly(mail.from)}</p>
             <p className="p-subject">
                 {mail.subject && <LongTxt txt={mail.subject} />}
             </p>

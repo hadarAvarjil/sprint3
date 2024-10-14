@@ -27,7 +27,7 @@ section.mail-filter{
   border-radius: 25px;
   border: .5px solid rgb(234 241 251);
   outline: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
   background-color: rgb(234 241 251);
 }
 
@@ -51,6 +51,7 @@ section.mail-filter{
 
 .unread-container {
   display: flex;
+  flex-direction: column;
 }
 
 
@@ -59,4 +60,9 @@ section.mail-filter{
   height: 20px;
   margin: .2em;
   padding: .1em;
+}
+
+
+.filter-sort{
+  display: flex;
 }

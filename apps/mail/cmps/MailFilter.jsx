@@ -48,20 +48,25 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
                         className="search-input"
                     />
                     <div className="unread-container">
-                        <input
-                            type="checkbox"
-                            id="isRead"
-                            name="isRead"
-                            checked={isRead}
-                            className="checkbox-input"
-                            onChange={handleChange}
-                            title =  "Unread"
-                        />
+
                         <img
-                            src={'./assets/img/unread.png'}
-                            alt="Unread Icon"
-                            className="unread-icon"
+                            src={'./assets/img/filter.png'}
+                            alt="Sort Icon"
+                            className="icon"
                         />
+                        <label htmlFor="isRead" className="isRead">
+                            Unread
+                            <input
+                                type="checkbox"
+                                id="isRead"
+                                name="isRead"
+                                checked={isRead}
+                                className="checkbox-input"
+                                onChange={handleChange}
+                                title="Unread"
+                            />
+
+                        </label>
                     </div>
 
 

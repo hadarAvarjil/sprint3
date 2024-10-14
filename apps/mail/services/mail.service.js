@@ -25,15 +25,16 @@ export const mailService = {
     starredMail,
     getUnreadMailCount,
     getDefaultSort,
-    saveDraftMail
+    saveDraftMail,
+    userNameDisplayOnly
 }
 
-function query(filterBy = {}) {
+function query(filterBy = {}, sortBy = {}) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body))
+                mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body) || regExp.test(mail.from))
             }
             if (filterBy.status === 'inbox') {
                 if (filterBy.isRead) mails = mails.filter(mail => mail.to === loggedinUser.email && !mail.removedAt && !mail.isRead)
@@ -52,8 +53,15 @@ function query(filterBy = {}) {
             }
 
             if (filterBy.status === 'draft') {
-                mails = mails.filter(mail => mail.from === loggedinUser.email && !mail.removedAt && !mail.sentAt )
+                mails = mails.filter(mail => mail.from === loggedinUser.email && !mail.removedAt && !mail.sentAt)
 
+            }
+
+            if (sortBy.sentAt != undefined) {
+                mails.sort((p1, p2) => (p1.sentAt - p2.sentAt) * sortBy.sentAt)
+            }
+            if (sortBy.subject != undefined) {
+                mails.sort((p1, p2) => p1.subject.localeCompare(p2.subject) * sortBy.subject)
             }
 
             return mails
@@ -178,7 +186,8 @@ function getDefaultFilter() {
 
 function getDefaultSort() {
     return {
-        date: -1
+        sentAt: false,
+        subject: false,
     }
 }
 
@@ -206,6 +215,11 @@ function _createMails() {
         mails.push(mail)
     }
     utilService.saveToStorage(MAIL_KEY, mails)
+}
+
+function userNameDisplayOnly(from) {
+    const userName = from.split('@')[0]
+    return userName
 }
 
 
