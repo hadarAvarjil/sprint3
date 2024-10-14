@@ -46,7 +46,6 @@
 
 .unread-container {
   display: flex;
-  flex-direction: column;
 }
 
 
@@ -60,6 +59,32 @@
 
 .filter-sort{
   display: flex;
+}
+
+
+.mail-sort-form{
+  display: flex;
+  align-items: center;
+}
+
+section.mail-sort{
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #0073e6; 
+}
+
+.checkbox-input:checked {
+  border: 2px solid #0073e6;
+}
+
+.checkbox-input:hover {
+  filter: brightness(1.2);
 }
 
 @media (max-width: 650px) {
@@ -99,6 +124,16 @@
 
   label{
     font-size: .6rem;
+  }
+
+  section.mail-sort{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+  }
+  form{
+    margin: 0;
+
   }
 
 }
