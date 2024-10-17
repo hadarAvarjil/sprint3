@@ -1,7 +1,7 @@
 const { useState } = React;
 const { Link } = ReactRouterDOM;
 
-export function SideBar({  onSelectTrash, onSelectAllNotes,onSelectArchive  }) {
+export function SideBar({  onSelectTrash, onSelectAllNotes,onSelectArchive,onSelectReminder  }) {
     const [selectedLink, setSelectedLink] = useState("all")
 
     const handleLinkClick = (linkName) => {
@@ -28,10 +28,13 @@ export function SideBar({  onSelectTrash, onSelectAllNotes,onSelectArchive  }) {
                     <li>
                         <Link 
                             to="/note/reminders" 
-                            onClick={() => handleLinkClick('pinned')}
+                            onClick={() => {
+                                handleLinkClick('pinned')
+                                onSelectReminder()
+                            }}
                         >
                             <img 
-                                src={`./assets/img/${selectedLink === 'reminders' ? 'reminders.svg' : 'Reminder.svg'}`} 
+                                src={`./assets/img/${selectedLink === 'reminders' ? 'Reminder.svg' : 'Reminder.svg'}`} 
                                 className="icon" 
                             />
                             Reminders

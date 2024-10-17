@@ -16,12 +16,18 @@ export function NoteIndex() {
     const [noteType, setNoteType] = useState('NoteTxt')
     const [filterBy, setFilterBy] = useState('all')
     const [showTrash, setShowTrash] = useState(false)
-     
+    const [reminders, setReminders] = useState([])
+
     useEffect(() => {
         noteService.loadNotesFromStorage()
         const loadedNotes = noteService.query()
         setNotes(loadedNotes)
     }, [])
+
+    useEffect(() => {
+        applyFilter();
+    }, [notes, searchTerm, filterBy]);
+
 
     const handleSelectTrash = () => {
         setFilterBy('trash')
@@ -32,31 +38,36 @@ export function NoteIndex() {
         setShowTrash(false)
     }
 
+    const handleSelectReminder = () => {
+        setFilterBy('reminders')
+        setShowTrash(false)
+    }
+
     useEffect(() => {
         if (notes.length > 0 || searchTerm) {
             applyFilter()
         }
     }, [notes, searchTerm, filterBy])
+    
     const applyFilter = () => {
         let filtered = notes
-    
+        
         if (filterBy === 'trash') {
             filtered = notes.filter(note => note.isTrashed)
         } else if (filterBy === 'archived') {
             filtered = notes.filter(note => note.isArchived)
-        } else if (filterBy === 'pinned') {
-            filtered = notes.filter(note => note.isPinned)
+        } else if (filterBy === 'reminders') {
+            filtered = notes.filter(note => note.isReminder)
         } else {
-            filtered = notes.filter(note => !note.isTrashed && !note.isArchived)
+            filtered = notes.filter(note => !note.isTrashed && !note.isArchived && !note.isReminder)
         }
     
-   
         filtered = filtered.filter(note =>
             (note.info.txt && note.info.txt.toLowerCase().includes(searchTerm.toLowerCase())) ||
             (note.info.title && note.info.title.toLowerCase().includes(searchTerm.toLowerCase()))
         )
     
-        setFilteredNotes(filtered);
+        setFilteredNotes(filtered)
     }
 
     const handleAddNote = (newNote) => {
@@ -77,7 +88,7 @@ export function NoteIndex() {
 
     const handleDeleteNote = (noteId) => {
         const updatedNotes = notes.map(note => 
-            note.id === noteId ? { ...note, isTrashed: true, isArchived: false } : note
+            note.id === noteId ? { ...note, isTrashed: true, isArchived: false, isReminder: false } : note
         )
         setNotes(updatedNotes);
         noteService.put(updatedNotes.find(note => note.id === noteId))
@@ -124,7 +135,23 @@ export function NoteIndex() {
             return updatedNotes;
         })
     }
-
+    
+    const handleReminderNote = (noteId) => {
+        setNotes(prevNotes => {
+            const updatedNotes = prevNotes.map(note =>
+                note.id === noteId ? { ...note, isReminder: true } : note
+            );
+    
+            const noteToUpdate = updatedNotes.find(note => note.id === noteId)
+            if (noteToUpdate) {
+                noteService.put(noteToUpdate)
+            } else {
+                console.error("Note to update not found!")
+            }
+    
+            return updatedNotes
+        })
+    }
     const duplicateNote = (noteId) => {
         const noteToDuplicate = notes.find(note => note.id === noteId)
         if (noteToDuplicate) {
@@ -159,16 +186,13 @@ export function NoteIndex() {
             return updatedNotes
         })
     }
-
-    useEffect(() => {
-        applyFilter();
-    }, [notes, searchTerm, filterBy]);
-
+  
     return (
         <div className="note-index-container">
             <header className="keep-header"></header>
             <div className="sidebar-main-container">
             <SideBar 
+                onSelectReminder={handleSelectReminder}
                 onSelectTrash={handleSelectTrash} 
                 onSelectArchive={handleSelectArchive} 
                 onSelectAllNotes={() => {
@@ -204,6 +228,7 @@ export function NoteIndex() {
                         onRestore={handleRestoreNote}
                         onArchive={handleArchiveNote} 
                         onDrop={handleDrop} 
+                        onSetReminder={handleReminderNote}
                     />  
                 </div>
             </div>

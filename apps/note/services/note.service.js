@@ -129,6 +129,7 @@ function createSampleNotes() {
         isPinned: true,
         isTrashed: false,
         isArchived: false,
+        isReminder: false,
         info: {
             title: 'NoteImg',
             url: 'assets/img/flower.png',
@@ -143,6 +144,7 @@ function createSampleNotes() {
         isPinned: true,
         isTrashed: false,
         isArchived: false,
+        isReminder: false,
         style: { backgroundColor: '#b4ffe0' },
         info: { title: 'NoteAudio', url: 'assets/audio/be-happy.mp3' },
     };
@@ -154,6 +156,7 @@ function createSampleNotes() {
         isPinned: true,
         isTrashed: false,
         isArchived: false,
+        isReminder: false,
         type: 'NoteTodos',
         isPinned: false,
         info: {
@@ -172,6 +175,7 @@ function createSampleNotes() {
             isPinned: true,
             isTrashed: false,
             isArchived: false,
+            isReminder: false,
             style: { backgroundColor: '#f9b4ff' },
             info: { txt: 'Fullstack Me Baby!' },
     }

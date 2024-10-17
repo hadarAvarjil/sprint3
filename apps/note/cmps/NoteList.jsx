@@ -2,7 +2,7 @@ import { NotePreview } from "../cmps/NotePreview.jsx"
 import { NoteAudio } from './path/to/NoteAudio'
 const { useState } = React
 
-export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, onDuplicate, onArchive, onRestore,onDrop }) {
+export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, onDuplicate, onArchive, onRestore,onDrop,onSetReminder }) {
     const [colorPickerVisible, setColorPickerVisible] = useState(null)
     const colors = ['#ffb4b4', '#b4ffe0', '#b4b7ff', '#f9b4ff', '#c0e794', '#91c6f0']
 
@@ -85,7 +85,9 @@ export function NoteList({ notes, onDelete, onEdit, onColorChange, onTogglePin, 
                         <button onClick={() => setColorPickerVisible(note.id)}>
                             <img className="icon" src="assets/img/palette.svg" alt="Palette Icon" />
                         </button>
-
+                        <button onClick={() => onSetReminder(note.id)}>
+                            <img className="icon" src="assets/img/reminder.svg" alt="reminders Icon" />
+                        </button>
                         <button onClick={() => onDuplicate(note.id)}>
                             <img className="icon" src="assets/img/duplicate.svg" alt="Duplicate Icon" />
                         </button>
